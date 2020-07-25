@@ -140,14 +140,18 @@
   <ItemGroup>
     <ClCompile Include="Bus.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="User.cpp" />
+    <ClCompile Include="UserList.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Bus.h" />
     <ClInclude Include="Header.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="User.h" />
+    <ClInclude Include="UserList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
