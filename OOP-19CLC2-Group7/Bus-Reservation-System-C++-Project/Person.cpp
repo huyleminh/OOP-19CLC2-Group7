@@ -2,16 +2,16 @@
 
 Person::Person()
 {
-	this->_name = nullptr;
-	this->_Dob = nullptr;
-	this->_sex = NULL;
+	this->_name = "";
+	this->_Dob = "";
+	this->_gender = "";
 }
 
 Person::Person(const Person& p)
 {
 	this->_name = p._name;
 	this->_Dob = p._Dob;
-	this->_sex = p._sex;
+	this->_gender = p._gender;
 
 }
 
@@ -19,7 +19,7 @@ Person& Person::operator=(const Person& p)
 {
 	this->_name = p._name;
 	this->_Dob = p._Dob;
-	this->_sex = p._sex;
+	this->_gender = p._gender;
 
 	return *this;
 }
@@ -67,6 +67,6 @@ ofstream& Person::setPersonfile(ofstream& out)
 
 ostream& operator<<(ofstream& os, const Person& p)
 {
-	cout << "Name: " << p._name << " Date of birth: " << p._Dob << " Sex: " << p._sex << endl;
+	cout << "Name: " << p._name << " Date of birth: " << p._Dob << " Sex: " << p._gender << endl;
 	return os;
 }
