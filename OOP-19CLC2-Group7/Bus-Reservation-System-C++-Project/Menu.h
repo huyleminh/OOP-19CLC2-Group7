@@ -2,13 +2,14 @@
 #define _MENU_H_
 
 #include "Header.h"
+#include "User.h"
 
 class Menu {
 public:    
     void renderMainMenu();
-    void renderAdminMenu();
-    void renderDriverMenu();
-    void renderPassengerMenu();
+    void renderAdminMenu(User& user);
+    void renderDriverMenu(User& user);
+    void renderPassengerMenu(User& user);
 };
 
 #endif
