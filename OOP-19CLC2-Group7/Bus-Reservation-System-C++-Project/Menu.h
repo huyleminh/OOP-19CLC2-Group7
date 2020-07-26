@@ -4,7 +4,11 @@
 #include "Header.h"
 
 class Menu {
-
+public:    
+    void renderMainMenu();
+    void renderAdminMenu();
+    void renderDriverMenu();
+    void renderPassengerMenu();
 };
 
 #endif
