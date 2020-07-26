@@ -2,16 +2,13 @@
 #define _PERSON_H_
 
 #include "Header.h"
-#define MALE 0
-#define FEMALE 1
 
 class Person {
 
 private:
 	string _name;
 	string _Dob;
-	int _sex;
-
+	string _gender;
 
 public:
 	Person();
