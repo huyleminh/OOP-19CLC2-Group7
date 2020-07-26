@@ -1,8 +1,8 @@
-#include "Header.h"
-#include"Bus.h"
+//#include "Header.h"
+#include"BusList.h"
 int main() {
 	BusList a;
-	ifstream f1("D:\\OOP-19CLC2-Group7\\Data\\Buses.txt");
+	ifstream f1("../Data\\Buses.txt");
 	if (!f1.is_open())
 	{
 		cout << "Can not open file";
@@ -10,7 +10,7 @@ int main() {
 	else
 	{
 		f1 >> a;
-		cout << a <<endl;
+		a.PrintList();
 		a.Show();
 		f1.close();
 	}
