@@ -13,12 +13,23 @@ private:
 
 public: 
     //Constructors
+    User();
+    User(const User& user);
 
     //Operators
-    
-    //Destructor
+    friend ifstream& operator >>(ifstream& ifs, User& user);
+    friend ofstream& operator <<(ofstream& ofs, const User& user);
+    friend istream& operator >>(istream& is, User& user);
+    friend ostream& operator <<(ostream& os, const User& user);
+
+    bool operator ==(const User& user);
 
     //Methods
+    void changePassword(const string& password);
+    void changeUserRole(const string& role);
+
+    //Release
+    void release();
 };
 
 #endif
