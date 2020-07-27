@@ -16,10 +16,15 @@ private:
 	string _Starttime;//thoi gian hoat dong ,Ex: 7:30 -> 19:30
 	string _Endtime;
 	bool _IsActive;// 1:Active , 0:Inactive
+
 public:
+	//Operator
 	ifstream& ReadFromfile(ifstream& ifs);
-	int Show(int id);
 	friend ostream& operator<<(ostream& os, Bus bus);
+	
+	//Methods
+	int Show(int id);
+	
 };
 
 #endif
