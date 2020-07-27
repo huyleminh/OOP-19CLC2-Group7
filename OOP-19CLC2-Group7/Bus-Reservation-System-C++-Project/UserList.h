@@ -11,12 +11,12 @@ private:
 public:
 
     //Operators
-    friend ifstream& operator >>(ifstream& ifs, User& user);
+   /* friend ifstream& operator >>(ifstream& ifs, User& user);
     friend ofstream& operator <<(ofstream& ofs, const User& user);
-    friend ostream& operator <<(ostream& os, const User& user);
+    friend ostream& operator <<(ostream& os, const User& user);*/
 
     //Destructor
-    ~UserList();
+    /*~UserList();*/
 };
 
 #endif
