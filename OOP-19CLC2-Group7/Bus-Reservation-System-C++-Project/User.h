@@ -10,7 +10,6 @@ private:
     string _username;
     string _password;
     string _role;
-    
 
 public: 
     //Constructors
