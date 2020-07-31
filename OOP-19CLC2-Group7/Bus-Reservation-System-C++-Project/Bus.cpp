@@ -14,14 +14,14 @@ Bus::Bus() {
 	this->_studentPrice = "3000";
 
 	//Row
-	this->_rols = 15;
+	this->_rows = 15;
 
 	//Colum
 	this->_cols = 4;
 
 	//Empty seat
-	this->_seat.resize(_rols);
-	for (int i = 0; i < this->_rols; i++)
+	this->_seat.resize(_rows);
+	for (int i = 0; i < this->_rows; i++)
 		for (int j = 0; j < this->_cols; j++)
 			this->_seat[i].push_back("Empty");
 
@@ -33,6 +33,42 @@ Bus::Bus() {
 
 //Operator
 ifstream& operator >>(ifstream& ifs, Bus& bus) {
+	string line = "";
+
+	//Read ignore line
+	getline(ifs, line, '\n');
+
+	getline(ifs, line, '\n');
+	bus._ID = line;
+
+	getline(ifs, line, '\n');
+	bus._start = line;
+
+	getline(ifs, line, '\n');
+	bus._end = line;
+
+	getline(ifs, line, '\n');
+	bus._routeStart = line;
+
+	getline(ifs, line, '\n');
+	bus._routeEnd = line;
+
+	getline(ifs, line, '\n');
+	bus._spacing = line;
+
+	getline(ifs, line, '\n');
+	bus._normalPrice = line;
+
+	getline(ifs, line, '\n');
+	bus._studentPrice = line;
+
+	getline(ifs, line, ' ');
+	bus._rows = stoi(line);
+	getline(ifs, line, '\n');
+	bus._cols = stoi(line);
+
+	getline(ifs, line, '\n');
+
 	return ifs;
 }
 
@@ -46,10 +82,10 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 	ofs << bus._spacing;
 	ofs << bus._normalPrice;
 	ofs << bus._studentPrice;
-	ofs << bus._rols;
+	ofs << bus._rows;
 	ofs << bus._cols;
 
-	for (int i = 0; i < bus._rols; i++) {
+	for (int i = 0; i < bus._rows; i++) {
 		for (int j = 0; j < bus._cols; j++)
 			ofs << bus._seat[i][j] << " ";
 		ofs << endl;
