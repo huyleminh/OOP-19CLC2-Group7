@@ -3,16 +3,16 @@
 #include"Bus.h"
 class BusList
 {
-private:
-	Bus* list;
-	int size;
-public:
-	friend ifstream& operator>>(ifstream& ifs, BusList& list);
-	void PrintList();
-	void Show();
-	~BusList()
-	{
-		delete[]list;
-	}
+//private:
+//	Bus* list;
+//	int size;
+//public:
+//	friend ifstream& operator>>(ifstream& ifs, BusList& list);
+//	void PrintList();
+//	void Show();
+//	~BusList()
+//	{
+//		delete[]list;
+//	}
 };
 #endif

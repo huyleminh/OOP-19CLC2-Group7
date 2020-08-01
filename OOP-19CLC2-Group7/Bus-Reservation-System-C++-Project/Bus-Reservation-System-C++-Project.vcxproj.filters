@@ -21,19 +21,16 @@
     <ClCompile Include="Bus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Person.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="User.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UserList.cpp">
+    <ClCompile Include="BusList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BusList.cpp">
+    <ClCompile Include="Information.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -44,19 +41,16 @@
     <ClInclude Include="Bus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Person.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="User.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Menu.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UserList.h">
+    <ClInclude Include="BusList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BusList.h">
+    <ClInclude Include="Information.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
