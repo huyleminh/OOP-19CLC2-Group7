@@ -152,6 +152,7 @@
     <ClInclude Include="BusList.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Information.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
