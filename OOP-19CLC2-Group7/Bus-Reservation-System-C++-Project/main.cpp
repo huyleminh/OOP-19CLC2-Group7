@@ -2,10 +2,9 @@
 #include "Menu.h"
 #include "User.h"
 #include "BusList.h"
+#include "Admin.h"
+
 
 int main() {
-	User user;
-	cin >> user;
-	cout << user;
 	return 0;
 }
