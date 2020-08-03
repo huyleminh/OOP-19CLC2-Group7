@@ -43,10 +43,10 @@ ofstream& operator <<(ofstream& ofs, const User& user) {
 }
 
 istream& operator >>(istream& is, User& user) {
-    cout << "Enter username: ";
+    cout << "Enter your username: ";
     getline(is, user._username, '\n');
 
-    cout << "Enter password, your password must not have any space and / :";
+    cout << "Enter password, your password must not have any space or '/' :";
     getline(is, user._password, '\n');
     
     return is;
@@ -74,6 +74,12 @@ void User::changeUserRole(const string& role) {
 
 //Release
 void User::release() {
+    this->_username = "";
+    this->_password = "";
+    this->_role = "";
+}
+
+User::~User() {
     this->_username = "";
     this->_password = "";
     this->_role = "";

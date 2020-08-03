@@ -30,6 +30,8 @@ public:
 
     //Release
     void release();
+
+    ~User();
 };
 
 #endif
