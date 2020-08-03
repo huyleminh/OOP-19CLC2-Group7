@@ -2,6 +2,7 @@
 #define _USER_H_
 
 #include "Header.h"
+#include "Information.h"
 
 class User
 {
@@ -30,6 +31,27 @@ public:
 
     //Release
     void release();
+};
+
+
+class Driver : public Information
+{
+private:
+	//Attributes
+	User user;
+
+public:
+
+};
+
+class Passenger : public Information
+{
+private:
+	//Attributes
+	User user;
+
+public:
+
 };
 
 #endif
