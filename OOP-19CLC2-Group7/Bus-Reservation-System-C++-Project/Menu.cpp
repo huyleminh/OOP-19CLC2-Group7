@@ -3,12 +3,15 @@
 
 //Render main menu after start app
 void Menu::renderMainMenu() {
-    cout << "MENU\n";
-    cout << "1. Search bus no.\n";
-    cout << "2. Search departure and destination.\n";
-    cout << "3. Log in.\n";
-    cout << "4. Register.\n";
-    cout << "5. Exit app.\n";
+    cout << "**********************************************************\n";
+    cout << "*                          MENU                          *\n";
+    cout << "*  1. Search bus no.                                     *\n";
+    cout << "*  2. Search departure and destination.                  *\n";
+    cout << "*  3. Log in.                                            *\n";
+    cout << "*  4. Register.                                          *\n";
+    cout << "*  5. Exit app.                                          *\n";
+    cout << "*                                                        *\n";
+    cout << "**********************************************************\n";
 
     int option;
 OPTION:
@@ -35,12 +38,15 @@ OPTION:
 
 //If login successfully with Admin, render this menu
 void Menu::renderAdminMenu(User& user) {
-    cout << "WELCOME ADMIN\n";
-    cout << "1. Search bus no.\n";
-    cout << "2. Search departure and destination.\n";
-    cout << "3. Change password.\n";
-    cout << "4. Register.\n";
-    cout << "5. Exit app.\n";
+    cout << "*******************************************************\n";
+    cout << "*                    WELCOME ADMIN                    *\n";
+    cout << "*  1. Search bus no.                                  *\n";
+    cout << "*  2. Search departure and destination.               *\n";
+    cout << "*  3. Change password.                                *\n";
+    cout << "*  4. Register.                                       *\n";
+    cout << "*  5. Exit app.                                       *\n";
+    cout << "*                                                     *\n";
+    cout << "*******************************************************\n";
 
     int option;
 OPTION:
@@ -67,12 +73,15 @@ OPTION:
 
 //If login successfully with Diver, render this menu
 void Menu::renderDriverMenu(User& user) {
-    cout << "WELCOME DRIVER\n";
-    cout << "1. Search bus no.\n";
-    cout << "2. Search departure and destination.\n";
-    cout << "3. Change password.\n";
-    cout << "4. Register.\n";
-    cout << "5. Exit app.\n";
+    cout << "********************************************************\n";
+    cout << "*                    WELCOME DRIVER                    *\n";
+    cout << "*  1. Search bus no.                                   *\n";
+    cout << "*  2. Search departure and destination.                *\n";
+    cout << "*  3. Change password.                                 *\n";
+    cout << "*  4. Register.                                        *\n";
+    cout << "*  5. Exit app.                                        *\n";
+    cout << "*                                                      *\n";
+    cout << "********************************************************\n";
 
     int option;
 OPTION:
@@ -99,12 +108,15 @@ OPTION:
 
 //If login successfully with Passenger, render this menu
 void Menu::renderPassengerMenu(User& user) {
-    cout << "WELCOME PASSENGER\n";
-    cout << "1. Search bus no.\n";
-    cout << "2. Search departure and destination.\n";
-    cout << "3. Change password.\n";
-    cout << "4. Register.\n";
-    cout << "5. Exit app.\n";
+    cout << "***********************************************************\n";
+    cout << "*                    WELCOME PASSENGER                    *\n";
+    cout << "*  1. Search bus no.                                      *\n";
+    cout << "*  2. Search departure and destination.                   *\n";
+    cout << "*  3. Change password.                                    *\n";
+    cout << "*  4. Register.                                           *\n";
+    cout << "*  5. Exit app.                                           *\n";
+    cout << "*                                                         *\n";
+    cout << "***********************************************************\n";
 
     int option;
 OPTION:
@@ -127,4 +139,19 @@ OPTION:
     case 5:
         exit(0);
     }
+}
+
+//**Another feature when call in menu
+// *1: Main mennu
+
+//Login feature
+void Menu::login() {
+    system("cls");
+
+    User loginUser;
+    
+    cout << "***************************LOGIN***************************" << endl;
+    cin >> loginUser;
+
+
 }
