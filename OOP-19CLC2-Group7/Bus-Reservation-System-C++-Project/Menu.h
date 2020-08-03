@@ -17,6 +17,9 @@ public:
     
     //Login feature
     void login();
+
+    //Register feature
+    void registerUser();
     
 };
 

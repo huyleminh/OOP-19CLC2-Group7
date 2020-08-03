@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "User.h"
+#include "List.h"
 
 //Render main menu after start app
 void Menu::renderMainMenu() {
@@ -25,12 +26,18 @@ OPTION:
     switch (option) {
     case 1:
         //Search bus no
+        break;
     case 2: 
         //Search departure and destination
+        break;
     case 3:
-        
+        cin.ignore(1);
+        this->login();
+        break;
     case 4: 
-
+        cin.ignore(1);
+        this->registerUser();
+        break;
     case 5:
         exit(0);
     }
@@ -60,12 +67,14 @@ OPTION:
     switch (option) {
     case 1:
         //Search bus no
+        break;
     case 2: 
         //Search departure and destination
+        break;
     case 3:
-
+        break;
     case 4: 
-
+        break;
     case 5:
         exit(0);
     }
@@ -95,12 +104,14 @@ OPTION:
     switch (option) {
     case 1:
         //Search bus no
+        break;
     case 2: 
         //Search departure and destination
+        break;
     case 3:
-
+        break;
     case 4: 
-
+        break;
     case 5:
         exit(0);
     }
@@ -130,12 +141,14 @@ OPTION:
     switch (option) {
     case 1:
         //Search bus no
+        break;
     case 2: 
         //Search departure and destination
+        break;
     case 3:
-
+        break;
     case 4: 
-
+        break;
     case 5:
         exit(0);
     }
@@ -149,9 +162,39 @@ void Menu::login() {
     system("cls");
 
     User loginUser;
-    
+
+    //Login interface
     cout << "***************************LOGIN***************************" << endl;
     cin >> loginUser;
 
+    //Load users data and check valid login
+    List<User> list;
+    list.loadListDataFromFile("../Data/Users.txt");
+    
+    if (list.includes(loginUser)) {
+        cout << "Login successfully!" << endl;
+        //LocalStorage.setItem()
 
+        Sleep(2000);
+        system("cls");
+        return;
+    }
+    else {
+        cout << "Wrong username or password!" << endl;
+
+        Sleep(2000);
+        system("cls");
+
+        loginUser.release();
+        this->login();
+    }
+}
+
+//Register feature
+void Menu::registerUser() {
+    List<User> list;
+    list.loadListDataFromFile("../Data/Users.txt");
+
+    //Register interface
+    cout << "***************************REGISTER***************************" << endl;
 }
