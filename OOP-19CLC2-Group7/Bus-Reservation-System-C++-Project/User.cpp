@@ -18,6 +18,9 @@ User::User(const User& user) {
 ifstream& operator >>(ifstream& ifs, User& user) {
     string line = "";
 
+    //Read ignore line has ""
+    getline(ifs, line, '\n');
+
     getline(ifs, line, '\n');
     user._username = line;
 
@@ -26,9 +29,6 @@ ifstream& operator >>(ifstream& ifs, User& user) {
 
     getline(ifs, line, '\n');
     user._role = line;
-
-    //Read ignore line has ""
-    getline(ifs, line, '\n');
 
     return ifs;
 }
@@ -43,10 +43,10 @@ ofstream& operator <<(ofstream& ofs, const User& user) {
 }
 
 istream& operator >>(istream& is, User& user) {
-    cout << "Enter username: ";
+    cout << "Enter your username: ";
     getline(is, user._username, '\n');
 
-    cout << "Enter password, your password must not have any space and / :";
+    cout << "Enter password, your password must not have any space or '/' : ";
     getline(is, user._password, '\n');
     
     return is;
@@ -60,7 +60,7 @@ ostream& operator <<(ostream& os, const User& user) {
 
 //Operator ==
 bool User::operator ==(const User& user) {
-    return (this->_username == user._username && this->_password == user._password && this->_role == user._role);
+    return (this->_username == user._username && this->_password == user._password);
 }
 
 //Methods
@@ -74,6 +74,12 @@ void User::changeUserRole(const string& role) {
 
 //Release
 void User::release() {
+    this->_username = "";
+    this->_password = "";
+    this->_role = "";
+}
+
+User::~User() {
     this->_username = "";
     this->_password = "";
     this->_role = "";

@@ -138,6 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Admin.cpp" />
     <ClCompile Include="Bus.cpp" />
     <ClCompile Include="BusList.cpp" />
     <ClCompile Include="Information.cpp" />
@@ -146,10 +147,12 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Admin.h" />
     <ClInclude Include="Bus.h" />
     <ClInclude Include="BusList.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Information.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
