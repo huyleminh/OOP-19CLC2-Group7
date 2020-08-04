@@ -14,7 +14,7 @@ private:
 	string _normalPrice;			//gia ve binh thuong ,
 	string _studentPrice;			// gia ve sinh vien
 	vector<vector<string>> _seat;	//cho ngoi 
-	int _rows, _cols;						//size ma tran cho ngoi
+	int _rows, _cols;				//size ma tran cho ngoi
 	string _Starttime;				//thoi gian hoat dong ,Ex: 7:30 -> 19:30
 	string _Endtime;
 	bool _IsActive;					// 1:Active , 0:Inactive
@@ -26,11 +26,11 @@ public:
 	//Operator
 	friend ifstream& operator >>(ifstream& ifs, Bus& bus);
 	friend ofstream& operator <<(ofstream& ofs, const Bus& bus);
+	friend ostream& operator<<(ostream& os, const Bus& bus);
 	// ifstream& ReadFromfile(ifstream& ifs);
-	// friend ostream& operator<<(ostream& os, Bus bus);
 	
 	//Methods
-	int Show(int id);
+	void Show();
 };
 
 #endif

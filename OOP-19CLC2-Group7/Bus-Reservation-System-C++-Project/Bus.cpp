@@ -14,7 +14,7 @@ Bus::Bus() {
 	this->_studentPrice = "3000";
 
 	//Row
-	this->_rows = 15;
+	this->_rows = 14;
 
 	//Colum
 	this->_cols = 4;
@@ -67,8 +67,30 @@ ifstream& operator >>(ifstream& ifs, Bus& bus) {
 	getline(ifs, line, '\n');
 	bus._cols = stoi(line);
 
-	getline(ifs, line, '\n');
+	bus._seat.resize(bus._rows);
+	for (int i = 0; i < bus._rows; i++)
+	{
+		bus._seat[i].resize(bus._cols);
+		for (int j = 0; j < bus._cols; j++)
+		{
+			if (j == bus._cols- 1)
+			{
+				getline(ifs, bus._seat[i][j], '\n');
+			}
+			else
+				getline(ifs, bus._seat[i][j], ' ');
+		}
+	}
 
+	getline(ifs, line, '-');
+	bus._Starttime = line;
+
+	getline(ifs, line, '\n');
+	bus._Endtime = line;
+	
+	ifs >> bus._IsActive;
+
+	ifs.ignore(100, '\n');
 	return ifs;
 }
 
@@ -140,85 +162,81 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 // 	return ifs;
 // }
 
-//  int Bus::Show(int id)
-//  {
-// 	 if (id == stoi(this->_ID, NULL, 10))
-// 	 {
-// 		 int i;
-// 		 cout << "What information you want to see?" << endl;
-// 		 cout << "0: Name,Worktime" << endl;
-// 		 cout << "1:Route" << endl;
-// 		 cout << "2:Price" << endl;
-// 		 cout << "3:Seat" << endl;
-// 		 cin >> i;
-// 		 switch (i)
-// 		 {
-// 		 case 0:
-// 		 {
-// 			 system("cls");
-// 			 cout << "ID: " << this->_ID << endl;
-// 			 cout << "Name: " << this->_start << "-" << this->_end << endl;
-// 			 cout << "Worktime: " << this->_Starttime << " - " << this->_Endtime << endl;
-// 			 cout << "Status: ";
-// 			 if (this->_IsActive == 0)
-// 				 cout << "Inactive" << endl;
-// 			 else
-// 				 cout << "Active" << endl;
-// 			 system("pause");
-// 			 break;
-// 		 }
-// 		 case 1:
-// 		 {
-// 			 system("cls");
-// 			 cout << "Route from " << this->_start << " to " << this->_end << ": " << endl;
-// 			 cout << this->_routeStart << endl;
-// 			 cout << "Route from " << this->_end << " to " << this->_start << ": " << endl;
-// 			 cout << this->_routeEnd << endl;
-// 			 cout << "Spacing time: " << this->_spacing << endl;
-// 			 system("pause");
-// 			 break;
-// 		 }
-// 		 case 2:
-// 		 {
-// 			 system("cls");
-// 			 cout << "$$$$Price$$$$" << endl;
-// 			 cout << "Normal: " << this->_normalPrice << endl;
-// 			 cout << "Student: " << this->_studentPrice << endl;
-// 			 system("pause");
-// 			 break;
-// 		 }
-// 		 case 3:
-// 		 {
-// 			 system("cls");
-// 			 cout << "!!!!!SEAT!!!!!" << endl;
+ void Bus::Show()
+  {	
+ 	 int i;
+ 	 cout << "What information you want to see?" << endl;
+ 	 cout << "0: Name,Worktime" << endl;
+ 	 cout << "1:Route" << endl;
+ 	 cout << "2:Price" << endl;
+ 	 cout << "3:Seat" << endl;
+ 	 cin >> i;
+ 	 switch (i)
+ 	 {
+ 	 case 0:
+ 		 {
+ 			 system("cls");
+ 			 cout << "ID: " << this->_ID << endl;
+ 			 cout << "Name: " << this->_start << "-" << this->_end << endl;
+ 			 cout << "Worktime: " << this->_Starttime << " - " << this->_Endtime << endl;
+ 			 cout << "Status: ";
+ 			 if (this->_IsActive == 0)
+ 				 cout << "Inactive" << endl;
+ 			 else
+ 				 cout << "Active" << endl;
+ 			 system("pause");
+ 			 break;
+ 		 }
+ 	 case 1:
+ 		 {
+ 			 system("cls");
+ 			 cout << "Route from " << this->_start << " to " << this->_end << ": " << endl;
+ 			 cout << this->_routeStart << endl;
+ 			 cout << "Route from " << this->_end << " to " << this->_start << ": " << endl;
+ 			 cout << this->_routeEnd << endl;
+ 			 cout << "Spacing time: " << this->_spacing << endl;
+ 			 system("pause");
+ 			 break;
+ 		 }
+ 	 case 2:
+ 		 {
+ 			 system("cls");
+ 			 cout << "$$$$Price$$$$" << endl;
+ 			 cout << "Normal: " << this->_normalPrice << endl;
+ 			 cout << "Student: " << this->_studentPrice << endl;
+ 			 system("pause");
+ 			 break;
+ 		 }
+ 		 case 3:
+ 		 {
+ 			 system("cls");
+ 			 cout << "!!!!!SEAT!!!!!" << endl;
 
-// 			 for (int i = 0; i < this->n; i++)
-// 			 {
-// 				 for (int j = 0; j < this->m; j++)
-// 				 {
-// 					 if (j == this->m - 1)
-// 						 cout << " " << j + 1 + (i * this->m) << ": " << this->_seat[i][j] << "\n";
-// 					 else
-// 					 {
-// 						 cout << " " << j + 1 + (i * this->m) << ": " << this->_seat[i][j] << "\t";
+ 			 for (int i = 0; i < this->_rows; i++)
+ 			 {
+ 				 for (int j = 0; j < this->_cols; j++)
+ 				 {
+ 					 if (j == this->_cols - 1)
+ 						 cout << " " << j + 1 + (i * this->_cols) << ": " << this->_seat[i][j] << "\n";
+ 					 else
+ 					 {
+ 						 cout << " " << j + 1 + (i * this->_cols) << ": " << this->_seat[i][j] << "\t";
 
-// 					 }
+ 					 }
 
-// 				 }
-// 			 }
-// 			 break;
-// 		 }
-// 		 }
-// 		 return 0;
-// 	 }
-// 	 return 1;
-//  }
+ 				 }
+ 			 }
+			 system("pause");
+ 			 break;
+ 		 }
+ 	 }
+  }
 
 
-//  ostream& operator<<(ostream& os, Bus bus)
-// {
-// 	cout << "ID: " << bus._ID << endl;
-// 	cout << "Name: " << bus._start << "-" << bus._end << endl;
-// 	cout << "Worktime: " << bus._Starttime <<"-"<<bus._Endtime<< endl;
-// 	return os;
-// }
+  ostream& operator<<(ostream& os, const Bus& bus)
+ {
+ 	cout << "ID: " << bus._ID << endl;
+ 	cout << "Name: " << bus._start << "-" << bus._end << endl;
+ 	cout << "Worktime: " << bus._Starttime <<"-"<<bus._Endtime<< endl;
+ 	return os;
+ }
