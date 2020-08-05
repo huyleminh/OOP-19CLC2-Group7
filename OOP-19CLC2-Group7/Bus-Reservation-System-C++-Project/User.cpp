@@ -1,4 +1,5 @@
 #include "User.h"
+#include "../Library/Tokenizer.h"
 
 //Constructor
 User::User() {
@@ -47,7 +48,19 @@ istream& operator >>(istream& is, User& user) {
     getline(is, user._username, '\n');
 
     cout << "Enter password, your password must not have any space or '/' : ";
-    getline(is, user._password, '\n');
+    
+    //Read to temp password before standarlized, split " " and "/" and set to password.
+    string tmpPassword = "";
+    getline(is, tmpPassword, '\n');
+
+    vector<string> tmp = Tokenizer::split(tmpPassword, " ");
+    tmpPassword = Tokenizer::join(tmp);
+
+    tmp.clear();
+    tmp = Tokenizer::split(tmpPassword, "/");
+    tmpPassword = Tokenizer::join(tmp);
+
+    user._password = tmpPassword;
     
     return is;
 }
