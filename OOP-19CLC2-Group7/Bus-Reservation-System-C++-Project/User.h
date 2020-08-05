@@ -35,25 +35,4 @@ public:
     ~User();
 };
 
-
-class Driver : public Information
-{
-private:
-	//Attributes
-	User user;
-
-public:
-
-};
-
-class Passenger : public Information
-{
-private:
-	//Attributes
-	User user;
-
-public:
-
-};
-
 #endif
