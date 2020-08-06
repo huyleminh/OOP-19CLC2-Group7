@@ -6,21 +6,23 @@
 class Information
 {
 protected:
-    string name;
-    string sex; 
-    string birthday;
-    string CMNN;
-    string phone;
+    string _name;
+    string _sex; 
+    string _birthday;
 
 public:
+    //Default constructor
     Information();
+
+    //Copy constructor
     Information(const Information& info);
+    
+    //Opearator
     Information& operator=(const Information& info);
     friend ifstream& operator >>(ifstream& ifs, Information&info);
     friend ofstream& operator <<(ofstream& ofs, const Information& info);
     friend istream& operator >>(istream& is, Information& info);
     friend ostream& operator <<(ostream& os, const Information& info);
-
 };
 
 #endif

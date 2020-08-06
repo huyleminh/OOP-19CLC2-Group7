@@ -2,21 +2,23 @@
 
 Information::Information()
 {
-	this->name = "No name";
-	this->sex = "male";
-	this->birthday = "01/01/1990";
-	this->CMNN = "xxxxxxxxx";
-	this->phone = "0000000000";
+	this->_name = "Null";
+	this->_sex = "Null";
+	this->_birthday = "dd/mm/yyyy";
 }
 
 Information::Information(const Information& info)
 {
-	*this = info;
+	this->_name = info._name;
+	this->_sex = info._sex;
+	this->_birthday = info._birthday;
 }
 
 Information& Information::operator=(const Information& info)
 {
-	*this = info;
+	this->_name = info._name;
+	this->_sex = info._sex;
+	this->_birthday = info._birthday;
 	return *this;
 }
 
@@ -27,62 +29,46 @@ ifstream& operator>>(ifstream& ifs, Information& info)
 	getline(ifs, temp, '\n');
 
 	getline(ifs, temp, '\n');
-	info.name = temp;
+	info._name = temp;
 
-	getline(ifs, info.sex, '\n');
-	info.sex = temp;
-
-	getline(ifs, temp, '\n');
-	info.birthday = temp;
+	getline(ifs, info._sex, '\n');
+	info._sex = temp;
 
 	getline(ifs, temp, '\n');
-	info.CMNN = temp;
-
-	getline(ifs, temp, '\n');
-	info.phone = temp;
+	info._birthday = temp;
 
 	return ifs;
 }
 
 ofstream& operator<<(ofstream& ofs, const Information& info)
 {
-	ofs << info.name << endl;
-	ofs << info.sex << endl;
-	ofs << info.birthday << endl;
-	ofs << info.CMNN << endl;
-	ofs << info.phone << endl;
 	ofs << endl;
+	ofs << info._name << endl;
+	ofs << info._sex << endl;
+	ofs << info._birthday << endl;
 
 	return ofs;
 }
 
 istream& operator>>(istream& is, Information& info)
 {
-	cout << "enter name: ";
-	getline(is, info.name, '\n');
+	cout << "Enter name: ";
+	getline(is, info._name, '\n');
 
-	cout << "enter sex (MALE/FEMALE): ";
-	getline(is, info.sex, '\n');
+	cout << "Enter sex (MALE/FEMALE): ";
+	getline(is, info._sex, '\n');
 
-	cout << "enter birthday(dd/mm/yy): ";
-	getline(is, info.birthday, '\n');
-
-	cout << "enter CMNN: ";
-	getline(is, info.CMNN, '\n');
-
-	cout << "enter phone: ";
-	getline(is, info.phone, '\n');
+	cout << "Enter birthday follow this format dd/mm/yyyy: ";
+	getline(is, info._birthday, '\n');
 
 	return is;
 }
 
 ostream& operator<<(ostream& os, const Information& info)
 {
-	cout << "Name: " << info.name << endl;
-	cout << "Sex: " << info.sex << endl;
-	cout << "Birthday: " << info.birthday << endl;
-	cout << "CMNN: " << info.CMNN << endl;
-	cout << "Phone: " << info.phone << endl;
+	cout << "Name: " << info._name << endl;
+	cout << "Sex: " << info._sex << endl;
+	cout << "Birthday: " << info._birthday << endl;
 
 	return os;
 }
