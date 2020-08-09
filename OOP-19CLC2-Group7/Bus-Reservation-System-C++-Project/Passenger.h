@@ -5,14 +5,28 @@
 #include "Information.h"
 #include "User.h"
 
-class Driver : public Information
+class Passenger : public Information
 {
 private:
 	//Attributes
-	User user;
+	User _user;
+	string _type;
 
 public:
+	//Constructor
+	Passenger();
+	Passenger(const Passenger&);
 
+	//Assignment operator
+	Passenger& operator =(const Passenger&);
+
+	//File and console operators
+	friend ifstream& operator >>(ifstream& in, Passenger&);
+	friend ofstream& operator <<(ofstream& out, const Passenger&);
+	friend istream& operator >>(istream& in, Passenger&);
+	friend ostream& operator <<(ostream& out, const Passenger&);
+
+	//Methods change information
 };
 
 #endif
