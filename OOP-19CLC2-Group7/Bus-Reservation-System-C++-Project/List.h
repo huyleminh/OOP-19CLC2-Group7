@@ -43,6 +43,7 @@ void List<T>::loadListDataFromFile(const string& filename) {
 		in >> temp;
 		this->_data.push_back(temp);
 	}
+	this->_data.pop_back();
 	in.close();
 }
 

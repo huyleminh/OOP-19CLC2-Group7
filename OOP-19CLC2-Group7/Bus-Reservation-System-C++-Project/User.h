@@ -27,7 +27,7 @@ public:
 
     //Methods
     void changePassword(const string& password);
-    void changeUserRole(const string& role);
+	void changeUserRole(const string& role);
 
     //Release
     void release();
