@@ -1,5 +1,6 @@
 #include "User.h"
 #include "../Library/Tokenizer.h"
+#include "List.h"
 
 //Constructor
 User::User() {
@@ -71,9 +72,22 @@ ostream& operator <<(ostream& os, const User& user) {
     return os;
 }
 
+User& User::operator =(const User& user) {
+    this->_username = user._username;
+    this->_password = user._password;
+    this->_role = user._role;
+
+    return *this;
+}
+
 //Operator ==
-bool User::operator ==(const User& user) {
-    return (this->_username == user._username && this->_password == user._password);
+bool User::operator ==(User& user) {
+    if (this->_username == user._username && this->_password == user._password) {
+        user._role = this->_role;
+        return true;
+    }
+    else
+        return false;
 }
 
 //Methods
@@ -83,6 +97,15 @@ void User::changePassword(const string& password) {
 
 void User::changeUserRole(const string& role) {
     this->_role = role;
+}
+
+bool User::isUnValidUsername(const User& user) {
+    return this->_username != user._username;
+}
+
+//Return string to storage
+string User::storageString() {
+    return this->_username + " " + this->_role;
 }
 
 //Release

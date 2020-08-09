@@ -29,9 +29,11 @@ ifstream& operator>>(ifstream& ifs, Information& info)
 	getline(ifs, temp, '\n');
 
 	getline(ifs, temp, '\n');
+	if (temp == "")
+		return ifs;
 	info._name = temp;
 
-	getline(ifs, info._sex, '\n');
+	getline(ifs, temp, '\n');
 	info._sex = temp;
 
 	getline(ifs, temp, '\n');

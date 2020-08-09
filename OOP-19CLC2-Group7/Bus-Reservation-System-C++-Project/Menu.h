@@ -5,7 +5,7 @@
 #include "User.h"
 
 class Menu {
-public:    
+public:
     //Render dynamic menu with each role
     void renderMainMenu();
     void renderAdminMenu(User& user);
@@ -14,13 +14,13 @@ public:
 
     //**Another feature when call in menu
     // *1: Main mennu
-    
+
     //Login feature
     void login();
 
     //Register feature
     void registerUser();
-    
+
 };
 
 #endif

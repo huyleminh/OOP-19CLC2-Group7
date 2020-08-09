@@ -23,11 +23,19 @@ public:
     friend istream& operator >>(istream& is, User& user);
     friend ostream& operator <<(ostream& os, const User& user);
 
-    bool operator ==(const User& user);
+    User& operator =(const User&);
 
-    //Methods
+    bool operator ==(User& user);
+
+    //Methods change data
     void changePassword(const string& password);
     void changeUserRole(const string& role);
+
+    //Check
+    bool isUnValidUsername(const User& user);
+
+    //Return string to storage
+    string storageString();
 
     //Release
     void release();

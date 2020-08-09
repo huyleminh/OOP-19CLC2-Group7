@@ -17,12 +17,13 @@ public:
     //Copy constructor
     Information(const Information& info);
     
-    //Opearator
+    //Operator
     Information& operator=(const Information& info);
-    friend ifstream& operator >>(ifstream& ifs, Information&info);
+    friend ifstream& operator >>(ifstream& ifs, Information& info);
     friend ofstream& operator <<(ofstream& ofs, const Information& info);
     friend istream& operator >>(istream& is, Information& info);
     friend ostream& operator <<(ostream& os, const Information& info);
+
 };
 
 #endif

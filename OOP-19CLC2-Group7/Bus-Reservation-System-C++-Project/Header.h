@@ -11,6 +11,7 @@
 #include <vector>
 #include <fstream>
 #include <Windows.h>
+#include "../Library/LocalStorage.h"
 using namespace std;
 
 #endif

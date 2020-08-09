@@ -148,6 +148,7 @@
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Library\LocalStorage.h" />
     <ClInclude Include="..\Library\Tokenizer.h" />
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Bus.h" />
@@ -160,7 +161,7 @@
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\Library\StaticLib1.lib" />
+    <Library Include="..\Library\My-Library.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
