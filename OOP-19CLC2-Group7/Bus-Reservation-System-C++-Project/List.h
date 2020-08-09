@@ -17,6 +17,7 @@ public:
 
 	//Destructor
 	~List();
+	friend class Bus;
 };
 
 //Operators

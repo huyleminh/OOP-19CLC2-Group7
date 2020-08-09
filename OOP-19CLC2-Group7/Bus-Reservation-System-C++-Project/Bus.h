@@ -27,10 +27,20 @@ public:
 	friend ifstream& operator >>(ifstream& ifs, Bus& bus);
 	friend ofstream& operator <<(ofstream& ofs, const Bus& bus);
 	friend ostream& operator<<(ostream& os, const Bus& bus);
-	// ifstream& ReadFromfile(ifstream& ifs);
+
 	
 	//Methods
-	void Show();
+	void show(string Id);
+
+	void changeID();
+	void changePosition();
+	void changeRoute();
+	void changeSpacing();
+	void changePrice();
+	void changeSeat();
+	void changeTime();
+	void changeActive();
+	void change(string Id);//Nguoi ta nhap id muon doi, roi goi ham change cua tung bus ra o ham main, bus nao co id giong thi doi
 };
 
 #endif

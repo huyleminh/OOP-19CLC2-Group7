@@ -1,5 +1,5 @@
 #include "Bus.h"
-
+#include"../Library/Tokenizer.h"
 //Default constructor
 Bus::Bus() {
 	this->_ID = "000";
@@ -34,13 +34,12 @@ Bus::Bus() {
 //Operator
 ifstream& operator >>(ifstream& ifs, Bus& bus) {
 	string line = "";
-
-	//Read ignore line
+	//ignore line
 	getline(ifs, line, '\n');
 
 	getline(ifs, line, '\n');
 	bus._ID = line;
-
+	
 	getline(ifs, line, '\n');
 	bus._start = line;
 
@@ -61,7 +60,8 @@ ifstream& operator >>(ifstream& ifs, Bus& bus) {
 
 	getline(ifs, line, '\n');
 	bus._studentPrice = line;
-
+	if (ifs.eof())
+		return ifs;
 	getline(ifs, line, ' ');
 	bus._rows = stoi(line);
 	getline(ifs, line, '\n');
@@ -89,147 +89,111 @@ ifstream& operator >>(ifstream& ifs, Bus& bus) {
 	bus._Endtime = line;
 	
 	ifs >> bus._IsActive;
-
-	ifs.ignore(100, '\n');
+	getline(ifs, line, '\n');
 	return ifs;
 }
 
 ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 	ofs << endl;
-	ofs << bus._ID;
-	ofs << bus._start;
-	ofs << bus._end;
-	ofs << bus._routeStart;
-	ofs << bus._routeEnd;
-	ofs << bus._spacing;
-	ofs << bus._normalPrice;
-	ofs << bus._studentPrice;
-	ofs << bus._rows;
-	ofs << bus._cols;
+	ofs << bus._ID << endl;
+	ofs << bus._start << endl;
+	ofs << bus._end << endl;
+	ofs << bus._routeStart << endl;
+	ofs << bus._routeEnd << endl;
+	ofs << bus._spacing << endl;
+	ofs << bus._normalPrice << endl;
+	ofs << bus._studentPrice << endl;
+	ofs << bus._rows << " ";
+	ofs << bus._cols << endl;
 
-	for (int i = 0; i < bus._rows; i++) {
+	for (int i = 0; i < bus._rows; i++) 
+	{
 		for (int j = 0; j < bus._cols; j++)
 			ofs << bus._seat[i][j] << " ";
 		ofs << endl;
 	} 
-	ofs << endl;
 
-	ofs << bus._Starttime << " - " << bus._Endtime << endl;
-	ofs << ((bus._IsActive == true) ? 1 : 0) << endl;
+	ofs << bus._Starttime << "-" << bus._Endtime << endl;
+	ofs << ((bus._IsActive == true) ? 1 : 0) << endl ;
 
 	return ofs;
 }
 	
-// ifstream & Bus::ReadFromfile(ifstream & ifs)
-// {
-// 	ifs.ignore(100, '\n');
 
-// 	getline(ifs, this->_ID, '\n');
-// 	getline(ifs, this->_start, '\n');
-// 	getline(ifs, this->_end, '\n');
-// 	getline(ifs, this->_routeStart, '.');
-// 	getline(ifs, this->_routeEnd, '.');
-
-// 	ifs.ignore(100, '\n');
-
-// 	getline(ifs, this->_spacing, '\n');
-// 	getline(ifs, this->_normalPrice, '\n');
-// 	getline(ifs, this->_studentPrice, '\n');
-
-// 	ifs >> this->n >> this->m;
-// 	this->_seat.resize(n);
-// 	ifs.ignore(100, '\n');
-// 	for (int i = 0; i < n; i++)
-// 	{
-// 		this->_seat[i].resize(m);
-// 		for (int j = 0; j < m; j++)
-// 		{
-// 			if (j == m - 1)
-// 			{
-// 				getline(ifs, this->_seat[i][j], '\n');
-// 			}
-// 			else
-// 				getline(ifs, this->_seat[i][j], ' ');
-// 		}
-// 	}
-
-// 	getline(ifs, this->_Starttime, '-');
-// 	getline(ifs, this->_Endtime, '\n');
-
-// 	ifs >> this->_IsActive;
-// 	ifs.ignore(100, '\n');
-
-// 	return ifs;
-// }
-
- void Bus::Show()
+ void Bus::show(string id)
   {	
- 	 int i;
- 	 cout << "What information you want to see?" << endl;
- 	 cout << "0: Name,Worktime" << endl;
- 	 cout << "1:Route" << endl;
- 	 cout << "2:Price" << endl;
- 	 cout << "3:Seat" << endl;
- 	 cin >> i;
- 	 switch (i)
- 	 {
- 	 case 0:
- 		 {
- 			 system("cls");
- 			 cout << "ID: " << this->_ID << endl;
- 			 cout << "Name: " << this->_start << "-" << this->_end << endl;
- 			 cout << "Worktime: " << this->_Starttime << " - " << this->_Endtime << endl;
- 			 cout << "Status: ";
- 			 if (this->_IsActive == 0)
- 				 cout << "Inactive" << endl;
- 			 else
- 				 cout << "Active" << endl;
- 			 system("pause");
- 			 break;
- 		 }
- 	 case 1:
- 		 {
- 			 system("cls");
- 			 cout << "Route from " << this->_start << " to " << this->_end << ": " << endl;
- 			 cout << this->_routeStart << endl;
- 			 cout << "Route from " << this->_end << " to " << this->_start << ": " << endl;
- 			 cout << this->_routeEnd << endl;
- 			 cout << "Spacing time: " << this->_spacing << endl;
- 			 system("pause");
- 			 break;
- 		 }
- 	 case 2:
- 		 {
- 			 system("cls");
- 			 cout << "$$$$Price$$$$" << endl;
- 			 cout << "Normal: " << this->_normalPrice << endl;
- 			 cout << "Student: " << this->_studentPrice << endl;
- 			 system("pause");
- 			 break;
- 		 }
- 		 case 3:
- 		 {
- 			 system("cls");
- 			 cout << "!!!!!SEAT!!!!!" << endl;
-
- 			 for (int i = 0; i < this->_rows; i++)
- 			 {
- 				 for (int j = 0; j < this->_cols; j++)
- 				 {
- 					 if (j == this->_cols - 1)
- 						 cout << " " << j + 1 + (i * this->_cols) << ": " << this->_seat[i][j] << "\n";
- 					 else
- 					 {
- 						 cout << " " << j + 1 + (i * this->_cols) << ": " << this->_seat[i][j] << "\t";
-
- 					 }
-
- 				 }
- 			 }
+	 if (this->_ID == id)
+	 {
+		 int i;
+		 cout << "What information you want to see?" << endl;
+		 cout << "0:Name,Worktime" << endl;
+		 cout << "1:Route" << endl;
+		 cout << "2:Price" << endl;
+		 cout << "3:Seat" << endl;
+		 cin >> i;
+		 switch (i)
+		 {
+		 case 0:
+		 {
+			 system("cls");
+			 cout << "ID: " << this->_ID << endl;
+			 cout << "Name: " << this->_start << "-" << this->_end << endl;
+			 cout << "Worktime: " << this->_Starttime << " - " << this->_Endtime << endl;
+			 cout << "Status: ";
+			 if (this->_IsActive == 0)
+				 cout << "Inactive" << endl;
+			 else
+				 cout << "Active" << endl;
 			 system("pause");
- 			 break;
- 		 }
- 	 }
+			 break;
+		 }
+		 case 1:
+		 {
+			 system("cls");
+			 cout << "Route from " << this->_start << " to " << this->_end << ": " << endl;
+			 cout << this->_routeStart << endl;
+			 cout << "Route from " << this->_end << " to " << this->_start << ": " << endl;
+			 cout << this->_routeEnd << endl;
+			 cout << "Spacing time: " << this->_spacing << endl;
+			 system("pause");
+			 break;
+		 }
+		 case 2:
+		 {
+			 system("cls");
+			 cout << "$$$$Price$$$$" << endl;
+			 cout << "Normal: " << this->_normalPrice << endl;
+			 cout << "Student: " << this->_studentPrice << endl;
+			 system("pause");
+			 break;
+		 }
+		 case 3:
+		 {
+			 system("cls");
+			 cout << "!!!!!SEAT!!!!!" << endl;
+
+			 for (int i = 0; i < this->_rows; i++)
+			 {
+				 for (int j = 0; j < this->_cols; j++)
+				 {
+					 if (j == this->_cols - 1)
+						 cout << " " << j + 1 + (i * this->_cols) << ": " << this->_seat[i][j] << "\n";
+					 else
+					 {
+						 cout << " " << j + 1 + (i * this->_cols) << ": " << this->_seat[i][j] << "\t";
+
+					 }
+
+				 }
+			 }
+			 system("pause");
+			 break;
+		 }
+	 }
+
+	 }
+	 else
+		 return;
   }
 
 
@@ -240,3 +204,663 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
  	cout << "Worktime: " << bus._Starttime <<"-"<<bus._Endtime<< endl;
  	return os;
  }
+
+  void Bus::changeID()
+  {
+	  int choice;
+	  cout << "Bus ID " << this->_ID << endl;
+	  cout << "Do you want to change it ?" << endl;
+	  cout << "1: Yes" << endl;
+	  cout << "2: No" << endl;
+	  cin >> choice;
+
+	  if (choice == 2)
+		  return;
+
+	  string id;
+	  cout << "Input new ID :";
+	  cin >> id;
+
+	  //doc lai file de ghi lai
+	  vector<Bus> a;
+	  ifstream f1("../Data\\Buses.txt");
+	  if (!f1.is_open())
+	  {
+	 	  cout << "Can not open buses.txt" << endl;
+	  }
+	  else
+	  {
+	 	  while (!f1.eof())
+	 	  {
+	 		  Bus tmp;
+	 		  f1 >> tmp;
+			  
+	 		  if (f1.eof())//tranh doc du o cuoi file
+	 			  break;
+
+	 		  a.push_back(tmp);
+	 	  }
+	 	  for (int i = 0; i < a.size(); i++)
+	 	  {
+			  //sua id va ghi lai
+	 		  if (this->_ID == a[i]._ID)
+	 		  {
+
+	 			  a[i]._ID = id;
+
+	 			  ofstream out("../Data\\Buses.txt");
+	 			  if (!out.is_open())
+	 			  {
+	 				  cout << "Can not open Buses.txt" << endl;
+	 				  return;
+	 			  }
+	 			  else
+	 			  {
+	 				  for (int i = 0; i < a.size(); i++)
+	 				  {
+	 					  out << a[i];
+	 				  }
+	 				  cout << "Change id successfully!!!" << endl;
+	 				  out.close();
+	 				  return;
+	 			  }
+	 		  }
+	 	  }
+	 }
+	 
+  }
+  void Bus::changePosition()// tuong tu ham changeID
+  {
+	 
+		  int choice;
+		  cout << "Bus ID " << this->_ID  << endl;
+		  cout << "Start position: " << this->_start <<  endl;
+		  cout << "Final position: " << this->_end << endl;
+		  cout << "What position you want to change ?" << endl;
+		  cout << "1: Start" << endl;
+		  cout << "2: End" << endl;
+		  cin >> choice;
+
+		  system("cls");
+		  string position;
+
+		  while (getchar() != '\n');
+
+		  cout << "Your alternative position: " << endl;
+		  getline(cin, position);
+
+		  vector<Bus> a;
+		  ifstream f1("../Data\\Buses.txt");
+		  if (!f1.is_open())
+		  {
+			  cout << "Can not open buses.txt" << endl;
+		  }
+		  else
+		  {
+			  while (!f1.eof())
+			  {
+				  Bus tmp;
+				  f1 >> tmp;
+				  if (f1.eof())
+					  break;
+				  a.push_back(tmp);
+			  }
+			  for (int i = 0; i < a.size(); i++)
+			  {
+				  if (this->_ID == a[i]._ID)
+				  {
+					  if (choice == 1)
+						  a[i]._start = position;
+					  else
+						  a[i]._end = position;
+
+					  ofstream out("../Data\\Buses.txt");
+					  if (!out.is_open())
+					  {
+						  cout << "Can not open Buses.txt" << endl;
+						  return;
+					  }
+					  else
+					  {
+						  for (int i = 0; i < a.size(); i++)
+						  {
+							  out << a[i];
+						  }
+						  
+						  if(choice==1)
+							  cout << "Change start position successfully!!!" << endl;
+						  else
+							  cout << "Change end position successfully!!!" << endl;
+						  out.close();
+						  return;
+					  }
+				  }
+			  }
+		  }
+	  
+  }
+  void Bus::changeRoute()
+  {
+	 
+		  int choice;
+		  cout << "Bus ID " << this->_ID << endl;
+		  cout << "Start route: " << this->_routeStart << endl;
+		  cout << "\nEnd route: " << this->_routeEnd << endl;
+		  cout << "\nWhat route you want to change ?" << endl;
+		  cout << "1: Start route" << endl;
+		  cout << "2: End route" << endl;
+		  cin >> choice;
+		  system("cls");
+
+		  string position;
+
+		  vector<string> route;
+
+		  int n;
+		  cout << "How many position your route have?" << endl;
+		  cin >> n;
+
+		  if (choice == 1)
+			  cout << "START ROUTE" << endl;
+		  else
+			  cout << "END ROUTE" << endl;
+		  cout << "Position ";
+		  while (getchar() != '\n');
+		  //cho nguoi ta nhap tung position de tranh bi sai, roi noi chuoi lai bang ham join
+		  for (int i = 0; i < n; i++)
+		  {
+			  string position;
+			  cout << i + 1 << ": ";
+
+			  getline(cin, position);
+
+			  route.push_back(position);
+		  }
+		  string routeJoin = Tokenizer::join(route, "-");
+		  vector<Bus> a;
+		  ifstream f1("../Data\\Buses.txt");
+		  if (!f1.is_open())
+		  {
+			  cout << "Can not open buses.txt" << endl;
+		  }
+		  else
+		  {
+			  while (!f1.eof())
+			  {
+				  Bus tmp;
+				  f1 >> tmp;
+				  if (f1.eof())
+					  break;
+				  a.push_back(tmp);
+			  }
+			  for (int i = 0; i < a.size(); i++)
+			  {
+				  if (this->_ID == a[i]._ID)
+				  {
+					  if (choice == 1)
+						  a[i]._routeStart = routeJoin;
+					  else
+						  a[i]._routeEnd = routeJoin;
+
+					  ofstream out("../Data\\Buses.txt");
+					  if (!out.is_open())
+					  {
+						  cout << "Can not open Buses.txt" << endl;
+						  return;
+					  }
+					  else
+					  {
+						  for (int i = 0; i < a.size(); i++)
+						  {
+							  out << a[i];
+						  }
+
+						  if (choice == 1)
+							  cout << "Change start route successfully!!!" << endl;
+						  else
+							  cout << "Change end route successfully!!!" << endl;
+						  out.close();
+						  return;
+					  }
+				  }
+			  }
+		  }
+	  
+  }
+  void Bus::changeSpacing()
+  {
+		  int choice;
+		  cout << "Bus ID " << this->_ID << endl;
+		  cout << "Spacing time: " << this->_spacing<< endl;
+		  cout << "Do you want to change it ?" << endl;
+		  cout << "1:Yes" << endl;
+		  cout << "2:No" << endl;
+		  cin >> choice;
+		  if (choice == 2)
+			  return;
+
+		  system("cls");
+
+		  string spacing;
+		  cout << "Your alternative spacing time(Ex:10-15 phut): ";
+		  while (getchar() != '\n');
+		  getline(cin, spacing);
+
+		  vector<Bus> a;
+		  ifstream f1("../Data\\Buses.txt");
+		  if (!f1.is_open())
+		  {
+			  cout << "Can not open buses.txt" << endl;
+		  }
+		  else
+		  {
+			  while (!f1.eof())
+			  {
+				  Bus tmp;
+				  f1 >> tmp;
+				  if (f1.eof())
+					  break;
+				  a.push_back(tmp);
+			  }
+			  for (int i = 0; i < a.size(); i++)
+			  {
+				  if (this->_ID == a[i]._ID)
+				  {
+					  a[i]._spacing = spacing;
+
+					  ofstream out("../Data\\Buses.txt");
+					  if (!out.is_open())
+					  {
+						  cout << "Can not open Buses.txt" << endl;
+						  return;
+					  }
+					  else
+					  {
+						  for (int i = 0; i < a.size(); i++)
+						  {
+							  out << a[i];
+						  }
+						  cout << "Change spacing time successfully!!!" << endl;
+						  out.close();
+						  return;
+					  }
+				  }
+			  }
+		  }
+	  
+  }
+  void Bus::changePrice()
+  {
+	 
+		  int choice;
+		  cout << "Bus ID " << this->_ID << endl;
+		  cout << "Student Price: " << this->_studentPrice << endl;
+		  cout << "Normal Price: " << this->_normalPrice << endl;
+		  cout << "What price do you want to change?" << endl;
+		  cout << "1:Student Price" << endl;
+		  cout << "2:Normal Price" << endl;
+		  cin >> choice;
+
+		  system("cls");
+		  string price;
+		  while (getchar() != '\n');
+		  if (choice == 1)
+			  cout << "Your student price(Ex:3000): " << endl;
+		  else
+			  cout << "Your normal price(Ex:7000): " << endl;
+		  getline(cin, price);
+
+		  vector<Bus> a;
+		  ifstream f1("../Data\\Buses.txt");
+		  if (!f1.is_open())
+		  {
+			  cout << "Can not open buses.txt" << endl;
+		  }
+		  else
+		  {
+			  while (!f1.eof())
+			  {
+				  Bus tmp;
+				  f1 >> tmp;
+				  if (f1.eof())
+					  break;
+				  a.push_back(tmp);
+			  }
+			  for (int i = 0; i < a.size(); i++)
+			  {
+				  if (this->_ID == a[i]._ID)
+				  {
+					  if (choice == 1)
+						  a[i]._studentPrice = price;
+					  else
+						  a[i]._normalPrice=price;
+
+					  ofstream out("../Data\\Buses.txt");
+					  if (!out.is_open())
+					  {
+						  cout << "Can not open Buses.txt" << endl;
+						  return;
+					  }
+					  else
+					  {
+						  for (int i = 0; i < a.size(); i++)
+						  {
+							  out << a[i];
+						  }
+
+						  if (choice == 1)
+							  cout << "Change student price successfully!!!" << endl;
+						  else
+							  cout << "Change normal price successfully!!!" << endl;
+						  out.close();
+						  return;
+					  }
+				  }
+			  }
+		  }
+	  
+  }
+  void Bus::changeSeat()
+  {
+	  
+		  int choice;
+		  cout << "Bus ID " << this->_ID << endl;
+		  cout << "SEAT" << endl;
+		  for (int i = 0; i < this->_rows; i++)
+		  {
+			  for (int j = 0; j < this->_cols; j++)
+			  {
+				  if (j == this->_cols - 1)
+					  cout << " " << j + 1 + (i * this->_cols) << ": " << this->_seat[i][j] << "\n";
+				  else
+				  {
+					  cout << " " << j + 1 + (i * this->_cols) << ": " << this->_seat[i][j] << "\t";
+
+				  }
+
+			  }
+		  }
+		  cout << "Do you want to change seat?" << endl;
+		  cout << "1: Yes" << endl;
+		  cout << "2: No" << endl;
+		  cout << "NOTE!!!IF YOU CHANGE SEAT ,ALL CUSTOMERS WHO RESERVED SEAT WILL BE ERASE" << endl;
+		  cin >> choice;
+
+		  if (choice == 2)
+			  return;
+
+		  system("cls");
+		  int n, m;
+		  cout << "Input rows of seats: ";
+		  cin >> n;
+		  cout << "Input cols of seats: ";
+		  cin >> m;
+
+		  vector<Bus> a;
+		  ifstream f1("../Data\\Buses.txt");
+		  if (!f1.is_open())
+		  {
+			  cout << "Can not open buses.txt" << endl;
+		  }
+		  else
+		  {
+			  while (!f1.eof())
+			  {
+				  Bus tmp;
+				  f1 >> tmp;
+				  if (f1.eof())
+					  break;
+				  a.push_back(tmp);
+			  }
+			  for (int i = 0; i < a.size(); i++)
+			  {
+				  if (this->_ID == a[i]._ID)
+				  {
+					  a[i]._rows = n;
+					  a[i]._cols = m;
+					  a[i]._seat.clear();
+					  a[i]._seat.resize(n);
+					  for (int j = 0; j < n; j++)
+					  {
+						  a[i]._seat[j].resize(m);
+						  for (int z = 0; z < m; z++)
+						  {
+							  a[i]._seat[j][z] = "Empty";
+						  }
+					  }
+					  ofstream out("../Data\\Buses.txt");
+					  if (!out.is_open())
+					  {
+						  cout << "Can not open Buses.txt" << endl;
+						  return;
+					  }
+					  else
+					  {
+						  for (int i = 0; i < a.size(); i++)
+						  {
+							  out << a[i];
+						  }
+
+						  
+						  cout << "Change SEAT successfully!!!" << endl;
+	
+						  out.close();
+						  return;
+					  }
+				  }
+			  }
+		  }
+ }
+  
+  void Bus::changeTime()
+  {
+	
+		  int choice;
+		  cout << "Bus ID " << this->_ID << endl;
+		  cout << "Start time: " << this->_Starttime << endl;
+		  cout << "End time: " << this->_Endtime << endl;
+		  cout << "What time do you want to change?" << endl;
+		  cout << "1:Start time" << endl;
+		  cout << "2:End time" << endl;
+		  cin >> choice;
+
+		  system("cls");
+		  string time;
+		  while (getchar() != '\n');
+		  if (choice == 1)
+			  cout << "Your start time(Ex: 04:30): " << endl;
+		  else
+			  cout << "Your end time(Ex: 20:30): " << endl;
+		  getline(cin, time);
+
+		  vector<Bus> a;
+		  ifstream f1("../Data\\Buses.txt");
+		  if (!f1.is_open())
+		  {
+			  cout << "Can not open buses.txt" << endl;
+		  }
+		  else
+		  {
+			  while (!f1.eof())
+			  {
+				  Bus tmp;
+				  f1 >> tmp;
+				  if (f1.eof())
+					  break;
+				  a.push_back(tmp);
+			  }
+			  for (int i = 0; i < a.size(); i++)
+			  {
+				  if (this->_ID == a[i]._ID)
+				  {
+					  if (choice == 1)
+						  a[i]._Starttime = time;
+					  else
+						  a[i]._Endtime = time;
+
+					  ofstream out("../Data\\Buses.txt");
+					  if (!out.is_open())
+					  {
+						  cout << "Can not open Buses.txt" << endl;
+						  return;
+					  }
+					  else
+					  {
+						  for (int i = 0; i < a.size(); i++)
+						  {
+							  out << a[i];
+						  }
+
+						  if (choice == 1)
+							  cout << "Change start time successfully!!!" << endl;
+						  else
+							  cout << "Change end time successfully!!!" << endl;
+						  out.close();
+						  return;
+					  }
+				  }
+			  }
+		  }
+	  
+  }
+  void Bus::changeActive()
+  {
+	 
+		  int choice;
+		  cout << "Bus ID " << this->_ID << endl;
+		  if (this->_IsActive == 1)
+		  {
+			  cout << "This bus is active" << endl;
+		  }
+		  else
+		  {
+			  cout << "This bus is inactive" << endl;
+		  }
+		 
+		  cout << "Do you want to change it?" << endl;
+		  cout << "1:Yes" << endl;
+		  cout << "2:No" << endl;
+		  cin >> choice;
+		  if (choice == 2)
+			  return;
+
+		  system("cls");
+
+		  vector<Bus> a;
+		  ifstream f1("../Data\\Buses.txt");
+		  if (!f1.is_open())
+		  {
+			  cout << "Can not open buses.txt" << endl;
+		  }
+		  else
+		  {
+			  while (!f1.eof())
+			  {
+				  Bus tmp;
+				  f1 >> tmp;
+				  if (f1.eof())
+					  break;
+				  a.push_back(tmp);
+			  }
+			  for (int i = 0; i < a.size(); i++)
+			  {
+				  if (this->_ID == a[i]._ID)
+				  {
+					  if (this->_IsActive == true)
+						  a[i]._IsActive = false;
+					  else
+						  a[i]._IsActive = true;
+					  ofstream out("../Data\\Buses.txt");
+					  if (!out.is_open())
+					  {
+						  cout << "Can not open Buses.txt" << endl;
+						  return;
+					  }
+					  else
+					  {
+						  for (int i = 0; i < a.size(); i++)
+						  {
+							  out << a[i];
+						  }
+						  if (this->_IsActive == true)
+						  {
+							  cout << "Make this bus to inactive successfully" << endl;
+						  }
+						  else
+							  cout << "Make this bus to active successfully" << endl;
+						  out.close();
+						  return;
+					  }
+				  }
+			  }
+		  }
+  }
+  void Bus::change(string Id)
+  {
+	  if (this->_ID == Id)
+	  {
+		  system("cls");
+		  int choice;
+		  cout << "~~~~~~BUS " << this->_ID <<"~~~~~~"<< endl;
+		  cout << "What do you want to change?" << endl;
+		  cout << "1.ID" << endl;
+		  cout << "2.Position" << endl;
+		  cout << "3.Route" << endl;
+		  cout << "4.Spacing time" << endl;
+		  cout << "5.Price" << endl;
+		  cout << "6.Seat" << endl;
+		  cout << "7.Time" << endl;
+		  cout << "8.Active/Inactive" << endl;
+		  cout << "0:Back" << endl;
+		  cout << "Your choice: " << endl;
+		  cin >> choice;
+		  system("cls");
+		  switch (choice)
+		  {
+		  case 1:
+		  {
+			  this->changeID();
+			  break;
+		  }
+		  case 2:
+		  {
+			  this->changePosition();
+			  break;
+		  }
+		  case 3:
+		  {
+			  this->changeRoute();
+			  break;
+		  }
+		  case 4:
+		  {
+			  this->changeSpacing();
+			  break;
+		  }
+		  case 5:
+		  {
+			  this->changePrice();
+			  break;
+		  }
+		  case 6:
+		  {
+			  this->changeSeat();
+			  break;
+		  }
+		  case 7:
+		  {
+			  this->changeTime();
+			  break;
+		  }
+		  case 8:
+		  {
+			  this->changeActive();
+			  break;
+		  }
+		  default:
+		  {
+			  return;
+		  }
+		  }
+	  }
+  }
