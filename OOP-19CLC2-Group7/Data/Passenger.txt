@@ -1,0 +1,31 @@
+
+Person 1
+Male
+02/01/2001
+Normal
+
+Person 2
+Female
+02/01/2001
+Normal
+
+Person 3
+Female
+02/01/2001
+Student
+
+Person 4
+Male
+02/01/2001
+Student
+
+Person 5
+Female
+02/01/2001
+Normal
+
+Person 6
+Female
+02/01/2001
+Normal
+
