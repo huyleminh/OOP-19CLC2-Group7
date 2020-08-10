@@ -1,20 +1,12 @@
 #include "Admin.h"
 
-Admin::Admin()
-{
-	this->_name = "Empty";
-	this->_birthday = "Empty";
-	this->_sex = "dd/mm/yyyy";
+Admin::Admin() : Information() {}
+
+Admin::Admin(const Admin& ad) : Information(ad) {
+	this->user = ad.user;
 }
 
-Admin::Admin(const Admin& ad)
-{
-	this->_name = ad._name;
-	this->_birthday = ad._birthday;
-	this->_sex = ad._sex;
-}
-
-Admin& Admin::operator=(Admin& ad)
+Admin& Admin::operator =(const Admin& ad)
 {
 	Information::operator=(ad);
 	this->user = ad.user;
@@ -22,7 +14,7 @@ Admin& Admin::operator=(Admin& ad)
 	return *this;
 }
 
-istream& operator>>(istream& is, Admin& ad)
+istream& operator >>(istream& is, Admin& ad)
 {
 	cout << "Enter name: ";
 	getline(is, ad._name, '\n');
@@ -34,11 +26,9 @@ istream& operator>>(istream& is, Admin& ad)
 	getline(is, ad._birthday, '\n');
 
 	return is;
-	
-	return is;
 }
 
-ostream& operator << (ostream& os, Admin& ad)
+ostream& operator << (ostream& os, const Admin& ad)
 {
 	cout << "Name: " << ad._name << endl;
 	cout << "Sex: " << ad._sex << endl;
@@ -53,20 +43,20 @@ ifstream& operator >> (ifstream& ifs, Admin& ad)
 	return ifs;
 }
 
-ofstream& operator << (ofstream& ofs, Admin& ad)
+ofstream& operator << (ofstream& ofs, const Admin& ad)
 {
 	ofs << (Information&)(ad);
 
 	return ofs;       
 }
-
-void editInfoAdmin(string acc, int pos) //position in the file txt
-{
-	string newName;
-	string newSex;
-	string newBirthday;
-	string newPassword;
-	string newRole;
-
-
-}
+//
+//void editInfoAdmin(string acc, int pos) //position in the file txt
+//{
+//	string newName;
+//	string newSex;
+//	string newBirthday;
+//	string newPassword;
+//	string newRole;
+//
+//
+//}
