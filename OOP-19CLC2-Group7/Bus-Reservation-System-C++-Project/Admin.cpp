@@ -16,23 +16,14 @@ Admin& Admin::operator =(const Admin& ad)
 
 istream& operator >>(istream& is, Admin& ad)
 {
-	cout << "Enter name: ";
-	getline(is, ad._name, '\n');
-
-	cout << "Enter sex (MALE/FEMALE): ";
-	getline(is, ad._sex, '\n');
-
-	cout << "Enter birthday follow this format dd/mm/yyyy: ";
-	getline(is, ad._birthday, '\n');
+	is >> (Information&)ad;
 
 	return is;
 }
 
 ostream& operator << (ostream& os, const Admin& ad)
 {
-	cout << "Name: " << ad._name << endl;
-	cout << "Sex: " << ad._sex << endl;
-	cout << "Birthday: " << ad._birthday << endl;
+	os << (Information const&)ad;
 
 	return os;
 }
@@ -45,9 +36,9 @@ ifstream& operator >> (ifstream& ifs, Admin& ad)
 
 ofstream& operator << (ofstream& ofs, const Admin& ad)
 {
-	ofs << (Information&)(ad);
+	ofs << (Information const&)(ad);
 
-	return ofs;       
+	return ofs;
 }
 //
 //void editInfoAdmin(string acc, int pos) //position in the file txt
