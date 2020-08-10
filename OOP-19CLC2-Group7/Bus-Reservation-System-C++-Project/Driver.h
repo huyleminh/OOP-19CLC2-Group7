@@ -5,7 +5,7 @@
 #include "Information.h"
 #include "User.h"
 
-class Passenger : public Information
+class Driver : public Information
 {
 private:
 	//Attributes

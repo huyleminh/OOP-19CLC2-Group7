@@ -24,6 +24,10 @@ public:
     friend istream& operator >>(istream& is, Information& info);
     friend ostream& operator <<(ostream& os, const Information& info);
 
+    void changename(const string& name);
+    void changesex(const string& sex);
+    void changebirthday(const string& birthday);
+
 };
 
 #endif
