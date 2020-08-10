@@ -29,7 +29,7 @@ public:
 
     //Methods change data
     void changePassword(const string& password);
-    void changeUserRole(const string& role);
+	void changeUserRole(const string& role);
 
     //Check
     bool isUnValidUsername(const User& user);

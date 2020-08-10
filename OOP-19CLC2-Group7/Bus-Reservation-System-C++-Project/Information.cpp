@@ -24,7 +24,7 @@ Information& Information::operator=(const Information& info)
 
 ifstream& operator>>(ifstream& ifs, Information& info)
 {
-	string temp="";
+	string temp = "";
 
 	getline(ifs, temp, '\n');
 
