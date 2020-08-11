@@ -22,6 +22,21 @@ Information& Information::operator=(const Information& info)
 	return *this;
 }
 
+void Information::changename(const string& name)
+{
+	this->_name = name;
+}
+
+void Information::changesex(const string& sex)
+{
+	this->_sex = sex;
+}
+
+void Information::changebirthday(const string& birthday)
+{
+	this->_birthday = birthday;
+}
+
 ifstream& operator>>(ifstream& ifs, Information& info)
 {
 	string temp = "";
