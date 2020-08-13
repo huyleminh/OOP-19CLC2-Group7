@@ -8,10 +8,12 @@
 
 #include <iostream>
 #include <string>
+#include <cstring>
 #include <vector>
 #include <fstream>
 #include <Windows.h>
 #include "../Library/LocalStorage.h"
+#include "../Library/Tokenizer.h"
 using namespace std;
 
 #endif
