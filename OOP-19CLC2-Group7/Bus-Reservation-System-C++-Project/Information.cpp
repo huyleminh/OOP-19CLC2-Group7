@@ -22,19 +22,30 @@ Information& Information::operator=(const Information& info)
 	return *this;
 }
 
-void Information::changename(const string& name)
+//Change and check success or not 
+bool Information::changeName(const string& name)
 {
-	this->_name = name;
+	const string regEx = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM ";
+	for (int i = 0; i < name.length(); i++)
+		if (regEx.rfind(name[i] == string::npos))
+			return false;
+	
+	vector<string> tmpStr = Tokenizer::split(name, " ");
+	for (int i = 0; i < tmpStr.size(); i++)
+		tmpStr[i][0] = tolower(tmpStr[i][0]);
+
+	this->_name = Tokenizer::join(tmpStr, " ");
+	return true;
 }
 
-void Information::changesex(const string& sex)
+void Information::changeSex(const string& sex)
 {
 	this->_sex = sex;
 }
 
-void Information::changebirthday(const string& birthday)
+bool Information::changeBirthday(const string& birthday)
 {
-	this->_birthday = birthday;
+	return true;
 }
 
 ifstream& operator>>(ifstream& ifs, Information& info)

@@ -27,6 +27,12 @@ public:
 	friend ostream& operator <<(ostream& out, const Passenger&);
 
 	//Methods change information
+	void changeInformation(User& user); //Render change information interface
+
+private:
+	bool changeName(const string& name);
+	void changeSex(const string& sex);
+	bool changeBirthday(const string& dob);
 };
 
 #endif

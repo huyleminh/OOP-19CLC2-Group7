@@ -40,14 +40,3 @@ ofstream& operator << (ofstream& ofs, const Admin& ad)
 
 	return ofs;
 }
-//
-//void editInfoAdmin(string acc, int pos) //position in the file txt
-//{
-//	string newName;
-//	string newSex;
-//	string newBirthday;
-//	string newPassword;
-//	string newRole;
-//
-//
-//}

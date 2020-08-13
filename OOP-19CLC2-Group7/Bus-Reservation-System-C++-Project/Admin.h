@@ -22,8 +22,13 @@ public:
 	friend ifstream& operator >> (ifstream& ifs, Admin& ad);
 	friend ofstream& operator << (ofstream& ofs, const Admin& ad);
 
-	////Methods
-	//void editInfo(string acc, string pass);
+	//Methods change information
+	void changeInformation(User& user); //Render change information interface
+
+private:
+	bool changeName(const string& name);
+	void changeSex(const string& sex);
+	bool changeBirthday(const string& dob);
 };
 
 #endif

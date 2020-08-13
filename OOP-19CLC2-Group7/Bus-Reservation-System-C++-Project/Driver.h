@@ -8,13 +8,28 @@
 class Driver : public Information
 {
 private:
-	//Attributes
-	User user;
-
+	User _user;
 public:
+	//Constructor 
+	Driver();
+	Driver(const Driver&);
 
+	//Assignment operator
+	Driver& operator =(const Driver&);
+
+	//File and console operators
+	friend ifstream& operator >>(ifstream& in, Driver&);
+	friend ofstream& operator <<(ofstream& out, const Driver&);
+	friend istream& operator >>(istream& in, Driver&);
+	friend ostream& operator <<(ostream& out, const Driver&);
+
+	//Methods change information
+	void changeInformation(User& user); //Render change information interface
+
+private:
+	bool changeName(const string& name);
+	void changeSex(const string& sex);
+	bool changeBirthday(const string& dob);
 };
-
-
 
 #endif
