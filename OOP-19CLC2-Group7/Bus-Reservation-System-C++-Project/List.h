@@ -48,7 +48,7 @@ T List<T>::getItemInData(const int& index) {
 //size of data
 template<class T>
 int List<T>::size() {
-	return this->_data.size();
+	return (int)this->_data.size();
 }
 
 //Methods
