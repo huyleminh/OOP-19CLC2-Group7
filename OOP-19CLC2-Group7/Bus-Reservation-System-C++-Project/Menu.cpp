@@ -19,7 +19,7 @@ void Menu::renderMainMenu() {
     cout << "**********************************************************\n";
 
     int option;
-OPTION:
+OPTION: 
     cout << "Enter you option: ";
     cin >> option;
 
@@ -78,9 +78,11 @@ void Menu::renderAdminMenu(User& user) {
     cout << "*                    WELCOME ADMIN                    *\n";
     cout << "*  1. Search bus no.                                  *\n";
     cout << "*  2. Search departure and destination.               *\n";
-    cout << "*  3. Change password.                                *\n";
-    cout << "*  4. Register.                                       *\n";
-    cout << "*  5. Exit app.                                       *\n";
+    cout << "*  3. Add a new diver.                                *\n";
+    cout << "*  4. Change your information.                        *\n";
+    cout << "*  5. Change password.                                *\n";
+    cout << "*  6. View your information.                          *\n";
+    cout << "*  7. Exit app.                                       *\n";
     cout << "*                                                     *\n";
     cout << "*******************************************************\n";
 
@@ -103,15 +105,17 @@ OPTION:
         //Search departure and destination
         break;
     case 3:
+        break;
+    case 4: 
         cin.ignore(1);
         cout << "Enter password, your password must not have any space or '/' : ";
         getline(cin, newPassword, '\n');
         user.changePassword(newPassword);
         cout << "Change password successfully.\n";
         break;
-    case 4: 
-        break;
     case 5:
+        break;
+    case 6:
         exit(0);
     }
 
@@ -145,9 +149,10 @@ void Menu::renderDriverMenu(User& user) {
     cout << "*                    WELCOME DRIVER                    *\n";
     cout << "*  1. Search bus no.                                   *\n";
     cout << "*  2. Search departure and destination.                *\n";
-    cout << "*  3. Change password.                                 *\n";
-    cout << "*  4. Register.                                        *\n";
-    cout << "*  5. Exit app.                                        *\n";
+    cout << "*  3. Change your information.                         *\n";
+    cout << "*  4. Change password.                                 *\n";
+    cout << "*  5. View your information.                           *\n";
+    cout << "*  6. Exit app.                                        *\n";
     cout << "*                                                      *\n";
     cout << "********************************************************\n";
 
@@ -207,15 +212,16 @@ void Menu::renderPassengerMenu(User& user) {
         return;
     }
 
-    cout << "***********************************************************\n";
-    cout << "*                    WELCOME PASSENGER                    *\n";
-    cout << "*  1. Search bus no.                                      *\n";
-    cout << "*  2. Search departure and destination.                   *\n";
-    cout << "*  3. Change password.                                    *\n";
-    cout << "*  4. Register.                                           *\n";
-    cout << "*  5. Exit app.                                           *\n";
-    cout << "*                                                         *\n";
-    cout << "***********************************************************\n";
+    cout << "********************************************************\n";
+    cout << "*                    WELCOME PASSENGER                 *\n";
+    cout << "*  1. Search bus no.                                   *\n";
+    cout << "*  2. Search departure and destination.                *\n";
+    cout << "*  3. Change your information.                         *\n";
+    cout << "*  4. Change password.                                 *\n";
+    cout << "*  5. View your information.                           *\n";
+    cout << "*  6. Exit app.                                        *\n";
+    cout << "*                                                      *\n";
+    cout << "********************************************************\n";
 
     int option;
 OPTION:
