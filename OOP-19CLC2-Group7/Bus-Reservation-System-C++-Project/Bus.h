@@ -32,14 +32,14 @@ public:
 	//Methods
 	void show(string Id);
 
-	void changeID();
-	void changePosition();
-	void changeRoute();
-	void changeSpacing();
-	void changePrice();
-	void changeSeat();
-	void changeTime();
-	void changeActive();
+	bool changeID();
+	bool changePosition();
+	bool changeRoute();
+	bool changeSpacing();
+	bool changePrice();
+	bool changeSeat();
+	bool changeTime();
+	bool changeActive();
 	void change(string Id);//Nguoi ta nhap id muon doi, roi goi ham change cua tung bus ra o ham main, bus nao co id giong thi doi
 };
 
