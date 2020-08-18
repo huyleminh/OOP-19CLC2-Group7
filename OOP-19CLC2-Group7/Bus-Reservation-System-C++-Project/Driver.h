@@ -12,7 +12,7 @@ private:
 public:
 	//Constructor 
 	Driver();
-	Driver(const Driver&);
+	Driver(const Driver& driver);
 
 	//Assignment operator
 	Driver& operator =(const Driver&);
