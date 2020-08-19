@@ -205,7 +205,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
  	return os;
  }
 
-  void Bus::changeID()
+  bool Bus::changeID()
   {
 	  int choice;
 	  cout << "Bus ID " << this->_ID << endl;
@@ -215,7 +215,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 	  cin >> choice;
 
 	  if (choice == 2)
-		  return;
+		  return 0;
 
 	  string id;
 	  cout << "Input new ID :";
@@ -227,6 +227,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 	  if (!f1.is_open())
 	  {
 	 	  cout << "Can not open buses.txt" << endl;
+		  return 0;
 	  }
 	  else
 	  {
@@ -252,7 +253,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 	 			  if (!out.is_open())
 	 			  {
 	 				  cout << "Can not open Buses.txt" << endl;
-	 				  return;
+	 				  return 0;
 	 			  }
 	 			  else
 	 			  {
@@ -261,15 +262,15 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 	 					  out << a[i];
 	 				  }
 	 				  cout << "Change id successfully!!!" << endl;
-	 				  out.close();
-	 				  return;
+					  out.close();
+	 				  return 1;
 	 			  }
 	 		  }
 	 	  }
 	 }
 	 
   }
-  void Bus::changePosition()// tuong tu ham changeID
+  bool Bus::changePosition()// tuong tu ham changeID
   {
 	 
 		  int choice;
@@ -294,6 +295,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 		  if (!f1.is_open())
 		  {
 			  cout << "Can not open buses.txt" << endl;
+			  return 0;
 		  }
 		  else
 		  {
@@ -318,7 +320,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 					  if (!out.is_open())
 					  {
 						  cout << "Can not open Buses.txt" << endl;
-						  return;
+						  return 0;
 					  }
 					  else
 					  {
@@ -332,14 +334,14 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 						  else
 							  cout << "Change end position successfully!!!" << endl;
 						  out.close();
-						  return;
+						  return 1;
 					  }
 				  }
 			  }
 		  }
 	  
   }
-  void Bus::changeRoute()
+bool Bus::changeRoute()
   {
 	 
 		  int choice;
@@ -382,6 +384,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 		  if (!f1.is_open())
 		  {
 			  cout << "Can not open buses.txt" << endl;
+			  return 0;
 		  }
 		  else
 		  {
@@ -406,7 +409,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 					  if (!out.is_open())
 					  {
 						  cout << "Can not open Buses.txt" << endl;
-						  return;
+						  return 0;
 					  }
 					  else
 					  {
@@ -420,14 +423,14 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 						  else
 							  cout << "Change end route successfully!!!" << endl;
 						  out.close();
-						  return;
+						  return 1;
 					  }
 				  }
 			  }
 		  }
 	  
   }
-  void Bus::changeSpacing()
+ bool Bus::changeSpacing()
   {
 		  int choice;
 		  cout << "Bus ID " << this->_ID << endl;
@@ -437,7 +440,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 		  cout << "2:No" << endl;
 		  cin >> choice;
 		  if (choice == 2)
-			  return;
+			  return 0;
 
 		  system("cls");
 
@@ -451,6 +454,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 		  if (!f1.is_open())
 		  {
 			  cout << "Can not open buses.txt" << endl;
+			  return 0;
 		  }
 		  else
 		  {
@@ -472,7 +476,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 					  if (!out.is_open())
 					  {
 						  cout << "Can not open Buses.txt" << endl;
-						  return;
+						  return 0;
 					  }
 					  else
 					  {
@@ -482,14 +486,14 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 						  }
 						  cout << "Change spacing time successfully!!!" << endl;
 						  out.close();
-						  return;
+						  return 1;
 					  }
 				  }
 			  }
 		  }
 	  
   }
-  void Bus::changePrice()
+bool Bus::changePrice()
   {
 	 
 		  int choice;
@@ -515,6 +519,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 		  if (!f1.is_open())
 		  {
 			  cout << "Can not open buses.txt" << endl;
+			  return 0;
 		  }
 		  else
 		  {
@@ -539,7 +544,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 					  if (!out.is_open())
 					  {
 						  cout << "Can not open Buses.txt" << endl;
-						  return;
+						  return 0;
 					  }
 					  else
 					  {
@@ -553,14 +558,14 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 						  else
 							  cout << "Change normal price successfully!!!" << endl;
 						  out.close();
-						  return;
+						  return 1;
 					  }
 				  }
 			  }
 		  }
 	  
   }
-  void Bus::changeSeat()
+  bool Bus::changeSeat()
   {
 	  
 		  int choice;
@@ -587,7 +592,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 		  cin >> choice;
 
 		  if (choice == 2)
-			  return;
+			  return 0;
 
 		  system("cls");
 		  int n, m;
@@ -601,6 +606,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 		  if (!f1.is_open())
 		  {
 			  cout << "Can not open buses.txt" << endl;
+			  return 0;
 		  }
 		  else
 		  {
@@ -632,7 +638,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 					  if (!out.is_open())
 					  {
 						  cout << "Can not open Buses.txt" << endl;
-						  return;
+						  return 0;
 					  }
 					  else
 					  {
@@ -645,14 +651,14 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 						  cout << "Change SEAT successfully!!!" << endl;
 	
 						  out.close();
-						  return;
+						  return 1;
 					  }
 				  }
 			  }
 		  }
  }
   
-  void Bus::changeTime()
+  bool Bus::changeTime()
   {
 	
 		  int choice;
@@ -678,6 +684,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 		  if (!f1.is_open())
 		  {
 			  cout << "Can not open buses.txt" << endl;
+			  return 0;
 		  }
 		  else
 		  {
@@ -702,7 +709,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 					  if (!out.is_open())
 					  {
 						  cout << "Can not open Buses.txt" << endl;
-						  return;
+						  return 0;
 					  }
 					  else
 					  {
@@ -716,14 +723,14 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 						  else
 							  cout << "Change end time successfully!!!" << endl;
 						  out.close();
-						  return;
+						  return 1;
 					  }
 				  }
 			  }
 		  }
 	  
   }
-  void Bus::changeActive()
+ bool Bus::changeActive()
   {
 	 
 		  int choice;
@@ -742,7 +749,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 		  cout << "2:No" << endl;
 		  cin >> choice;
 		  if (choice == 2)
-			  return;
+			  return 0;
 
 		  system("cls");
 
@@ -774,7 +781,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 					  if (!out.is_open())
 					  {
 						  cout << "Can not open Buses.txt" << endl;
-						  return;
+						  return 0;
 					  }
 					  else
 					  {
@@ -789,7 +796,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 						  else
 							  cout << "Make this bus to active successfully" << endl;
 						  out.close();
-						  return;
+						  return 1;
 					  }
 				  }
 			  }
@@ -801,6 +808,7 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 	  {
 		  system("cls");
 		  int choice;
+		  OPTION:
 		  cout << "~~~~~~BUS " << this->_ID <<"~~~~~~"<< endl;
 		  cout << "What do you want to change?" << endl;
 		  cout << "1.ID" << endl;
@@ -819,47 +827,108 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 		  {
 		  case 1:
 		  {
-			  this->changeID();
+			  if (this->changeID() == 1)
+				  system("pause");
+			  else
+			  {
+				  cout << "Change is fail!" << endl;
+				  system("pause");
+				  goto OPTION;
+			  }
 			  break;
 		  }
 		  case 2:
 		  {
-			  this->changePosition();
+			  if (this->changePosition() == 1)
+				  system("pause");
+			  else
+			  {
+				  cout <<  "Change is fail!"  << endl;
+				  system("pause");
+				  goto OPTION;
+			  }
 			  break;
 		  }
 		  case 3:
 		  {
-			  this->changeRoute();
+
+			  if (this->changeRoute() == 1)
+				  system("pause");
+			  else
+			  {
+				  cout <<  "Change is fail!"  << endl;
+				  system("pause");
+				  goto OPTION;
+			  }
 			  break;
 		  }
 		  case 4:
 		  {
-			  this->changeSpacing();
+			  if (this->changeSpacing()== 1)
+				  system("pause");
+			  else
+			  {
+				  cout <<  "Change is fail!"  << endl;
+				  system("pause");
+				  goto OPTION;
+			  }
 			  break;
 		  }
 		  case 5:
 		  {
-			  this->changePrice();
+			  if (this->changePrice() == 1)
+				  system("pause");
+			  else
+			  {
+				  cout <<  "Change is fail!"  << endl;
+				  system("pause");
+				  goto OPTION;
+			  }
 			  break;
 		  }
 		  case 6:
 		  {
-			  this->changeSeat();
+			  if (this->changeSeat() == 1)
+				  system("pause");
+			  else
+			  {
+				  cout <<  "Change is fail!"  << endl;
+				  system("pause");
+				  goto OPTION;
+			  }
 			  break;
 		  }
 		  case 7:
 		  {
-			  this->changeTime();
+			  if (this->changeTime() == 1)
+				  system("pause");
+			  else
+			  {
+				  cout <<  "Change is fail!"  << endl;
+				  system("pause");
+				  goto OPTION;
+			  }
 			  break;
 		  }
 		  case 8:
 		  {
-			  this->changeActive();
+			  if (this->changeActive() == 1)
+				  system("pause");
+			  else
+			  {
+				  cout <<  "Change is fail!"  << endl;
+				  system("pause");
+				  goto OPTION;
+			  }
 			  break;
+		  }
+		  case 0:
+		  {
+			  return;
 		  }
 		  default:
 		  {
-			  return;
+			  goto OPTION;
 		  }
 		  }
 	  }
