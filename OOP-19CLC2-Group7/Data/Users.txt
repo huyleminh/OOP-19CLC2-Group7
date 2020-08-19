@@ -23,14 +23,6 @@ CaoThienAn
 1
 Driver
 
-NguyenHuuQuyen
-1
-Driver
-
-NguyenQuangMinh
-1
-Driver
-
 LeThanhDat
 1
 Passenger
