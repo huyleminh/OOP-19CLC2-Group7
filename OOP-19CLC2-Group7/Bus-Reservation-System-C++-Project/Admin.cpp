@@ -14,7 +14,7 @@ Admin& Admin::operator =(const Admin& ad)
 	return *this;
 }
 
-void Admin::changeInformation(User& user)
+void Admin::changeInformation(User& user) 
 {
 	cout << "1.change password\n"
 		<< "2.change role\n"
