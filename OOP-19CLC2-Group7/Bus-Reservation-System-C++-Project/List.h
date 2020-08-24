@@ -8,6 +8,8 @@ class List {
 private:
 	vector<T> _data;
 public:	
+
+	T& operator [](const int& index);
 	//Methods
 	//Load data to list from file
 	void loadListDataFromFile(const string& filename);
@@ -38,6 +40,16 @@ bool List<T>::includes(T& t) {
 		}
 	return false;
 }
+//
+////Check whether a user is included in an item of List or not
+//template<class T>
+//bool List<T>::includesUser(const User& user) {
+//	for (int i = 0; i < this->_data.size(); i++)
+//		if (this->_data[i] == t) {
+//			return true;
+//		}
+//	return false;
+//}
 
 template<class T>
 T List<T>::getItemInData(const int& index) {
@@ -49,6 +61,11 @@ T List<T>::getItemInData(const int& index) {
 template<class T>
 int List<T>::size() {
 	return (int)this->_data.size();
+}
+
+template<class T>
+T& List<T>::operator [](const int& index) {
+	return this->_data[index];
 }
 
 //Methods
