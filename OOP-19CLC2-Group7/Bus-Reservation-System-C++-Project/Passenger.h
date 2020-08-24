@@ -3,13 +3,12 @@
 
 #include "Header.h"
 #include "Information.h"
-#include "User.h"
 
 class Passenger : public Information
 {
-private:
+private:	
 	//Attributes
-	User _user;
+	//User _user;
 	string _type;
 
 public:
