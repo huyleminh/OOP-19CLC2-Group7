@@ -54,7 +54,7 @@ void Menu::renderAdminMenu(User& user) {
     LocalStorage local;
     vector<string> items = local.getItem("../Data/LocalStorage.txt");
 
-    if (items.size() != 2 || items[1] != "Admin") {
+    if (items.size() != 2 || items[1] != "Admin" || items[0] != user.getUsername()) {
         cout << "Your request is not permitted.\n";
         cout << "=============================\n";
         cout << "1. Back to home.\n";
@@ -82,7 +82,8 @@ void Menu::renderAdminMenu(User& user) {
     cout << "*  4. Change your information.                        *\n";
     cout << "*  5. Change password.                                *\n";
     cout << "*  6. View your information.                          *\n";
-    cout << "*  7. Exit app.                                       *\n";
+    cout << "*  7. Logout.                                         *\n";
+    cout << "*  8. Exit app.                                       *\n";
     cout << "*                                                     *\n";
     cout << "*******************************************************\n";
 
@@ -91,11 +92,21 @@ OPTION:
     cout << "Enter you option: ";
     cin >> option;
 
-    //Check valid option from 1 to 5.
-    if (option < 1 || option > 5)
+    //Check valid option from 1 to 8.
+    if (option < 1 || option > 8)
         goto OPTION;
 
+    cin.ignore(1);
+
     string newPassword = "";
+    vector<Admin> admins = this->getUserInformation<Admin>(items[1], user);
+    Admin admin;
+
+    for (int i = 0; i < admins.size(); i++)
+        if (admins[i].includeUsername(user)) {
+            admin = admins[i];
+            break;
+        }
 
     switch (option) {
     case 1:
@@ -104,18 +115,56 @@ OPTION:
     case 2: 
         //Search departure and destination
         break;
-    case 3:
+    case 4:
+        admin.changeInformation(user);
         break;
-    case 4: 
-        cin.ignore(1);
+    case 5: 
+    {
+        string newPassword = "";
         cout << "Enter password, your password must not have any space or '/' : ";
         getline(cin, newPassword, '\n');
-        user.changePassword(newPassword);
-        cout << "Change password successfully.\n";
+        
+        User tmp = user;
+
+        if (user.changePassword(newPassword) == true) {
+            List<User> users;
+            users.loadListDataFromFile("../Data/Users.txt");
+
+            for (int i = 0; i < users.size(); i++) {
+                if (users[i] == tmp)
+                    users[i] = user;
+            }
+
+            users.saveListDataToFile("../Data/Users.txt");
+
+            cout << "Change password successfully.\n";
+        } 
+        else
+            cout << "Unvalid input password, please try again.\n";
+
+        cout << "Press enter to back to menu.\n";
+        while (true) {
+            if (cin.get() == '\n')
+                break;
+        }
         break;
-    case 5:
-        break;
+    }
     case 6:
+
+        cout << "Your information: " << endl;
+        cout << admin;
+
+        cout << "Press enter button to continue." << endl;
+        while (true) {
+            if (cin.get() == '\n')
+                break;
+        }
+
+        break;
+    case 7:
+        local.clear("../Data/LocalStorage.txt");
+        return;
+    case 8:
         exit(0);
     }
 
@@ -127,7 +176,7 @@ void Menu::renderDriverMenu(User& user) {
     LocalStorage local;
     vector<string> items = local.getItem("../Data/LocalStorage.txt");
 
-    if (items.size() != 2 || items[1] == "Passenger") {
+    if (items.size() != 2 || items[1] != "Driver" || items[0] != user.getUsername()) {
         cout << "Your request is not permitted.\n";
         cout << "=============================\n";
         cout << "1. Back to home.\n";
@@ -152,7 +201,8 @@ void Menu::renderDriverMenu(User& user) {
     cout << "*  3. Change your information.                         *\n";
     cout << "*  4. Change password.                                 *\n";
     cout << "*  5. View your information.                           *\n";
-    cout << "*  6. Exit app.                                        *\n";
+    cout << "*  6. Log out.                                         *\n";
+    cout << "*  7. Exit app.                                        *\n";
     cout << "*                                                      *\n";
     cout << "********************************************************\n";
 
@@ -161,11 +211,21 @@ OPTION:
     cout << "Enter you option: ";
     cin >> option;
 
-    //Check valid option from 1 to 5.
-    if (option < 1 || option > 5)
+    //Check valid option from 1 to 7.
+    if (option < 1 || option > 7)
         goto OPTION;
 
+    cin.ignore(1);
+
     string newPassword = "";
+    vector<Driver> drivers = this->getUserInformation<Driver>(items[1], user);
+    Driver driver;
+
+    for (int i = 0; i < drivers.size(); i++)
+        if (drivers[i].includeUsername(user)) {
+            driver = drivers[i];
+            break;
+        }
 
     switch (option) {
     case 1:
@@ -175,17 +235,58 @@ OPTION:
         //Search departure and destination
         break;
     case 3:
-        cin.ignore(1);
-        cout << "Enter password, your password must not have any space or '/' : ";
-        getline(cin, newPassword, '\n');
-        user.changePassword(newPassword);
-        cout << "Change password successfully.\n";
+        driver.changeInformation(user);
         break;
     case 4: 
+    {
+        string newPassword = "";
+        cout << "Enter password, your password must not have any space or '/' : ";
+        getline(cin, newPassword, '\n');
+        
+        User tmp = user;
+
+        if (user.changePassword(newPassword) == true) {
+            List<User> users;
+            users.loadListDataFromFile("../Data/Users.txt");
+
+            for (int i = 0; i < users.size(); i++) {
+                if (users[i] == tmp)
+                    users[i] = user;
+            }
+
+            users.saveListDataToFile("../Data/Users.txt");
+
+            cout << "Change password successfully.\n";
+        } 
+        else
+            cout << "Unvalid input password, please try again.\n";
+
+        cout << "Press enter to back to menu.\n";
+        while (true) {
+            if (cin.get() == '\n')
+                break;
+        }
         break;
-    case 5:
+    }
+    case 5: 
+
+        cout << "Your information: " << endl;
+        cout << driver;
+
+        cout << "Press enter button to continue." << endl;
+        while (true) {
+            if (cin.get() == '\n')
+                break;
+        }
+
+        break;
+    case 6:
+        local.clear("../Data/LocalStorage.txt");
+        return;
+    case 7:
         exit(0);
     }
+
     Menu::renderDriverMenu(user);
 }
 
@@ -194,7 +295,7 @@ void Menu::renderPassengerMenu(User& user) {
     LocalStorage local;
     vector<string> items = local.getItem("../Data/LocalStorage.txt");
 
-    if (items.size() != 2) {
+    if (items.size() != 2 || items[1] != "Passenger" || items[0] != user.getUsername()) {
         cout << "Your request is not permitted.\n";
         cout << "=============================\n";
         cout << "1. Back to home.\n";
@@ -212,6 +313,8 @@ void Menu::renderPassengerMenu(User& user) {
         return;
     }
 
+    system("cls");
+
     cout << "********************************************************\n";
     cout << "*                    WELCOME PASSENGER                 *\n";
     cout << "*  1. Search bus no.                                   *\n";
@@ -219,7 +322,8 @@ void Menu::renderPassengerMenu(User& user) {
     cout << "*  3. Change your information.                         *\n";
     cout << "*  4. Change password.                                 *\n";
     cout << "*  5. View your information.                           *\n";
-    cout << "*  6. Exit app.                                        *\n";
+    cout << "*  6. Log out.                                         *\n";
+    cout << "*  7. Exit app.                                        *\n";
     cout << "*                                                      *\n";
     cout << "********************************************************\n";
 
@@ -228,11 +332,20 @@ OPTION:
     cout << "Enter you option: ";
     cin >> option;
 
-    //Check valid option from 1 to 5.
-    if (option < 1 || option > 5)
+    //Check valid option from 1 to 7.
+    if (option < 1 || option > 7)
         goto OPTION;
 
-    string newPassword = "";
+    cin.ignore(1);
+
+    vector<Passenger> passengers = this->getUserInformation<Passenger>(items[1], user);
+    Passenger passenger;
+
+    for (int i = 0; i < passengers.size(); i++)
+        if (passengers[i].includeUsername(user)) {
+            passenger = passengers[i];
+            break;
+        }
 
     switch (option) {
     case 1:
@@ -242,15 +355,57 @@ OPTION:
         //Search departure and destination
         break;
     case 3:
-        cin.ignore(1);
+        passenger.changeInformation(user);
+        break;
+    case 4:
+    {
+        string newPassword = "";
         cout << "Enter password, your password must not have any space or '/' : ";
         getline(cin, newPassword, '\n');
-        user.changePassword(newPassword);
-        cout << "Change password successfully.\n";
+        
+        User tmp = user;
+
+        if (user.changePassword(newPassword) == true) {
+            List<User> users;
+            users.loadListDataFromFile("../Data/Users.txt");
+
+            for (int i = 0; i < users.size(); i++) {
+                if (users[i] == tmp)
+                    users[i] = user;
+            }
+
+            users.saveListDataToFile("../Data/Users.txt");
+
+            cout << "Change password successfully.\n";
+        } 
+        else
+            cout << "Unvalid input password, please try again.\n";
+
+        cout << "Press enter to back to menu.\n";
+        while (true) {
+            if (cin.get() == '\n')
+                break;
+        }
         break;
-    case 4: 
+    }
+    case 5: 
+
+        cout << "Your information: " << endl;
+        cout << passenger;
+
+        cout << "Press enter button to continue." << endl;
+        while (true) {
+            if (cin.get() == '\n')
+                break;
+        }
+
         break;
-    case 5:
+    case 6:
+
+        local.clear("../Data/LocalStorage.txt");
+
+        return;
+    case 7:
         exit(0);
     }
 
@@ -277,7 +432,7 @@ void Menu::login() {
     if (list.includes(loginUser)) {
         cout << "Login successfully!" << endl;
 
-        //LocalStorage.setItem()
+        //Set store identify string to local storage
         LocalStorage local;
         local.setItem("../Data/LocalStorage.txt", loginUser.storageString());
 
@@ -294,13 +449,12 @@ void Menu::login() {
             Menu::renderPassengerMenu(loginUser);
     }
     else {
-        cout << "Wrong username or password!" << endl;
-
-        Sleep(2000);
-        system("cls");
-
         loginUser.release();
-        this->login();
+        cout << "Wrong username or password!" << endl;
+        Sleep(1000);
+        cout << "You will be redirect to main menu.\n";
+        Sleep(1000);
+        system("cls");
     }
 }
 
@@ -310,6 +464,7 @@ void Menu::registerUser() {
     list.loadListDataFromFile("../Data/Users.txt");
 
     //Register interface
+    system("cls");
     cout << "***************************REGISTER***************************" << endl;
     
     User user;
@@ -324,8 +479,22 @@ INPUT:
         }
     }
 
+    int type = 0;
+    
+    cout << "1. Student.\n";
+    cout << "2. Normal.\n";
+
+TYPE:
+    cout << "Choose your type(student or normal passenger): ";
+    cin >> type;
+
+    if (type < 1 || type > 2)
+    goto TYPE;
+    cin.ignore(1);
+
     Information info;
     cin >> info;
+    info.updateUsername(user.getUsername());
     
     ofstream out;
     out.open("../Data/Users.txt", ios::app);
@@ -333,22 +502,28 @@ INPUT:
         cout << "Can not open Users.txt" << endl;
         return;
     }
-
-    out << user;
+    
+    out << endl;
+    out << user << "Passenger" << endl;
     out.close();
 
-    out.open("../Data/Passengers.txt", ios::app);
+    out.open("../Data/Passenger.txt", ios::app);
     if (!out.is_open()) {
-        cout << "Can not open Passengers.txt" << endl;
+        cout << "Can not open Passenger.txt" << endl;
         return;
     }
 
-    out << info;
+    out << info << ((type == 1) ? "Student" : "Normal") << endl;
     out.close();
 
     cout << "Register successfully.\n";
+    Sleep(1000);
+    cout << "You will be redirect to main menu and login again to confirm.\n";
+    
+    LocalStorage local;
+    local.setItem("../Data/LocalStorage.txt", user.storageString());
+    Sleep(1000);
+    system("cls");
 
-    Sleep(2000);
-
-    Menu::renderPassengerMenu(user);
+    Menu::renderMainMenu();
 }
