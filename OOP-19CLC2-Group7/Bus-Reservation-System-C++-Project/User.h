@@ -2,7 +2,6 @@
 #define _USER_H_
 
 #include "Header.h"
-#include "Information.h"
 
 class User
 {
@@ -23,12 +22,14 @@ public:
     friend istream& operator >>(istream& is, User& user);
     friend ostream& operator <<(ostream& os, const User& user);
 
+    //Copy constructor
     User& operator =(const User&);
 
+    //Assignment operator
     bool operator ==(User& user);
 
     //Methods change data
-    void changePassword(const string& password);
+    bool changePassword(const string& password);
 	void changeUserRole(const string& role);
 
     //Check
@@ -39,6 +40,8 @@ public:
 
     //Release
     void release();
+
+    string getUsername() const;
 
     ~User();
 };
