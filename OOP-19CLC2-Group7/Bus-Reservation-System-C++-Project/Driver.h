@@ -8,7 +8,6 @@
 class Driver : public Information
 {
 private:
-	User _user;
 public:
 	//Constructor 
 	Driver();

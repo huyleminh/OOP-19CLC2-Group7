@@ -20,8 +20,8 @@ public:
 	//Check whether t is included in List or not
 	bool includes(T& t);
 
-	//Return an item
-	T getItemInData(const int& index);
+	 //Return an item
+	 T getItemInData(const int& index);
 
 	//size of data
 	int size();
@@ -40,22 +40,12 @@ bool List<T>::includes(T& t) {
 		}
 	return false;
 }
-//
-////Check whether a user is included in an item of List or not
-//template<class T>
-//bool List<T>::includesUser(const User& user) {
-//	for (int i = 0; i < this->_data.size(); i++)
-//		if (this->_data[i] == t) {
-//			return true;
-//		}
-//	return false;
-//}
 
-template<class T>
-T List<T>::getItemInData(const int& index) {
-	T t = this->_data[index];
-	return t;
-}
+ template<class T>
+ T List<T>::getItemInData(const int& index) {
+ 	T t = this->_data[index];
+ 	return t;
+ }
 
 //size of data
 template<class T>

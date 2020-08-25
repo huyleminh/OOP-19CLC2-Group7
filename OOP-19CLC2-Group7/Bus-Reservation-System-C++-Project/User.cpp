@@ -37,8 +37,10 @@ ifstream& operator >>(ifstream& ifs, User& user) {
 }
 
 ofstream& operator <<(ofstream& ofs, const User& user) {
+    ofs << endl;
     ofs << user._username << endl;
     ofs << user._password << endl;
+    ofs << user._role << endl;
     return ofs;
 }
 

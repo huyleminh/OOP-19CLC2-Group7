@@ -7,7 +7,6 @@
 class Admin : public Information
 {
 private:
-	User user;
 public:
 	//Constructor
 	Admin();

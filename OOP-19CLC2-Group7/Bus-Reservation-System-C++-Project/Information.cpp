@@ -111,9 +111,11 @@ bool Information::changeName(const string& name)
 {
 	const string regEx = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM ";
 	for (int i = 0; i < name.length(); i++)
-		if (regEx.rfind(name[i]) != string::npos)
+		//If a character is not include in regEx(valid) return false mean == npos
+		if (regEx.rfind(name[i]) == string::npos)
 			return false;
 	
+
 	vector<string> tmpStr = Tokenizer::split(name, " ");
 	for (int i = 0; i < tmpStr.size(); i++)
 		tmpStr[i][0] = tolower(tmpStr[i][0]);

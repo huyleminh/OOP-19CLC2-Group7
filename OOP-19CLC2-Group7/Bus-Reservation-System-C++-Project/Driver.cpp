@@ -4,14 +4,11 @@
 Driver::Driver() :Information() {}
 
 //Copy constructor
-Driver::Driver(const Driver& driver) : Information(driver) {
-	this->_user = driver._user;
-}
+Driver::Driver(const Driver& driver) : Information(driver) {}
 
 //Assignment operator
 Driver& Driver::operator =(const Driver& driver) {
 	Information::operator=(driver);
-	this->_user = driver._user;
 
 	return *this;
 }
@@ -118,6 +115,8 @@ GENDER:
 			this->changeSex("Female");
 		else
 			this->changeSex("Others"); 
+		cout << "Change gender successfully.\n";
+		Sleep(1000);
 		break;
 	}
 
@@ -130,6 +129,7 @@ GENDER:
 			cout << "Change birthday successfully.\n";
 		else
 			cout << "Fail to change day of birth.\n";
+		Sleep(1000);
 		break;
 	}
 	

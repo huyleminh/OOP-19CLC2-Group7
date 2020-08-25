@@ -1,10 +1,10 @@
 
-LeMinhNhat
+Le Minh Nhat
 Male
 10/10/1970
-Normal
+LeMinhNhat
 
-CaoThienAn
+Cao Thien An
 Male
 01/04/1975
-Normal
+CaoThienAn

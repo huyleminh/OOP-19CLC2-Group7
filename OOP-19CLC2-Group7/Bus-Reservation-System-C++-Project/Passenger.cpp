@@ -131,6 +131,8 @@ GENDER:
 			this->changeSex("Female");
 		else
 			this->changeSex("Others"); 
+		cout << "Change gender successfully.\n";
+		Sleep(1000);
 		break;
 
 	case 3: 
@@ -141,6 +143,7 @@ GENDER:
 			cout << "Change birthday successfully.\n";
 		else
 			cout << "Fail to change day of birth.\n";
+		Sleep(1000);
 		break;
 	case 4:
 		break;

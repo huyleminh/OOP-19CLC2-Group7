@@ -2,14 +2,11 @@
 
 Admin::Admin() : Information() {}
 
-Admin::Admin(const Admin& ad) : Information(ad) {
-	this->user = ad.user;
-}
+Admin::Admin(const Admin& ad) : Information(ad) {}
 
 Admin& Admin::operator =(const Admin& ad)
 {
 	Information::operator=(ad);
-	this->user = ad.user;
 
 	return *this;
 }
@@ -63,6 +60,7 @@ OPTION:
 
 	if (cin.fail()) {
 		cin.clear();
+		cout << "Invalid option, please choose aganin.\n";
 		cin.ignore(32767, '\n');
 		goto OPTION;
 	}
@@ -119,6 +117,8 @@ OPTION:
 			this->changeSex("Female");
 		else
 			this->changeSex("Others");
+		cout << "Change gender successfully.\n";
+		Sleep(1000);
 		break;
 
 	case 3:
@@ -129,6 +129,7 @@ OPTION:
 			cout << "Change birthday successfully.\n";
 		else
 			cout << "Fail to change day of birth.\n";
+		Sleep(1000);
 		break;
 	case 4:
 		break;

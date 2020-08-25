@@ -6,9 +6,7 @@
 
 class Passenger : public Information
 {
-private:	
-	//Attributes
-	//User _user;
+private:
 	string _type;
 
 public:

@@ -55,7 +55,7 @@ void Menu::renderAdminMenu(User& user) {
     vector<string> items = local.getItem("../Data/LocalStorage.txt");
 
     if (items.size() != 2 || items[1] != "Admin" || items[0] != user.getUsername()) {
-        cout << "Your request is not permitted.\n";
+        cout << "Your request to Admin menu is not permitted.\n";
         cout << "=============================\n";
         cout << "1. Back to home.\n";
         cout << "2. Exit app.\n";
@@ -73,6 +73,8 @@ void Menu::renderAdminMenu(User& user) {
         }
         return;
     }
+
+    system("cls");
 
     cout << "*******************************************************\n";
     cout << "*                    WELCOME ADMIN                    *\n";
@@ -98,7 +100,6 @@ OPTION:
 
     cin.ignore(1);
 
-    string newPassword = "";
     vector<Admin> admins = this->getUserInformation<Admin>(items[1], user);
     Admin admin;
 
@@ -115,9 +116,22 @@ OPTION:
     case 2: 
         //Search departure and destination
         break;
-    case 4:
+    case 4: {
         admin.changeInformation(user);
+
+        for (int i = 0; i < admins.size(); i++)
+            if (admins[i].includeUsername(user)) {
+                admins[i] = admin;
+                break;
+            }
+
+        ofstream out("../Data/Admin.txt");
+        for (int i = 0; i < admins.size(); i++)
+            out << admins[i];
+        out.close();
+
         break;
+    }
     case 5: 
     {
         string newPassword = "";
@@ -151,7 +165,7 @@ OPTION:
     }
     case 6:
 
-        cout << "Your information: " << endl;
+        cout << "********Your information********" << endl;
         cout << admin;
 
         cout << "Press enter button to continue." << endl;
@@ -194,6 +208,8 @@ void Menu::renderDriverMenu(User& user) {
         return;
     }
 
+    system("cls");
+
     cout << "********************************************************\n";
     cout << "*                    WELCOME DRIVER                    *\n";
     cout << "*  1. Search bus no.                                   *\n";
@@ -217,7 +233,6 @@ OPTION:
 
     cin.ignore(1);
 
-    string newPassword = "";
     vector<Driver> drivers = this->getUserInformation<Driver>(items[1], user);
     Driver driver;
 
@@ -234,9 +249,23 @@ OPTION:
     case 2: 
         //Search departure and destination
         break;
-    case 3:
+    case 3: {
         driver.changeInformation(user);
+        
+        for (int i = 0; i < drivers.size(); i++)
+            if (drivers[i].includeUsername(user)) {
+                drivers[i] = driver;
+                break;
+            }
+
+        ofstream out("../Data/Admin.txt");
+        for (int i = 0; i < drivers.size(); i++)
+            out << drivers[i];
+        out.close();
+       
         break;
+    }
+       
     case 4: 
     {
         string newPassword = "";
@@ -270,7 +299,7 @@ OPTION:
     }
     case 5: 
 
-        cout << "Your information: " << endl;
+        cout << "********Your information********" << endl;
         cout << driver;
 
         cout << "Press enter button to continue." << endl;
@@ -354,9 +383,22 @@ OPTION:
     case 2: 
         //Search departure and destination
         break;
-    case 3:
+    case 3:{
         passenger.changeInformation(user);
+        
+        for (int i = 0; i < passengers.size(); i++)
+            if (passengers[i].includeUsername(user)) {
+                passengers[i] = passenger;
+                break;
+            }
+
+        ofstream out("../Data/Admin.txt");
+        for (int i = 0; i < passengers.size(); i++)
+            out << passengers[i];
+        out.close();
+       
         break;
+    }
     case 4:
     {
         string newPassword = "";
@@ -390,7 +432,7 @@ OPTION:
     }
     case 5: 
 
-        cout << "Your information: " << endl;
+        cout << "********Your information********" << endl;
         cout << passenger;
 
         cout << "Press enter button to continue." << endl;
@@ -413,7 +455,6 @@ OPTION:
 }
 
 //**Another feature when call in menu
-// *1: Main mennu
 
 //Login feature
 void Menu::login() {
@@ -503,8 +544,8 @@ TYPE:
         return;
     }
     
-    out << endl;
-    out << user << "Passenger" << endl;
+    user.changeUserRole("Passenger");
+    out << user;
     out.close();
 
     out.open("../Data/Passenger.txt", ios::app);
@@ -519,9 +560,7 @@ TYPE:
     cout << "Register successfully.\n";
     Sleep(1000);
     cout << "You will be redirect to main menu and login again to confirm.\n";
-    
-    LocalStorage local;
-    local.setItem("../Data/LocalStorage.txt", user.storageString());
+
     Sleep(1000);
     system("cls");
 

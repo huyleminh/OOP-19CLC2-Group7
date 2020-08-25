@@ -17,7 +17,6 @@ public:
     void renderPassengerMenu(User& user);
 
     //**Another feature when call in menu
-    // *1: Main mennu
 
     //Login feature
     void login();
