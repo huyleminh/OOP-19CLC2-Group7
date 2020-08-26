@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Library\LocalStorage.h" />
+    <ClInclude Include="..\Library\StdFormat.h" />
     <ClInclude Include="..\Library\Tokenizer.h" />
     <ClInclude Include="Admin.h" />
     <ClInclude Include="Bus.h" />
