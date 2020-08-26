@@ -258,7 +258,7 @@ OPTION:
                 break;
             }
 
-        ofstream out("../Data/Admin.txt");
+        ofstream out("../Data/Driver.txt");
         for (int i = 0; i < drivers.size(); i++)
             out << drivers[i];
         out.close();
@@ -392,7 +392,7 @@ OPTION:
                 break;
             }
 
-        ofstream out("../Data/Admin.txt");
+        ofstream out("../Data/Passenger.txt");
         for (int i = 0; i < passengers.size(); i++)
             out << passengers[i];
         out.close();

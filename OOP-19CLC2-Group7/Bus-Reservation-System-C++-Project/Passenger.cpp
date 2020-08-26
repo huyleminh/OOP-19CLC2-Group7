@@ -159,7 +159,7 @@ bool Passenger::changeName(const string& name)
 
 void Passenger::changeSex(const string& sex)
 {
-	Information::changeSex(sex);
+	this->_sex = sex;
 }
 
 bool Passenger::changeBirthday(const string& dob) {

@@ -6,7 +6,6 @@
 #include "List.h"
 #include "Passenger.h"
 
-
 int main() {
 	Menu menu;
 	menu.renderMainMenu();

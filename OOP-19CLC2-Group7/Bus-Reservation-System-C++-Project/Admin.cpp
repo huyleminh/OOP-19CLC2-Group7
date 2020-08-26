@@ -128,7 +128,7 @@ OPTION:
 		if (this->changeBirthday(inputStr))
 			cout << "Change birthday successfully.\n";
 		else
-			cout << "Fail to change day of birth.\n";
+			cout << "Fail to change day of birth, your inputted is might be unvalud form.\n";
 		Sleep(1000);
 		break;
 	case 4:

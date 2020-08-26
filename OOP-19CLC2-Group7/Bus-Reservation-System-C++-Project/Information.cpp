@@ -66,8 +66,13 @@ ofstream& operator<<(ofstream& ofs, const Information& info)
 //Need to fix 
 istream& operator>>(istream& is, Information& info)
 {
+	string tmp = "";
 	cout << "Enter name: ";
-	getline(is, info._name, '\n');
+	getline(is, tmp, '\n');
+	if (StdFormat::stdName(tmp))
+		info._name = tmp;
+	else 
+		info._name = "Null";
 
 	cout << "1. Male.\n";
 	cout << "2. Female.\n";
@@ -78,15 +83,20 @@ istream& operator>>(istream& is, Information& info)
 	is >> option;
 
 	if (option < 1 || option > 3)
-		info._sex = "Others";
+		info._sex = "Null";
 	
 	info._sex = ((option == 1) ? "Male" : (option == 2) ? "Female" : "Others");
 
 	is.ignore(1);
 	cout << "Enter birthday follow this format dd/mm/yyyy: ";
-	getline(is, info._birthday, '\n');
+	
+	getline(is, tmp, '\n');
+	if (StdFormat::stdDate(tmp))
+		info._birthday = tmp;
+	else 
+		info._birthday = "dd/mm/yyyy";
 
-	cout << "If any informations above is wrong, you can change it.\n";
+	cout << "If any informations above is wrong, it will be null and you can change it.\n";
 	Sleep(1000);
 
 	return is;
@@ -109,19 +119,13 @@ bool Information::includeUsername(const User& user) {
 //Change and check success or not 
 bool Information::changeName(const string& name)
 {
-	const string regEx = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM ";
-	for (int i = 0; i < name.length(); i++)
-		//If a character is not include in regEx(valid) return false mean == npos
-		if (regEx.rfind(name[i]) == string::npos)
-			return false;
-	
-
-	vector<string> tmpStr = Tokenizer::split(name, " ");
-	for (int i = 0; i < tmpStr.size(); i++)
-		tmpStr[i][0] = tolower(tmpStr[i][0]);
-
-	this->_name = Tokenizer::join(tmpStr, " ");
-	return true;
+	string tmp = name;
+	if (StdFormat::stdName(tmp)) {
+		this->_name = tmp;
+		return true;
+	}
+	else 
+		return false;
 }
 
 void Information::changeSex(const string& sex)
@@ -131,36 +135,11 @@ void Information::changeSex(const string& sex)
 
 bool Information::changeBirthday(const string& birthday)
 {
-	vector<string> date = Tokenizer::split(birthday, "/");
-	if (date.size() != 3)
-		return false;
-
-	for (int i = 0; i < date.size(); i++)
-		if (stoi(date[i]) <= 0)
-			return false;
-
-		switch (stoi(date[1]))
-	{
-	case 1: case 3: case 5: case 7: case 8: case 10: case 12:
-		if (stoi(date[0]) > 31)
-			return false;
-		else
-			break;
-	case 4: case 6: case 9: case 11:
-		if (stoi(date[0]) > 30)
-			return false;
-		else
-			break;
-	case 2:
-		if (stoi(date[2]) % 400 != 0 && !(stoi(date[2]) % 4 == 0 && stoi(date[2]) % 100 != 0)) {
-			if (stoi(date[0]) > 28)
-				return false;
-		}
-		else 
-			if (stoi(date[0]) > 29)
-				return false;
+	string tmp = birthday;
+	if (StdFormat::stdDate(tmp)) {
+		this->_birthday = tmp;
+		return true;
 	}
-
-	this->_birthday = birthday;
-	return true;
+	else 
+		return false;
 }
