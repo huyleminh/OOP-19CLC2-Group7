@@ -21,10 +21,16 @@ public:
 	bool includes(T& t);
 
 	 //Return an item
-	 T getItemInData(const int& index);
+	 T& getItemInData(const int& index);
 
 	//size of data
 	int size();
+
+	//push_back to data(Long làm :)))
+	void push_back(T item);
+
+	//erase element from vector
+	void erase(int index);
 
 	//Destructor
 	~List();
@@ -42,9 +48,9 @@ bool List<T>::includes(T& t) {
 }
 
  template<class T>
- T List<T>::getItemInData(const int& index) {
- 	T t = this->_data[index];
- 	return t;
+ T& List<T>::getItemInData(const int& index) {
+ 	
+ 	return  this->_data[index];
  }
 
 //size of data
@@ -90,6 +96,19 @@ void List<T>:: saveListDataToFile(const string& filename) {
 	}
 }
 
+//push_back
+template<class T>
+void List<T>::push_back(T item)
+{
+	this->_data.push_back(item);
+}
+
+//erase
+template<class T>
+void List<T>::erase(int index)
+{
+	this->_data.erase(this->_data.begin() + index);
+}
 //Destructor
 template<class T>
 List<T>::~List() {

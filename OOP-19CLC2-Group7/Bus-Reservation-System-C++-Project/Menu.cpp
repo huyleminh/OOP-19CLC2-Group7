@@ -75,12 +75,12 @@ void Menu::renderAdminMenu(User& user) {
     }
 
     system("cls");
-
+MENU:
     cout << "*******************************************************\n";
     cout << "*                    WELCOME ADMIN                    *\n";
-    cout << "*  1. Search bus no.                                  *\n";
+    cout << "*  1. Bus Management                                  *\n";
     cout << "*  2. Search departure and destination.               *\n";
-    cout << "*  3. Add a new diver.                                *\n";
+    cout << "*  3. Driver Management.                              *\n";
     cout << "*  4. Change your information.                        *\n";
     cout << "*  5. Change password.                                *\n";
     cout << "*  6. View your information.                          *\n";
@@ -111,11 +111,102 @@ OPTION:
 
     switch (option) {
     case 1:
-        //Search bus no
+    {
+        system("cls");
+        int choice;
+
+        cout << "************************************************\n";
+        cout << "*              BUS MANAGEMENT                  *\n";
+        cout << "*  1. Search Id Bus.                           *\n";
+        cout << "*  2. Add new bus.                             *\n";
+        cout << "*  3. Delete bus.                              *\n";
+        cout << "*  4. Edit bus.                                *\n";
+        cout << "*  5. Back to menu                             *\n";
+        cout << "*                                              *\n";
+        cout << "************************************************\n";
+
+        cout << "Enter your choice" << endl;
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+        {
+            system("cls");
+            break;
+        }
+        case 2:
+        {
+            system("cls");
+            admin.addBus();
+            break;
+        }
+        case 3:
+        {
+            system("cls");
+            admin.deleteBus();
+            break;
+        }
+        case 4:
+        {
+            system("cls");
+            admin.editBus();
+            break;
+        }
+        case 5:
+        {
+            goto MENU;
+        }
+        }
         break;
+    }
     case 2: 
         //Search departure and destination
         break;
+    case 3:
+    {   
+        system("cls");
+        int choice;
+
+        cout << "************************************************\n";
+        cout << "*              DRIVER MANAGEMENT               *\n";
+        cout << "*  1. Add new driver.                          *\n";
+        cout << "*  2. Delete driver.                           *\n";
+        cout << "*  3. Edit driver.                             *\n";
+        cout << "*  4. Back to menu.                            *\n";
+        cout << "*                                              *\n";
+        cout << "************************************************\n";
+
+        cout << "Enter your choice" << endl;
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+        {  
+            system("cls");
+            admin.addDriver();
+            break;
+        }  
+        case 2:
+        {
+            system("cls");
+            admin.deleteDriver();
+            break;
+        }
+        case 3:
+        {
+            system("cls");
+            admin.editDriver();
+            break;
+        }
+        case 4:
+        {
+            goto MENU;
+        }
+        }
+        break;
+    }
     case 4: {
         admin.changeInformation(user);
 

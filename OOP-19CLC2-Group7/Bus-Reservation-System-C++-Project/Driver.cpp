@@ -13,6 +13,12 @@ Driver& Driver::operator =(const Driver& driver) {
 	return *this;
 }
 
+bool Driver::operator==(const Driver& driver)
+{
+	if (this->_username == driver._username)
+		return 1;
+	return 0;
+}
 //File and console operators
 ifstream& operator >>(ifstream& in, Driver& driver) {
 	in >> (Information&)(driver);

@@ -67,6 +67,7 @@ ofstream& operator<<(ofstream& ofs, const Information& info)
 istream& operator>>(istream& is, Information& info)
 {
 	cout << "Enter name: ";
+	while (getchar() != '\n');
 	getline(is, info._name, '\n');
 
 	cout << "1. Male.\n";

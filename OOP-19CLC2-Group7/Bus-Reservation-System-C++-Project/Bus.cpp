@@ -22,9 +22,11 @@ Bus::Bus() {
 	//Empty seat
 	this->_seat.resize(_rows);
 	for (int i = 0; i < this->_rows; i++)
+	{
+		this->_seat[i].resize(_cols);
 		for (int j = 0; j < this->_cols; j++)
-			this->_seat[i].push_back("Empty");
-
+			this->_seat[i][j]=("Empty");
+	}
 	//Default time
 	this->_Starttime = "00:00";
 	this->_Endtime = "00:00";
@@ -196,7 +198,39 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
 		 return;
   }
 
+ bool Bus::operator==(const Bus& b)
+ {
+	 if (this->_ID == b._ID)
+		 return 1;
+	 return 0;
+ }
 
+ Bus& Bus::operator=(const Bus& b)
+ {
+	 this->_ID = b._ID;
+	 this->_start = b._start;
+	 this->_end = b._end;
+	 this->_routeStart = b._routeStart;
+	 this->_routeEnd = b._routeEnd;
+	 this->_spacing = b._spacing;
+	 this->_normalPrice = b._normalPrice;
+	 this->_studentPrice = b._studentPrice;
+	 this->_rows = b._rows;
+	 this->_cols = b._cols;
+	 this->_seat.resize(this->_rows);
+	 for (int i = 0; i < this->_rows; i++)
+	 {
+		 this->_seat[i].resize(this->_cols);
+		 for (int j = 0; j < this->_cols; j++)
+		 {
+			 this->_seat[i][j] = b._seat[i][j];
+		 }
+	 }
+	 this->_Starttime = b._Starttime;
+	 this->_Endtime = b._Endtime;
+	 this->_IsActive = b._IsActive;
+	 return*this;
+ }
   ostream& operator<<(ostream& os, const Bus& bus)
  {
  	cout << "ID: " << bus._ID << endl;
@@ -205,6 +239,61 @@ ofstream& operator <<(ofstream& ofs, const Bus& bus) {
  	return os;
  }
 
+  istream& operator>>(istream& is, Bus& bus)
+  {
+	  cout << "Input ID: " << endl;
+	  while (getchar() != '\n');
+	  getline(is, bus._ID, '\n');
+
+	  cout << "Start position: " << endl;
+	  getline(is, bus._start, '\n');
+
+	  cout << "End position: " << endl;
+	  getline(is, bus._end, '\n');
+
+	  cout << "Start ROUTE(Ex:X-Y-Z): " << endl;
+	  getline(is, bus._routeStart, '\n');
+
+	  cout << "End ROUTE: " << endl;
+	  getline(is, bus._routeEnd, '\n');
+
+	  cout << "Spacing time(Ex:7-10 phut): " << endl;
+	  getline(is, bus._spacing, '\n');
+
+	  cout << "Normal price(Ex:5 000):" << endl;
+	  getline(is, bus._normalPrice, '\n');
+
+	  cout << "Student price(Ex:3 000):" << endl;
+	  getline(is, bus._studentPrice, '\n');
+
+	  cout << "Rows of seats :" << endl;
+	  is >> bus._rows;
+
+	  cout << "Colums of seats" << endl;
+	  is >> bus._cols;
+	  
+	  bus._seat.resize(bus._rows);
+	  for (int i = 0; i < bus._rows; i++)
+	  {
+		  bus._seat[i].resize(bus._cols);
+		  for (int j = 0; j < bus._cols; j++)
+		  {
+			  bus._seat[i][j] = "Empty";
+		  }
+	  }
+
+	  while (getchar() != '\n');
+	  cout << "Worktime" << endl;
+	  cout << "Start time(Ex: 13:00): " << endl;
+	  getline(is, bus._Starttime, '\n'); 
+
+	  cout << "End time: " << endl;
+	  getline(is, bus._Endtime, '\n');
+
+	  cout << "Is Active?(1/0)" << endl;
+	  is >> bus._IsActive;
+	  return is;
+  }
   bool Bus::changeID()
   {
 	  int choice;
@@ -828,7 +917,9 @@ bool Bus::changePrice()
 		  case 1:
 		  {
 			  if (this->changeID() == 1)
+			  {
 				  system("pause");
+			  }
 			  else
 			  {
 				  cout << "Change is fail!" << endl;
@@ -840,7 +931,9 @@ bool Bus::changePrice()
 		  case 2:
 		  {
 			  if (this->changePosition() == 1)
+			  {
 				  system("pause");
+			  }
 			  else
 			  {
 				  cout <<  "Change is fail!"  << endl;
