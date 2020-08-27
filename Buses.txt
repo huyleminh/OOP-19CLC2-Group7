@@ -8,20 +8,20 @@ Ben xe buyt A Khu DH Quoc Gia TPHCM - (re phai) - (Nga ba duong vao Truong DH Kh
 7 000
 3 000
 14 4
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
 04:40 - 20:30
 1
 
@@ -34,24 +34,24 @@ Ga Cho Lon A-Le Quang Sung-Pham Dinh Ho-Thap Muoi-Hai Thuong Lan Ong-Chau Van Li
 5 000
 3 000
 14 4
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
 05:00 - 20:30
 1
 
-31
+25
 Dai Hoc Ton Duc Thang
 Dai Hoc Van Lang
 Truong Dai hoc Ton Duc Thang - Nguyen Huu Tho - Nguyen Thi Thap - Nguyen Van Linh - Huynh Tan Phat - (Cau Tan Thuan 1) - Nguyen Tat Thanh - Hoang Dieu - Nguyen Thai Hoc - Tran Hung Dao - Ham Nghi - Pasteur - Nguyen Thi Minh Khai - Hai Ba Trung - Tran Quang Khai - Dinh Tien Hoang - Phan Dang Luu - No Trang Long - Binh Loi - Hem 352 Binh Loi - Dang Thuy Tram - Quay dau tai hem 69 Dang Thuy Tram - Dang Thuy Tram - Cong vien Dang Thuy Tram.
@@ -60,20 +60,20 @@ Cong vien Dang Thuy Tram - Hem 352 Binh Loi - Binh Loi - No Trang Long - Phan Da
 6 000
 3 000
 14 4
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
 05:00 - 19:00
 1
 
@@ -86,19 +86,19 @@ Ben Mui Nha Be - Huynh Tan Phat - cau Tan Thuan 1 - Nguyen Tat Thanh -Hoang Dieu
 6 000
 3 000
 14 4
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
-Empty Empty Empty Empty
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
+Empty Empty Empty Empty   
 04:20 - 21:00
 1

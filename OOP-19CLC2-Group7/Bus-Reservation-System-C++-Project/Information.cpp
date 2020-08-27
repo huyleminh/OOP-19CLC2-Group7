@@ -68,11 +68,16 @@ istream& operator>>(istream& is, Information& info)
 {
 	string tmp = "";
 	cout << "Enter name: ";
+<<<<<<< HEAD
 	getline(is, tmp, '\n');
 	if (StdFormat::stdName(tmp))
 		info._name = tmp;
 	else 
 		info._name = "Null";
+=======
+	while (getchar() != '\n');
+	getline(is, info._name, '\n');
+>>>>>>> thienlong
 
 	cout << "1. Male.\n";
 	cout << "2. Female.\n";

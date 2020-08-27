@@ -3,6 +3,7 @@
 
 #include "Header.h"
 
+
 class User
 {
 private:
@@ -43,6 +44,7 @@ public:
 
     string getUsername() const;
 
+    friend class Admin;//De admin co the truy xuat duoc tai khoan nay no
     ~User();
 };
 

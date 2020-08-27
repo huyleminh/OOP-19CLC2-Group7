@@ -154,3 +154,242 @@ bool Admin::changeBirthday(const string& dob)
 		return false;
 	return true;
 }
+
+void Admin::addDriver()
+{
+	List<Driver> d;
+
+	d.loadListDataFromFile("../Data\\Driver.txt");
+	cout << "!!!!Driver List!!!!" << endl;
+	for (int i = 0; i < d.size(); i++)
+	{
+		cout << "Driver " << i + 1 << endl;
+		cout << d[i] << endl;
+	}
+
+	Driver tmp;
+	cout << "Input new driver you want to ADD" << endl;
+	cin >> tmp;
+
+	// Tu tao username bang ho va ten
+	vector<string> user = Tokenizer::split(tmp._name, " ");
+	string username = Tokenizer::join(user, "");
+	tmp.updateUsername(username);
+
+	if (d.includes(tmp) == true)
+	{
+		cout << "The driver you want to ADD already have in data" << endl;
+		system("pause");
+		return;
+	}
+
+	d.push_back(tmp);
+	//Save to file Driver.txt
+	d.saveListDataToFile("../Data\\Driver.txt");
+
+	//Save to User.txt
+	List<User> u;
+	u.loadListDataFromFile("../Data\\Users.txt");
+	User driver;
+
+	driver._username = tmp._username;
+	driver._password = "1";
+	driver._role = "Driver";
+
+	u.push_back(driver);
+
+	u.saveListDataToFile("../Data\\Users.txt");
+}
+
+void Admin::deleteDriver()
+{
+	List<Driver> d;
+	//Erase in driver.txt
+
+	d.loadListDataFromFile("../Data\\Driver.txt");
+	cout << "!!!!Driver List!!!!" << endl;
+	for (int i = 0; i < d.size(); i++)
+	{
+		cout << "Driver " << i + 1 << endl;
+		cout << d[i] << endl;
+	}
+
+	Driver tmp;
+	cout << "Input username of driver you want to delete: " << endl;
+	while (getchar() != '\n');
+	getline(cin, tmp._username, '\n');
+
+	//Check xem co nguoi do co trong list hay khong
+	if (d.includes(tmp)==false)
+	{
+		cout << "Error: That username is not exist in data" << endl;
+		system("pause");
+		return;
+	}
+
+	for (int i = 0; i < d.size(); i++)
+	{
+		if (d.getItemInData(i)._username == tmp._username)
+		{
+			d.erase(i);
+			i--;
+		}
+	}
+	d.saveListDataToFile("../Data\\Driver.txt");
+
+	//Erase in User.txt
+	List<User> u;
+	u.loadListDataFromFile("../Data\\Users.txt");
+	
+	for (int i = 0; i < u.size(); i++)
+	{
+		if (u.getItemInData(i)._username == tmp._username)
+		{
+			u.erase(i);
+			i--;
+		}
+	}
+
+	u.saveListDataToFile("../Data\\Users.txt");
+	cout << "Delete success fully!!!" << endl;
+	system("pause");
+}
+
+void Admin::editDriver()
+{
+	List<Driver> d;
+	
+
+	d.loadListDataFromFile("../Data\\Driver.txt");
+	//hien ra list driver
+	cout << "!!!!Driver List!!!!" << endl;
+	for (int i = 0; i < d.size(); i++)
+	{
+		cout << "Driver " << i + 1 << endl;
+		cout << d[i] << endl;
+	}
+
+	Driver tmp;
+	cout << "Input username of driver you want to edit: " << endl;
+	while (getchar() != '\n');
+	getline(cin, tmp._username, '\n');
+
+	//Check xem co nguoi do co trong list hay khong
+	if (d.includes(tmp) == false)
+	{
+		cout << "Error: That username is not exist in data" << endl;
+		system("pause");
+		return;
+	}
+
+	for (int i = 0; i < d.size(); i++)
+	{
+		if (d.getItemInData(i)._username == tmp._username)
+		{
+			User s;//bien tam de dung ham changeinformation.
+
+			d.getItemInData(i).changeInformation(s);
+		}
+	}
+	d.saveListDataToFile("../Data\\Driver.txt");
+
+	//Ko can edit trong user.txt
+}
+
+void Admin::addBus()
+{
+	List<Bus> b;
+	b.loadListDataFromFile("../Data\\Buses.txt");
+	
+	cout << "~~~~~BUS LIST~~~~~" << endl;
+	for (int i = 0; i < b.size(); i++)
+	{
+		cout << "Bus " << i + 1 << endl;
+		cout << b.getItemInData(i) << endl;
+	}
+
+	Bus n;
+	cout << "Input data for new Bus" << endl;
+	cin >> n;
+
+	if (b.includes(n) == true)
+	{
+		cout << "That ID bus has existed in bus data" << endl;
+		system("pause");
+		return;
+	}
+
+	b.push_back(n);
+
+	b.saveListDataToFile("../Data\\Buses.txt");
+	cout << "Add successfully!!!!" << endl;
+	system("pause");
+}
+
+void Admin::deleteBus()
+{
+	List<Bus> b;
+	b.loadListDataFromFile("../Data\\Buses.txt");
+
+	cout << "~~~~~BUS LIST~~~~~" << endl;
+	for (int i = 0; i < b.size(); i++)
+	{
+		cout << "Bus " << i + 1 << endl;
+		cout << b.getItemInData(i) << endl;
+	}
+
+	Bus n;
+	cout << "Input Id bus you want to delete: " << endl;
+	cin >> n._ID;
+
+	if (b.includes(n) == false)
+	{
+		cout << "Error: That id bus is not exist in Bus data" << endl;
+		system("pause");
+		return;
+	}
+
+	for (int i = 0; i < b.size(); i++)
+	{
+		if (b.getItemInData(i)._ID == n._ID)
+			b.erase(i);
+	}
+
+	b.saveListDataToFile("../Data\\Buses.txt");
+	cout << "Delete successfully!!!" << endl;
+	system("pause");
+}
+
+void Admin::editBus()
+{
+	List<Bus> b;
+	b.loadListDataFromFile("../Data\\Buses.txt");
+
+	cout << "~~~~~BUS LIST~~~~~" << endl;
+	for (int i = 0; i < b.size(); i++)
+	{
+		cout << "Bus " << i + 1 << endl;
+		cout << b.getItemInData(i) << endl;
+	}
+
+	Bus n;
+	cout << "Input Id bus you want to edit: " << endl;
+	cin >> n._ID;
+
+	if (b.includes(n) == false)
+	{
+		cout << "Error: That id bus is not exist in Bus data" << endl;
+		system("pause");
+		return;
+	}
+
+	for (int i = 0; i < b.size(); i++)
+	{
+		if (b.getItemInData(i)._ID == n._ID)
+		{
+			b.getItemInData(i).change(n._ID);
+		}
+	}
+
+
+}

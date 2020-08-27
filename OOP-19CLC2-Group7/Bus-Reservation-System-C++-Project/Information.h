@@ -28,11 +28,13 @@ public:
     friend istream& operator >>(istream& is, Information& info);
     friend ostream& operator <<(ostream& os, const Information& info);
 
-    bool includeUsername(const User& user);
+    bool includeUsername(const User & user);
 
     bool changeName(const string& name);
     void changeSex(const string& sex);
     bool changeBirthday(const string& birthday);
+    
+    friend class Admin;
 };
 
 #endif

@@ -3,7 +3,9 @@
 
 #include "Information.h"
 #include "User.h"
-
+#include "List.h"
+#include "Driver.h"
+#include "Bus.h"
 class Admin : public Information
 {
 private:
@@ -24,6 +26,13 @@ public:
 	//Methods change information
 	void changeInformation(User& user); //Render change information interface
 
+	void addDriver();
+	void deleteDriver();
+	void editDriver();
+
+	void addBus();
+	void deleteBus();
+	void editBus();
 private:
 	bool changeName(const string& name);
 	void changeSex(const string& sex);

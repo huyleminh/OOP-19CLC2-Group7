@@ -24,10 +24,12 @@ public:
 	Bus();
 
 	//Operator
+	bool operator==(const Bus& b);
+	Bus& operator=(const Bus& b);
 	friend ifstream& operator >>(ifstream& ifs, Bus& bus);
 	friend ofstream& operator <<(ofstream& ofs, const Bus& bus);
 	friend ostream& operator<<(ostream& os, const Bus& bus);
-
+	friend istream& operator>>(istream& is, Bus& bus);
 	
 	//Methods
 	void show(string Id);
@@ -41,6 +43,8 @@ public:
 	bool changeTime();
 	bool changeActive();
 	void change(string Id);//Nguoi ta nhap id muon doi, roi goi ham change cua tung bus ra o ham main, bus nao co id giong thi doi
+
+	friend class Admin;
 };
 
 #endif
