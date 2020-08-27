@@ -24,6 +24,9 @@ public:
     //Register feature
     void registerUser();
 
+    //Search bus with number (no of bus)
+    void searchAndViewBus(); 
+
     //Get Admin or Driver or Passenger 
 private:
     template<class T>

@@ -1,5 +1,6 @@
 #include "Menu.h"
 #include "List.h"
+#include "Bus.h"
 
 //Render main menu after start app
 void Menu::renderMainMenu() {
@@ -565,4 +566,15 @@ TYPE:
     system("cls");
 
     Menu::renderMainMenu();
+}
+
+//Search bus with number (no of bus)
+void Menu::searchAndViewBus() {
+    List<Bus> list;
+    list.loadListDataFromFile("../Data/Buses.txt");
+
+    cout << "********List of bus********" << endl;
+    for (int i = 0; i < list.size(); i++) {
+        cout << list[i];
+    }
 }
