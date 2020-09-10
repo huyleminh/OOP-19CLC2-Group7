@@ -145,6 +145,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Passenger.cpp" />
+    <ClCompile Include="StoreTicket.cpp" />
+    <ClCompile Include="Ticket.cpp" />
     <ClCompile Include="User.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -159,6 +161,8 @@
     <ClInclude Include="List.h" />
     <ClInclude Include="Menu.h" />
     <ClInclude Include="Passenger.h" />
+    <ClInclude Include="StoreTicket.h" />
+    <ClInclude Include="Ticket.h" />
     <ClInclude Include="User.h" />
   </ItemGroup>
   <ItemGroup>
