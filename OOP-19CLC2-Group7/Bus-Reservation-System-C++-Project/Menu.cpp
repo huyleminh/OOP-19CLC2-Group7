@@ -12,7 +12,7 @@ void Menu::renderMainMenu() {
     cout << "**********************************************************\n";
     cout << "*                          MENU                          *\n";
     cout << "*  1. Search bus no.                                     *\n";
-    cout << "*  2. Search departure and destination.                  *\n";
+    cout << "*  2. Search station.                                    *\n";
     cout << "*  3. Log in.                                            *\n";
     cout << "*  4. Register.                                          *\n";
     cout << "*  5. Exit app.                                          *\n";
@@ -30,10 +30,10 @@ OPTION:
 
     switch (option) {
     case 1:
-        //Search bus no
+        this->searchAndViewBus();
         break;
     case 2: 
-        //Search departure and destination
+        this->searchFromStation();
         break;
     case 3:
         cin.ignore(1);
@@ -79,8 +79,8 @@ void Menu::renderAdminMenu(User& user) {
 MENU:
     cout << "*******************************************************\n";
     cout << "*                    WELCOME ADMIN                    *\n";
-    cout << "*  1. Bus Management                                  *\n";
-    cout << "*  2. Search departure and destination.               *\n";
+    cout << "*  1. Bus Management.                                 *\n";
+    cout << "*  2. Search stations.                                *\n";
     cout << "*  3. Driver Management.                              *\n";
     cout << "*  4. Change your information.                        *\n";
     cout << "*  5. Change password.                                *\n";
@@ -133,6 +133,7 @@ OPTION:
         {
         case 1:
         {
+            this->searchAndViewBus();
             system("cls");
             break;
         }
@@ -162,7 +163,7 @@ OPTION:
         break;
     }
     case 2: 
-        //Search departure and destination
+        this->searchFromStation();
         break;
     case 3:
     {   
@@ -439,7 +440,7 @@ void Menu::renderPassengerMenu(User& user) {
     cout << "********************************************************\n";
     cout << "*                    WELCOME PASSENGER                 *\n";
     cout << "*  1. Search bus no.                                   *\n";
-    cout << "*  2. Search departure and destination.                *\n";
+    cout << "*  2. Search station.                                  *\n";
     cout << "*  3. Change your information.                         *\n";
     cout << "*  4. Change password.                                 *\n";
     cout << "*  5. View your information.                           *\n";
@@ -470,10 +471,10 @@ OPTION:
 
     switch (option) {
     case 1:
-        //Search bus no
+        this->searchAndViewBus();
         break;
     case 2: 
-        //Search departure and destination
+        this->searchFromStation();
         break;
     case 3:{
         passenger.changeInformation(user);
@@ -661,11 +662,121 @@ TYPE:
 
 //Search bus with number (no of bus)
 void Menu::searchAndViewBus() {
+    system("cls");
+
     List<Bus> list;
     list.loadListDataFromFile("../Data/Buses.txt");
 
     cout << "********List of bus********" << endl;
     for (int i = 0; i < list.size(); i++) {
-        cout << list[i];
+        cout << list[i] << endl;
     }
+
+    cout << "********Enter bus Id to view more information********" << endl;
+    int option = 0;
+OPTION:
+    cin >> option;
+    if (cin.fail()) {
+        cout << "Wrong option, please try again." << endl;
+        goto OPTION;
+    }
+
+    Bus bus;
+    for (int i = 0; i < list.size(); i++) {
+        bus = list[i];
+        bus.show(to_string(option));
+    }
+}
+
+//Search bus from departure and destination
+bool sortStation(const string& left, const string& right) {
+    return left < right;
+}
+void Menu::searchFromStation() {
+    vector<string> stations = this->createListStations();
+
+    //Sort station A - Z
+    sort(stations.begin(), stations.end(), sortStation);
+    
+    //Render stations
+    system("cls");
+    cout << "\n********STATIONS********" << endl;
+    for (int i = 0; i < stations.size(); i++) {
+        cout << setw(2) << left << i + 1 << ". " << setw(50) << left << stations[i];
+        if (i % 3 == 2)
+            cout << endl;
+    }
+    cout << endl;
+
+    //Stop screen
+    cout << "****************************" << endl;
+    Sleep(1000);
+
+    size_t option = 0;
+OPTION:
+    cout << "Enter station (number): ";
+    cin >> option;
+
+    if (cin.fail()) {
+        cout << "Unvalid option." << endl;
+        goto OPTION;
+    }
+
+    if (option <= 0 || option > stations.size()) {
+        cout << "Unvalid station." << endl;
+        goto OPTION;
+    }
+
+    List<Bus> list;
+    list.loadListDataFromFile("../Data/Buses.txt");
+
+    system("cls");
+    cout << "\n********List Buses********" << endl;
+    for (int i = 0; i < list.size(); i++) {
+        vector<string> tmpStation = list[i].listOfStationGoThrough();
+        vector<string>::iterator iter;
+
+        iter = std::find(tmpStation.begin(), tmpStation.end(), stations[option - 1]);
+        if (iter != tmpStation.end())
+            cout << list[i];
+    }
+    system("pause");
+
+    cout << "These are buses that go through " << stations[option - 1] << " station." << endl;
+    Sleep(1000);
+    cout << "Enter to go back to menu and choose option 1 to view details." << endl;
+    
+    cin.ignore(1);
+    while (true) {
+        if (cin.get() == '\n')
+            break;
+        else 
+            cout << "Please press enter." << endl;
+    }
+}
+
+//Render list station
+vector<string> Menu::createListStations() {
+   //Request to bus to render stations
+   //
+   //Get list bus first
+    List<Bus> list;
+    list.loadListDataFromFile("../Data/Buses.txt");
+
+    //Create list of stations of all bus (not repeat stations)
+    vector<string> stations = list[0].listOfStationGoThrough();
+    vector<string>::iterator iter;
+
+    for (int i = 1; i < list.size(); i++) {
+        vector<string> tmp = list[i].listOfStationGoThrough();
+
+        for (int j = 0; j < tmp.size(); j++) {
+            iter = std::find(stations.begin(), stations.end(), tmp[j]);
+
+            if (iter == stations.end())
+                stations.push_back(tmp[j]);
+        }
+    }
+
+    return stations;
 }

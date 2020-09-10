@@ -18,6 +18,10 @@ private:
 	string _Starttime;				//thoi gian hoat dong ,Ex: 7:30 -> 19:30
 	string _Endtime;
 	bool _IsActive;					// 1:Active , 0:Inactive
+	vector<string> _stations;		//List stations
+
+	//construct for stations
+	void createStations();
 
 public:
 	//Default constructor
@@ -43,6 +47,9 @@ public:
 	bool changeTime();
 	bool changeActive();
 	void change(string Id);//Nguoi ta nhap id muon doi, roi goi ham change cua tung bus ra o ham main, bus nao co id giong thi doi
+
+	//Show list station that this go through
+	vector<string> listOfStationGoThrough() const;
 
 	friend class Admin;
 };

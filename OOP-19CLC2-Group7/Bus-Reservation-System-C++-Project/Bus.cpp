@@ -1,5 +1,21 @@
 #include "Bus.h"
 #include"../Library/Tokenizer.h"
+
+//construct for stations
+void Bus::createStations() {
+	this->_stations = Tokenizer::split(this->_routeStart, " - ");
+	vector<string> tmp = Tokenizer::split(this->_routeEnd, " - ");
+	vector<string>::iterator iter;
+
+	for (int i = 0; i < tmp.size(); i++) {
+		//Check if a station in end route is include in start route or not, if not then push it back to stations
+		iter = std::find(this->_stations.begin(), this->_stations.end(), tmp[i]);
+
+		if (iter == this->_stations.end())
+			this->_stations.push_back(tmp[i]);
+	}
+}
+
 //Default constructor
 Bus::Bus() {
 	this->_ID = "000";
@@ -92,6 +108,9 @@ ifstream& operator >>(ifstream& ifs, Bus& bus) {
 
 	ifs >> bus._IsActive;
 	getline(ifs, line, '\n');
+
+	//Create list of station that this bus run across from start route and end route
+	bus.createStations();
 	return ifs;
 }
 
@@ -126,22 +145,32 @@ void Bus::show(string id)
 {
 	if (this->_ID == id)
 	{
+		system("cls");
 		int i;
 		cout << "What information you want to see?" << endl;
-		cout << "0:Name,Worktime" << endl;
-		cout << "1:Route" << endl;
-		cout << "2:Price" << endl;
-		cout << "3:Seat" << endl;
+		cout << "1. Name and worktime" << endl;
+		cout << "2. Route" << endl;
+		cout << "3. Price" << endl;
+		cout << "4. Seat" << endl;
+		cout << "5. Back to menu" << endl;
+OPTION:
+		cout << "Choose your option: ";
 		cin >> i;
+
+		if (cin.fail()) {
+			cout << "Wrong option, please try again." << endl;
+			goto OPTION;
+		}
+
 		switch (i)
 		{
-		case 0:
+		case 1:
 		{
 			system("cls");
-			cout << "ID: " << this->_ID << endl;
+			cout << "Number: " << this->_ID << endl;
 			cout << "Name: " << this->_start << "-" << this->_end << endl;
-			cout << "Worktime: " << this->_Starttime << " - " << this->_Endtime << endl;
-			cout << "Status: ";
+			cout << "Work time: " << this->_Starttime << " - " << this->_Endtime << endl;
+			cout << "This bus is: ";
 			if (this->_IsActive == 0)
 				cout << "Inactive" << endl;
 			else
@@ -149,30 +178,30 @@ void Bus::show(string id)
 			system("pause");
 			break;
 		}
-		case 1:
-		{
-			system("cls");
-			cout << "Route from " << this->_start << " to " << this->_end << ": " << endl;
-			cout << this->_routeStart << endl;
-			cout << "Route from " << this->_end << " to " << this->_start << ": " << endl;
-			cout << this->_routeEnd << endl;
-			cout << "Spacing time: " << this->_spacing << endl;
-			system("pause");
-			break;
-		}
 		case 2:
 		{
 			system("cls");
-			cout << "$$$$Price$$$$" << endl;
-			cout << "Normal: " << this->_normalPrice << endl;
-			cout << "Student: " << this->_studentPrice << endl;
+			cout << "****Route from " << this->_start << " to " << this->_end << ": " << endl;
+			cout << this->_routeStart << endl;
+			cout << "****Route from " << this->_end << " to " << this->_start << ": " << endl;
+			cout << this->_routeEnd << endl;
+			cout << "****Spacing time: " << this->_spacing << endl;
 			system("pause");
 			break;
 		}
 		case 3:
 		{
 			system("cls");
-			cout << "!!!!!SEAT!!!!!" << endl;
+			cout << "$$$$Price$$$$" << endl;
+			cout << "Normal price: " << this->_normalPrice << " vnd" << endl;
+			cout << "Student price: " << this->_studentPrice << " vnd" << endl;
+			system("pause");
+			break;
+		}
+		case 4:
+		{
+			system("cls");
+			cout << "****SEAT MAP****" << endl;
 
 			for (int i = 0; i < this->_rows; i++)
 			{
@@ -191,11 +220,18 @@ void Bus::show(string id)
 			system("pause");
 			break;
 		}
+		case 5:
+			return;
+		default: 
+			cout << "Unvalid option, you will be redirect to menu." << endl;
+			Sleep(1000);
+			break;
 		}
-
 	}
-	else
+	else {
 		return;
+	}
+	this->show(id);
 }
 
 bool Bus::operator==(const Bus& b)
@@ -292,6 +328,10 @@ istream& operator>>(istream& is, Bus& bus)
 
 	cout << "Is Active?(1/0)" << endl;
 	is >> bus._IsActive;
+
+	//Create list stations
+	bus.createStations();
+	
 	return is;
 }
 bool Bus::changeID()
@@ -467,7 +507,7 @@ bool Bus::changeRoute()
 
 		route.push_back(position);
 	}
-	string routeJoin = Tokenizer::join(route, "-");
+	string routeJoin = Tokenizer::join(route, " - ");
 	vector<Bus> a;
 	ifstream f1("../Data\\Buses.txt");
 	if (!f1.is_open())
@@ -1025,4 +1065,9 @@ void Bus::change(string Id)
 		}
 		}
 	}
+}
+
+//Show list station that this go through
+vector<string> Bus::listOfStationGoThrough() const {
+	return this->_stations;
 }

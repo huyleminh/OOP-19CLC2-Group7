@@ -27,6 +27,12 @@ public:
     //Search bus with number (no of bus)
     void searchAndViewBus(); 
 
+    //Search bus from departure and destination
+    void searchFromStation();
+
+    //Render list station
+    vector<string> createListStations();
+
     //Get Admin or Driver or Passenger 
 private:
     template<class T>

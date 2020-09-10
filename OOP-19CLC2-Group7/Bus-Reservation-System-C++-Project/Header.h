@@ -12,6 +12,8 @@
 #include <vector>
 #include <fstream>
 #include <Windows.h>
+#include <algorithm>
+#include <iomanip>
 #include "../Library/LocalStorage.h"
 #include "../Library/Tokenizer.h"
 #include "../Library/StdFormat.h"
