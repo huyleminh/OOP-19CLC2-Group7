@@ -12,6 +12,8 @@ PlaysTicket::PlaysTicket(const string& type, const string& busID, const string& 
 	this->_busName = busName;
 	this->_username = username;
 	this->_lifeCycle = 1;
+
+
 }
 
 void PlaysTicket::render()

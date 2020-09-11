@@ -1,7 +1,7 @@
 #ifndef _TICKET_H_
 #define _TICKET_H_
 
-#include "Header.h"
+#include "../Header.h"
 #define STUDENT_PLAYS 3000
 #define STUDENT_MONTHLY 50000
 #define NORMAL_PLAYS 5000

@@ -1,13 +1,15 @@
 #include "Menu.h"
-#include "List.h"
-#include "Bus.h"
+#include "../List.h"
+#include "../Bus/Bus.h"
+#include "../Workflow/LoginWorkflow/LoginWorkflow.h"
+#include "../Workflow/DecentralizeWorkflow/DecentralizeWorkflow.h"
+#include "../Workflow/LogoutWorkflow/LogoutWorkflow.h"
 
 //Render main menu after start app
 void Menu::renderMainMenu() {
     system("cls");
 
-    LocalStorage local;
-    local.clear("../Data/LocalStorage.txt");
+    LogoutWorkflow::logout();
 
     cout << "**********************************************************\n";
     cout << "*                          MENU                          *\n";
@@ -52,26 +54,16 @@ OPTION:
 
 //If login successfully with Admin, render this menu
 void Menu::renderAdminMenu(User& user) {
-    LocalStorage local;
-    vector<string> items = local.getItem("../Data/LocalStorage.txt");
+    if (!LoginWorkflow::validateLogin(user)) {
+        cout << "You are not login.!!!" << endl;
+        Sleep(1000);
+        LogoutWorkflow::logout();
+        return;
+    }
 
-    if (items.size() != 2 || items[1] != "Admin" || items[0] != user.getUsername()) {
-        cout << "Your request to Admin menu is not permitted.\n";
-        cout << "=============================\n";
-        cout << "1. Back to home.\n";
-        cout << "2. Exit app.\n";
-
-        string option = "";
-        getline(cin, option, '\n');
-
-        if (stoi(option) == 1) {
-            local.clear("../Data/LocalStorage.txt");
-            Menu::renderMainMenu();
-        }
-        else {
-            local.clear("../Data/LocalStorage.txt");
-            exit(0);
-        }
+    if (DecentralizeWorkflow::onDecentralizeUser() != "Admin") {
+        cout << "You are not allow to access." << endl;
+        Sleep(1000);
         return;
     }
 
@@ -101,7 +93,7 @@ OPTION:
 
     cin.ignore(1);
 
-    vector<Admin> admins = this->getUserInformation<Admin>(items[1], user);
+    vector<Admin> admins = this->getUserInformation<Admin>("Admin", user);
     Admin admin;
 
     for (int i = 0; i < admins.size(); i++)
@@ -269,7 +261,7 @@ OPTION:
 
         break;
     case 7:
-        local.clear("../Data/LocalStorage.txt");
+        LogoutWorkflow::logout();
         return;
     case 8:
         exit(0);
@@ -280,24 +272,16 @@ OPTION:
 
 //If login successfully with Diver, render this menu
 void Menu::renderDriverMenu(User& user) {
-    LocalStorage local;
-    vector<string> items = local.getItem("../Data/LocalStorage.txt");
+    if (!LoginWorkflow::validateLogin(user)) {
+        cout << "You are not login.!!!" << endl;
+        Sleep(1000);
+        LogoutWorkflow::logout();
+        return;
+    }
 
-    if (items.size() != 2 || items[1] != "Driver" || items[0] != user.getUsername()) {
-        cout << "Your request is not permitted.\n";
-        cout << "=============================\n";
-        cout << "1. Back to home.\n";
-        cout << "2. Exit app.\n";
-
-        string option = "";
-        getline(cin, option, '\n');
-
-        if (stoi(option) == 1)
-            Menu::renderMainMenu();
-        else {
-            local.clear("../Data/LocalStorage.txt");
-            exit(0);
-        }
+    if (DecentralizeWorkflow::onDecentralizeUser() != "Driver") {
+        cout << "You are not allow to access." << endl;
+        Sleep(1000);
         return;
     }
 
@@ -326,7 +310,7 @@ OPTION:
 
     cin.ignore(1);
 
-    vector<Driver> drivers = this->getUserInformation<Driver>(items[1], user);
+    vector<Driver> drivers = this->getUserInformation<Driver>("Driver", user);
     Driver driver;
 
     for (int i = 0; i < drivers.size(); i++)
@@ -403,7 +387,7 @@ OPTION:
 
         break;
     case 6:
-        local.clear("../Data/LocalStorage.txt");
+        LogoutWorkflow::logout();
         return;
     case 7:
         exit(0);
@@ -414,24 +398,16 @@ OPTION:
 
 //If login successfully with Passenger, render this menu
 void Menu::renderPassengerMenu(User& user) {
-    LocalStorage local;
-    vector<string> items = local.getItem("../Data/LocalStorage.txt");
+     if (!LoginWorkflow::validateLogin(user)) {
+        cout << "You are not login.!!!" << endl;
+        Sleep(1000);
+        LogoutWorkflow::logout();
+        return;
+    }
 
-    if (items.size() != 2 || items[1] != "Passenger" || items[0] != user.getUsername()) {
-        cout << "Your request is not permitted.\n";
-        cout << "=============================\n";
-        cout << "1. Back to home.\n";
-        cout << "2. Exit app.\n";
-
-        string option = "";
-        getline(cin, option, '\n');
-
-        if (stoi(option) == 1)
-            Menu::renderMainMenu();
-        else {
-            local.clear("../Data/LocalStorage.txt");
-            exit(0);
-        }
+    if (DecentralizeWorkflow::onDecentralizeUser() != "Passenger") {
+        cout << "You are not allow to access." << endl;
+        Sleep(1000);
         return;
     }
 
@@ -460,7 +436,7 @@ OPTION:
 
     cin.ignore(1);
 
-    vector<Passenger> passengers = this->getUserInformation<Passenger>(items[1], user);
+    vector<Passenger> passengers = this->getUserInformation<Passenger>("Passenger", user);
     Passenger passenger;
 
     for (int i = 0; i < passengers.size(); i++)
@@ -536,9 +512,7 @@ OPTION:
 
         break;
     case 6:
-
-        local.clear("../Data/LocalStorage.txt");
-
+        LogoutWorkflow::logout();
         return;
     case 7:
         exit(0);
@@ -559,37 +533,28 @@ void Menu::login() {
     cout << "***************************LOGIN***************************" << endl;
     cin >> loginUser;
 
-    //Load users data and check valid login
-    List<User> list;
-    list.loadListDataFromFile("../Data/Users.txt");
-    
-    if (list.includes(loginUser)) {
-        cout << "Login successfully!" << endl;
-
-        //Set store identify string to local storage
-        LocalStorage local;
-        local.setItem("../Data/LocalStorage.txt", loginUser.storageString());
-
-        vector<string> items = local.getItem("../Data/LocalStorage.txt");
-
+    //Validate login
+    if (!LoginWorkflow::validateLogin(loginUser)) {
+        cout << "Wrong username or password." << endl;
+        cout << "You will be redirect to menu." << endl;
         Sleep(2000);
         system("cls");
+        return;
+    }
 
-        if (items[1] == "Admin")
-            Menu::renderAdminMenu(loginUser);
-        else if (items[1] == "Driver")
-            Menu::renderDriverMenu(loginUser);
-        else
-            Menu::renderPassengerMenu(loginUser);
-    }
-    else {
-        loginUser.release();
-        cout << "Wrong username or password!" << endl;
-        Sleep(1000);
-        cout << "You will be redirect to main menu.\n";
-        Sleep(1000);
-        system("cls");
-    }
+    cout << "Login successfully." << endl;
+
+    //Decentralize user 
+    const string identify = DecentralizeWorkflow::onDecentralizeUser();
+    if (identify == "Admin")
+        Menu::renderAdminMenu(loginUser);
+    else if (identify == "Diver")
+        Menu::renderDriverMenu(loginUser);
+    if (identify == "Passenger")
+        Menu::renderPassengerMenu(loginUser);
+
+    Sleep(1000);
+    system("cls");
 }
 
 //Register feature

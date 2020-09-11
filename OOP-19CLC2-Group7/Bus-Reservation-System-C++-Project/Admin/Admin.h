@@ -1,11 +1,11 @@
 #ifndef _ADMIN_H_
 #define _ADMIN_H_
 
-#include "Information.h"
-#include "User.h"
-#include "List.h"
-#include "Driver.h"
-#include "Bus.h"
+#include "../Information/Information.h"
+#include "../User/User.h"
+#include "../List.h"
+#include "../Driver/Driver.h"
+#include "../Bus/Bus.h"
 class Admin : public Information
 {
 private:

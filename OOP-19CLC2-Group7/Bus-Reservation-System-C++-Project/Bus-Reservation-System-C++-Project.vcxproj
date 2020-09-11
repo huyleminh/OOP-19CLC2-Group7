@@ -138,32 +138,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Admin.cpp" />
-    <ClCompile Include="Bus.cpp" />
-    <ClCompile Include="Driver.cpp" />
-    <ClCompile Include="Information.cpp" />
+    <ClCompile Include="Admin\Admin.cpp" />
+    <ClCompile Include="Bus\Bus.cpp" />
+    <ClCompile Include="Driver\Driver.cpp" />
+    <ClCompile Include="Information\Information.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="Passenger.cpp" />
-    <ClCompile Include="StoreTicket.cpp" />
-    <ClCompile Include="Ticket.cpp" />
-    <ClCompile Include="User.cpp" />
+    <ClCompile Include="Menu\Menu.cpp" />
+    <ClCompile Include="Passenger\Passenger.cpp" />
+    <ClCompile Include="Ticket\StoreTicket.cpp" />
+    <ClCompile Include="Ticket\Ticket.cpp" />
+    <ClCompile Include="User\User.cpp" />
+    <ClCompile Include="Workflow\DecentralizeWorkflow\DecentralizeWorkflow.cpp" />
+    <ClCompile Include="Workflow\LoginWorkflow\LoginWorkflow.cpp" />
+    <ClCompile Include="Workflow\LogoutWorkflow\LogoutWorkflow.cpp" />
+    <ClCompile Include="Workflow\ValidateInput\ValidateInputWorkFlow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Library\LocalStorage.h" />
     <ClInclude Include="..\Library\StdFormat.h" />
     <ClInclude Include="..\Library\Tokenizer.h" />
-    <ClInclude Include="Admin.h" />
-    <ClInclude Include="Bus.h" />
-    <ClInclude Include="Driver.h" />
+    <ClInclude Include="Admin\Admin.h" />
+    <ClInclude Include="Bus\Bus.h" />
+    <ClInclude Include="Driver\Driver.h" />
     <ClInclude Include="Header.h" />
-    <ClInclude Include="Information.h" />
+    <ClInclude Include="Information\Information.h" />
     <ClInclude Include="List.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="Passenger.h" />
-    <ClInclude Include="StoreTicket.h" />
-    <ClInclude Include="Ticket.h" />
-    <ClInclude Include="User.h" />
+    <ClInclude Include="Menu\Menu.h" />
+    <ClInclude Include="Passenger\Passenger.h" />
+    <ClInclude Include="Ticket\StoreTicket.h" />
+    <ClInclude Include="Ticket\Ticket.h" />
+    <ClInclude Include="User\User.h" />
+    <ClInclude Include="Workflow\DecentralizeWorkflow\DecentralizeWorkflow.h" />
+    <ClInclude Include="Workflow\LoginWorkflow\LoginWorkflow.h" />
+    <ClInclude Include="Workflow\LogoutWorkflow\LogoutWorkflow.h" />
+    <ClInclude Include="Workflow\ValidateInput\ValidateInputWorkflow.h" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\Library\My-Library.lib" />

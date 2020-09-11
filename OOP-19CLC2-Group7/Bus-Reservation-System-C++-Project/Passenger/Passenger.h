@@ -1,8 +1,8 @@
 #ifndef _PASSENGER_H_
 #define _PASSENGER_H_
 
-#include "Header.h"
-#include "Information.h"
+#include "../Header.h"
+#include "../Information/Information.h"
 
 class Passenger : public Information
 {

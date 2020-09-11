@@ -1,9 +1,9 @@
 #ifndef _DRIVER_H_
 #define _DRIVER_H_
 
-#include "Header.h"
-#include "Information.h"
-#include "User.h"
+#include "../Header.h"
+#include "../Information/Information.h"
+#include "../User/User.h"
 
 class Driver : public Information
 {

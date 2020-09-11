@@ -1,7 +1,8 @@
 #include "User.h"
-#include "../Library/Tokenizer.h"
-#include "List.h"
-#include "Information.h"
+#include "../../Library/Tokenizer.h"
+#include "../List.h"
+#include "../Information/Information.h"
+#include "../Workflow/ValidateInput/ValidateInputWorkflow.h"
 
 //Constructor
 User::User() {
@@ -48,18 +49,17 @@ istream& operator >>(istream& is, User& user) {
     cout << "Enter your username: ";
     getline(is, user._username, '\n');
 
+    string tmpPassword = "";
     cout << "Enter password, your password must not have any space or '/' : ";
     
-    //Read to temp password before standarlized, split " " and "/" and set to password.
-    string tmpPassword = "";
     getline(is, tmpPassword, '\n');
 
-    vector<string> tmp = Tokenizer::split(tmpPassword, " ");
-    tmpPassword = Tokenizer::join(tmp);
-
-    tmp.clear();
-    tmp = Tokenizer::split(tmpPassword, "/");
-    tmpPassword = Tokenizer::join(tmp);
+    while (!ValidateInputWorkflow::validatePasswordForm(tmpPassword)) {
+        cout << "Wrong input password form." << endl;
+        Sleep(1000);
+        cout << "Enter password, your password must not have any space or '/' : ";
+        getline(is, tmpPassword, '\n');
+    }
 
     user._password = tmpPassword;
     
@@ -92,11 +92,8 @@ bool User::operator ==(User& user) {
 
 //Methods
 bool User::changePassword(const string& password) {
-    const string regEx = " /";
-    for (int i = 0; i < password.length(); i++) {
-        if (regEx.rfind(password[i]) != string::npos)
-            return false;
-    }
+    if (!ValidateInputWorkflow::validatePasswordForm(_password))
+        return false;
 
     this->_password = password;
     return true;

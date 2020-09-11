@@ -1,8 +1,8 @@
 #ifndef _INFORMATION_H_
 #define _INFORMATION_H_
 
-#include "Header.h"
-#include "User.h"
+#include "../Header.h"
+#include "../User/User.h"
 
 class Information
 {
