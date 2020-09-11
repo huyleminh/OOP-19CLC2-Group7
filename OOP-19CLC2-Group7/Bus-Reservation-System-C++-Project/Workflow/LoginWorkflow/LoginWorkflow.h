@@ -8,4 +8,4 @@ public:
 	static bool validateLogin(User& user);
 };
 
-#endif // !_LOGIN_WORKFLOW_H_
+#endif

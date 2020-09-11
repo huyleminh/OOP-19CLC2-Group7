@@ -2,8 +2,7 @@
 #include "../../../Library/LocalStorage.h"
 #include "../../../Library/Tokenizer.h"
 
-string DecentralizeWorkflow::onDecentralizeUser()
-{
+string DecentralizeWorkflow::onDecentralizeUser() {
 	LocalStorage local;
     vector<string> items = local.getItem("../Data/LocalStorage.txt");
 

@@ -3,10 +3,9 @@
 
 #include "../../Header.h"
 
-class DecentralizeWorkflow
-{
+class DecentralizeWorkflow {
 public:
     static string onDecentralizeUser();
 };
 
-#endif //!_DECENTRALIZE_WORKFLOW_H_
+#endif 

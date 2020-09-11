@@ -10,7 +10,7 @@ bool ValidateInputWorkflow::validateNameForm(const string& name) {
 }
 
 bool ValidateInputWorkflow::validateDateFrom() {
-    return false;
+    return true;
 }
 
 bool ValidateInputWorkflow::validatePasswordForm(const string& password) {

@@ -4,6 +4,7 @@
 class LogoutWorkflow {
 public: 
     static void logout();
+
 };
 
 #endif

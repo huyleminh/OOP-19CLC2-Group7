@@ -3,8 +3,7 @@
 
 #include "../../Header.h"
 
-class ValidateInputWorkflow
-{
+class ValidateInputWorkflow {
 public:
     static bool validateNameForm(const string& name);
     static bool validateDateFrom();
