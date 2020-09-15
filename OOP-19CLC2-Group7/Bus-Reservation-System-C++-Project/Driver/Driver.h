@@ -7,7 +7,6 @@
 
 class Driver : public Information
 {
-private:
 public:
 	//Constructor 
 	Driver();
@@ -26,11 +25,15 @@ public:
 	//Methods change information
 	void changeInformation(User & user); //Render change information interface
 
+	void Dayoff();
+
 	friend class Admin;//De admin co the truy xuat duoc tai khoan nay no
 private:
 	bool changeName(const string& name);
 	void changeSex(const string& sex);
 	bool changeBirthday(const string& dob);
+
+	int day_off = 14;
 };
 
 #endif
