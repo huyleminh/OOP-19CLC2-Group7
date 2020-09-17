@@ -6,6 +6,7 @@
 class DecentralizeWorkflow {
 public:
     static string onDecentralizeUser();
+    
 };
 
 #endif 

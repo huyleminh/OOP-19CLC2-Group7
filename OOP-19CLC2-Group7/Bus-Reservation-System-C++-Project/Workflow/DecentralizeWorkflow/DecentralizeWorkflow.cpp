@@ -6,6 +6,9 @@ string DecentralizeWorkflow::onDecentralizeUser() {
 	LocalStorage local;
     vector<string> items = local.getItem("../Data/LocalStorage.txt");
 
+    if (items.size() == 0)
+        return "Undefined"; 
+
     if (items[1] == "Admin")
         return "Admin";
     else if (items[1] == "Driver")

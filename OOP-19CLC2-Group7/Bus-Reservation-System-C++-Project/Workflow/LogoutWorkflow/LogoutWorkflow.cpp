@@ -3,6 +3,6 @@
 
 void LogoutWorkflow::logout() {
     LocalStorage local;
-    local.clear("../../../Data/LocalStorage.txt");
+    local.clear("../Data/LocalStorage.txt");
 
 }
