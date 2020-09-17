@@ -144,6 +144,7 @@
     <ClCompile Include="Information\Information.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu\Menu.cpp" />
+    <ClCompile Include="Menu\MenuView.cpp" />
     <ClCompile Include="Passenger\Passenger.cpp" />
     <ClCompile Include="Ticket\StoreTicket.cpp" />
     <ClCompile Include="Ticket\Ticket.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Information\Information.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Menu\Menu.h" />
+    <ClInclude Include="Menu\MenuView.h" />
     <ClInclude Include="Passenger\Passenger.h" />
     <ClInclude Include="Ticket\StoreTicket.h" />
     <ClInclude Include="Ticket\Ticket.h" />

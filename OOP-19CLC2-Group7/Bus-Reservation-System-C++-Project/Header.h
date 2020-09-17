@@ -19,4 +19,10 @@
 #include "../Library/StdFormat.h"
 using namespace std;
 
+#define FORBIDDEN 403
+#define NULL_USER 404
+#define ADMIN_USER 405
+#define DRIVER_USER 406
+#define PASSENGER_USER 407
+
 #endif
