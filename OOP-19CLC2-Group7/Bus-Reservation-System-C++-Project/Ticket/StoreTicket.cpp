@@ -7,7 +7,37 @@ StoreTicket::StoreTicket() {
 		this->_tickets.resize(0);
 	}
 	else {
-		return;
+		string ignore = "";
+
+		string username = "";
+		string type = "";
+		string id = "";
+		string purchase = "";
+
+		while (!in.eof()) {
+			//Read empty line
+			getline(in, ignore, '\n');
+
+			getline(in, username, '\n');
+			if (username == "")
+				break;
+			
+			getline(in, type, '\n');
+			getline(in, id, '\n');
+			getline(in, purchase, '\n');
+
+			getline(in, ignore, '\n');
+
+			if (ignore == "Plays") {
+				this->_tickets.push_back(new PlaysTicket(type, id, username));
+				this->_tickets[this->_tickets.size() - 1]->updatePurchaseDate(purchase);
+			}
+			else if (ignore == "Monthly") {
+				this->_tickets.push_back(new MonthlyTicket(type, id, username));
+				this->_tickets[this->_tickets.size() - 1]->updatePurchaseDate(purchase);
+			}
+		}
+		in.close();
 	}
 }
 
@@ -16,16 +46,30 @@ StoreTicket::~StoreTicket() {
 		delete this->_tickets[i];
 }
 
-void StoreTicket::createNewTicket(const int& type, const string& passType, const string& busID, const string& busName, const string& username) {
+bool StoreTicket::createNewTicket(const int& type, const string& passType, const string& busID, const string& username) {
+	Ticket* check;
 	switch (type)
 	{
 	case PLAYS:
-		this->_tickets.push_back(new PlaysTicket(passType, busID, busName, username));
+		check = new PlaysTicket(passType, busID, username);
+		this->_tickets.push_back(check);
 		break;
 	case MONTHLY:
-		this->_tickets.push_back(new MonthlyTicket(passType, busID, busName, username));
+		check = new MonthlyTicket(passType, busID, username);
+		this->_tickets.push_back(check);
 		break;
 	default:
-		break;
+		return false;
 	}
+
+	for (int i = 0; i < this->_tickets.size() - 1; i++) {
+		if (check == this->_tickets[i]) {
+			this->_tickets.pop_back();
+			return false;
+		}
+	}
+
+	//Save to file new ticket 
+	check->saveToFile();
+	return true;
 }
