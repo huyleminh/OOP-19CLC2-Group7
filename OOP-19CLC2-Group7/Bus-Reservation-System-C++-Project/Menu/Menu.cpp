@@ -4,6 +4,8 @@
 #include "../Workflow/LoginWorkflow/LoginWorkflow.h"
 #include "../Workflow/DecentralizeWorkflow/DecentralizeWorkflow.h"
 #include "../Workflow/LogoutWorkflow/LogoutWorkflow.h"
+#include "../Workflow/ValidateInput/ValidateInputWorkflow.h"
+#include "../Menu/MenuView.h"
 
 //Render main menu after start app
 void Menu::renderMainMenu() {
@@ -11,26 +13,19 @@ void Menu::renderMainMenu() {
 
     LogoutWorkflow::logout();
 
-    cout << "**********************************************************\n";
-    cout << "*                          MENU                          *\n";
-    cout << "*  1. Search bus no.                                     *\n";
-    cout << "*  2. Search station.                                    *\n";
-    cout << "*  3. Log in.                                            *\n";
-    cout << "*  4. Register.                                          *\n";
-    cout << "*  5. Exit app.                                          *\n";
-    cout << "*                                                        *\n";
-    cout << "**********************************************************\n";
+    //This line call menu view that is global menu view
+    MenuView::mainMenuView();
 
-    int option;
+    string option;
 OPTION: 
     cout << "Enter you option: ";
-    cin >> option;
-
-    //Check valid option from 1 to 5.
-    if (option < 1 || option > 5)
+    getline(cin, option, '\n');
+    //Check valid option
+    if (!ValidateInputWorkflow::validateMenuOption(1, 5, option)) {
         goto OPTION;
+    }
 
-    switch (option) {
+    switch (stoi(option)) {
     case 1:
         this->searchAndViewBus();
         break;
@@ -38,11 +33,9 @@ OPTION:
         this->searchFromStation();
         break;
     case 3:
-        cin.ignore(1);
         this->login();
         break;
     case 4: 
-        cin.ignore(1);
         this->registerUser();
         break;
     case 5:
@@ -54,44 +47,25 @@ OPTION:
 
 //If login successfully with Admin, render this menu
 void Menu::renderAdminMenu(User& user) {
-    if (!LoginWorkflow::validateLogin(user)) {
-        cout << "You are not login.!!!" << endl;
-        Sleep(1000);
+MENU:
+    MenuView* view = MenuView::getMenuView(user);
+    if (view == NULL) {
         LogoutWorkflow::logout();
         return;
     }
 
-    if (DecentralizeWorkflow::onDecentralizeUser() != "Admin") {
-        cout << "You are not allow to access." << endl;
-        Sleep(1000);
+    if (!view->adminMenuView()) {
         return;
     }
 
-    system("cls");
-MENU:
-    cout << "*******************************************************\n";
-    cout << "*                    WELCOME ADMIN                    *\n";
-    cout << "*  1. Bus Management.                                 *\n";
-    cout << "*  2. Search stations.                                *\n";
-    cout << "*  3. Driver Management.                              *\n";
-    cout << "*  4. Change your information.                        *\n";
-    cout << "*  5. Change password.                                *\n";
-    cout << "*  6. View your information.                          *\n";
-    cout << "*  7. Logout.                                         *\n";
-    cout << "*  8. Exit app.                                       *\n";
-    cout << "*                                                     *\n";
-    cout << "*******************************************************\n";
-
-    int option;
-OPTION:
+    string option = "";
+OPTION: 
     cout << "Enter you option: ";
-    cin >> option;
-
-    //Check valid option from 1 to 8.
-    if (option < 1 || option > 8)
+    getline(cin, option, '\n');
+    //Check valid option
+    if (!ValidateInputWorkflow::validateMenuOption(1, 8, option)) {
         goto OPTION;
-
-    cin.ignore(1);
+    }
 
     vector<Admin> admins = this->getUserInformation<Admin>("Admin", user);
     Admin admin;
@@ -102,7 +76,7 @@ OPTION:
             break;
         }
 
-    switch (option) {
+    switch (stoi(option)) {
     case 1:
     {
         system("cls");
@@ -118,10 +92,16 @@ OPTION:
         cout << "*                                              *\n";
         cout << "************************************************\n";
 
-        cout << "Enter your choice" << endl;
-        cin >> choice;
+        string option_bus;
+OPTION_BUS: 
+        cout << "Enter you option: ";
+        getline(cin, option_bus, '\n');
+        //Check valid option
+        if (!ValidateInputWorkflow::validateMenuOption(1, 5, option)) {
+            goto OPTION_BUS;
+        }
 
-        switch (choice)
+        switch (stoi(option_bus))
         {
         case 1:
         {
@@ -160,7 +140,6 @@ OPTION:
     case 3:
     {   
         system("cls");
-        int choice;
 
         cout << "************************************************\n";
         cout << "*              DRIVER MANAGEMENT               *\n";
@@ -171,10 +150,16 @@ OPTION:
         cout << "*                                              *\n";
         cout << "************************************************\n";
 
-        cout << "Enter your choice" << endl;
-        cin >> choice;
+        string option_driver;
+OPTION_DRIVER: 
+        cout << "Enter you option: ";
+        getline(cin, option_driver, '\n');
+        //Check valid option
+        if (!ValidateInputWorkflow::validateMenuOption(1, 5, option)) {
+            goto OPTION_DRIVER;
+        }
 
-        switch (choice)
+        switch (stoi(option_driver))
         {
         case 1:
         {  
@@ -195,9 +180,7 @@ OPTION:
             break;
         }
         case 4:
-        {
             goto MENU;
-        }
         }
         break;
     }
@@ -210,11 +193,22 @@ OPTION:
                 break;
             }
 
-        ofstream out("../Data/Admin.txt");
+        ofstream out;
+        out.open("../Data/Admin.txt");
+        if (!out.is_open()) 
+        {
+            cout << "Error" << endl;
+            system("pause");
+        }
         for (int i = 0; i < admins.size(); i++)
             out << admins[i];
         out.close();
-
+        // ofstream out;
+        // out.open("../Data/Admin.txt");
+        // if (out.is_open()) 
+        //     cout << "1" << endl;
+        // else 
+        //     cout << "2" << endl;
         break;
     }
     case 5: 
@@ -272,43 +266,25 @@ OPTION:
 
 //If login successfully with Diver, render this menu
 void Menu::renderDriverMenu(User& user) {
-    if (!LoginWorkflow::validateLogin(user)) {
-        cout << "You are not login.!!!" << endl;
-        Sleep(1000);
+    //Driver menu view
+    MenuView* view = MenuView::getMenuView(user);
+    if (view == NULL) {
         LogoutWorkflow::logout();
         return;
     }
 
-    if (DecentralizeWorkflow::onDecentralizeUser() != "Driver") {
-        cout << "You are not allow to access." << endl;
-        Sleep(1000);
+    if (!view->driverMenuView()) {
         return;
     }
 
-    system("cls");
-
-    cout << "********************************************************\n";
-    cout << "*                    WELCOME DRIVER                    *\n";
-    cout << "*  1. Search bus no.                                   *\n";
-    cout << "*  2. Search departure and destination.                *\n";
-    cout << "*  3. Change your information.                         *\n";
-    cout << "*  4. Change password.                                 *\n";
-    cout << "*  5. View your information.                           *\n";
-    cout << "*  6. Log out.                                         *\n";
-    cout << "*  7. Exit app.                                        *\n";
-    cout << "*                                                      *\n";
-    cout << "********************************************************\n";
-
-    int option;
+    string option;
 OPTION:
     cout << "Enter you option: ";
-    cin >> option;
-
-    //Check valid option from 1 to 7.
-    if (option < 1 || option > 7)
+    getline(cin, option, '\n');
+    //Check valid option
+    if (!ValidateInputWorkflow::validateMenuOption(1, 7, option)) {
         goto OPTION;
-
-    cin.ignore(1);
+    }
 
     vector<Driver> drivers = this->getUserInformation<Driver>("Driver", user);
     Driver driver;
@@ -319,16 +295,16 @@ OPTION:
             break;
         }
 
-    switch (option) {
+    switch (stoi(option)) {
     case 1:
         //Search bus no
         break;
-    case 2: 
+    case 2:
         //Search departure and destination
         break;
     case 3: {
         driver.changeInformation(user);
-        
+
         for (int i = 0; i < drivers.size(); i++)
             if (drivers[i].includeUsername(user)) {
                 drivers[i] = driver;
@@ -339,16 +315,16 @@ OPTION:
         for (int i = 0; i < drivers.size(); i++)
             out << drivers[i];
         out.close();
-       
+
         break;
     }
-       
-    case 4: 
+
+    case 4:
     {
         string newPassword = "";
         cout << "Enter password, your password must not have any space or '/' : ";
         getline(cin, newPassword, '\n');
-        
+
         User tmp = user;
 
         if (user.changePassword(newPassword) == true) {
@@ -363,7 +339,7 @@ OPTION:
             users.saveListDataToFile("../Data/Users.txt");
 
             cout << "Change password successfully.\n";
-        } 
+        }
         else
             cout << "Unvalid input password, please try again.\n";
 
@@ -374,7 +350,7 @@ OPTION:
         }
         break;
     }
-    case 5: 
+    case 5:
 
         cout << "********Your information********" << endl;
         cout << driver;
@@ -398,43 +374,24 @@ OPTION:
 
 //If login successfully with Passenger, render this menu
 void Menu::renderPassengerMenu(User& user) {
-     if (!LoginWorkflow::validateLogin(user)) {
-        cout << "You are not login.!!!" << endl;
-        Sleep(1000);
+    //Passenger menu view
+    MenuView* view = MenuView::getMenuView(user);
+    if (view == NULL) {
         LogoutWorkflow::logout();
         return;
     }
 
-    if (DecentralizeWorkflow::onDecentralizeUser() != "Passenger") {
-        cout << "You are not allow to access." << endl;
-        Sleep(1000);
+    if (!view->passengerMenuView())
         return;
-    }
 
-    system("cls");
-
-    cout << "********************************************************\n";
-    cout << "*                    WELCOME PASSENGER                 *\n";
-    cout << "*  1. Search bus no.                                   *\n";
-    cout << "*  2. Search station.                                  *\n";
-    cout << "*  3. Change your information.                         *\n";
-    cout << "*  4. Change password.                                 *\n";
-    cout << "*  5. View your information.                           *\n";
-    cout << "*  6. Log out.                                         *\n";
-    cout << "*  7. Exit app.                                        *\n";
-    cout << "*                                                      *\n";
-    cout << "********************************************************\n";
-
-    int option;
+    string option = "";
 OPTION:
-    cout << "Enter you option: ";
-    cin >> option;
+    cout << "Enter your option: ";
+    getline(cin, option, '\n');
 
-    //Check valid option from 1 to 7.
-    if (option < 1 || option > 7)
+    if (!ValidateInputWorkflow::validateMenuOption(1, 8, option)) {
         goto OPTION;
-
-    cin.ignore(1);
+    }
 
     vector<Passenger> passengers = this->getUserInformation<Passenger>("Passenger", user);
     Passenger passenger;
@@ -445,14 +402,17 @@ OPTION:
             break;
         }
 
-    switch (option) {
+    switch (stoi(option)) {
     case 1:
         this->searchAndViewBus();
         break;
     case 2: 
         this->searchFromStation();
         break;
-    case 3:{
+    case 3:
+        passenger.buyTicket();
+        break;
+    case 4:{
         passenger.changeInformation(user);
         
         for (int i = 0; i < passengers.size(); i++)
@@ -468,7 +428,7 @@ OPTION:
        
         break;
     }
-    case 4:
+    case 5:
     {
         string newPassword = "";
         cout << "Enter password, your password must not have any space or '/' : ";
@@ -499,7 +459,7 @@ OPTION:
         }
         break;
     }
-    case 5: 
+    case 6: 
 
         cout << "********Your information********" << endl;
         cout << passenger;
@@ -511,10 +471,10 @@ OPTION:
         }
 
         break;
-    case 6:
+    case 7:
         LogoutWorkflow::logout();
         return;
-    case 7:
+    case 8:
         exit(0);
     }
 
@@ -536,8 +496,9 @@ void Menu::login() {
     //Validate login
     if (!LoginWorkflow::validateLogin(loginUser)) {
         cout << "Wrong username or password." << endl;
+        Sleep(1000);
         cout << "You will be redirect to menu." << endl;
-        Sleep(2000);
+        Sleep(1000);
         system("cls");
         return;
     }
@@ -548,12 +509,12 @@ void Menu::login() {
     const string identify = DecentralizeWorkflow::onDecentralizeUser();
     if (identify == "Admin")
         Menu::renderAdminMenu(loginUser);
-    else if (identify == "Diver")
+    else if (identify == "Driver")
         Menu::renderDriverMenu(loginUser);
     if (identify == "Passenger")
         Menu::renderPassengerMenu(loginUser);
 
-    Sleep(1000);
+    Sleep(2000);
     system("cls");
 }
 
@@ -578,18 +539,18 @@ INPUT:
         }
     }
 
-    int type = 0;
+    string type = "";
     
     cout << "1. Student.\n";
     cout << "2. Normal.\n";
 
 TYPE:
-    cout << "Choose your type(student or normal passenger): ";
-    cin >> type;
+    cout << "Choose your type(student or Normal passenger): ";
+    getline(cin, type, '\n');
 
-    if (type < 1 || type > 2)
-    goto TYPE;
-    cin.ignore(1);
+    if (!ValidateInputWorkflow::validateMenuOption(1, 2, type)) {
+        goto TYPE;
+    }
 
     Information info;
     cin >> info;
@@ -612,7 +573,7 @@ TYPE:
         return;
     }
 
-    out << info << ((type == 1) ? "Student" : "Normal") << endl;
+    out << info << ((stoi(type) == 1) ? "Student" : "Normal") << endl;
     out.close();
 
     cout << "Register successfully.\n";
@@ -638,18 +599,20 @@ void Menu::searchAndViewBus() {
     }
 
     cout << "********Enter bus Id to view more information********" << endl;
-    int option = 0;
+
+    string option = "";
 OPTION:
-    cin >> option;
-    if (cin.fail()) {
-        cout << "Wrong option, please try again." << endl;
+    cout << "Enter your option: ";
+    getline(cin, option, '\n');
+
+    if (!ValidateInputWorkflow::validateMenuOption(1, INT_MAX, option)) {
         goto OPTION;
     }
 
     Bus bus;
     for (int i = 0; i < list.size(); i++) {
         bus = list[i];
-        bus.show(to_string(option));
+        bus.show(option);
     }
 }
 
@@ -677,18 +640,12 @@ void Menu::searchFromStation() {
     cout << "****************************" << endl;
     Sleep(1000);
 
-    size_t option = 0;
+    string option = "";
 OPTION:
-    cout << "Enter station (number): ";
-    cin >> option;
+    cout << "Enter station you want to view: ";
+    getline(cin, option, '\n');
 
-    if (cin.fail()) {
-        cout << "Unvalid option." << endl;
-        goto OPTION;
-    }
-
-    if (option <= 0 || option > stations.size()) {
-        cout << "Unvalid station." << endl;
+    if (!ValidateInputWorkflow::validateMenuOption(1, stations.size(), option)) {
         goto OPTION;
     }
 
@@ -701,17 +658,16 @@ OPTION:
         vector<string> tmpStation = list[i].listOfStationGoThrough();
         vector<string>::iterator iter;
 
-        iter = std::find(tmpStation.begin(), tmpStation.end(), stations[option - 1]);
+        iter = std::find(tmpStation.begin(), tmpStation.end(), stations[stoi(option) - 1]);
         if (iter != tmpStation.end())
             cout << list[i];
     }
     system("pause");
 
-    cout << "These are buses that go through " << stations[option - 1] << " station." << endl;
+    cout << "These are buses that go through " << stations[stoi(option) - 1] << " station." << endl;
     Sleep(1000);
     cout << "Enter to go back to menu and choose option 1 to view details." << endl;
     
-    cin.ignore(1);
     while (true) {
         if (cin.get() == '\n')
             break;
