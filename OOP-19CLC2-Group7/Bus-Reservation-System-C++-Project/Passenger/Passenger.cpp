@@ -1,4 +1,6 @@
 ﻿#include "Passenger.h"
+#include "../Ticket/StoreTicket.h"
+
 
 //Constructor
 Passenger::Passenger() : Information() {
@@ -148,6 +150,36 @@ GENDER:
 	case 4:
 		break;
 	}
+}
+
+void Passenger::buyTicket()
+{
+	int busID = 0;
+	string busName = "";
+	int type = 0;
+
+	cout << "Enter bus id: ";
+	cin >> busID;
+
+	cout << "Choose ticket type: " << endl;
+	cout << "1. Plays ticket (In one day)." << endl;
+	cout << "2. Monthly ticket." << endl;
+
+	cin >> type;
+	if (type < 1 || type > 2 || cin.fail()) {
+		cout << "Fail to buy ticket." << endl;
+		Sleep(1000);
+		return;
+	}
+
+	StoreTicket store;
+	if(store.createNewTicket(type, this->_type, to_string(busID), this->_username)) {
+		cout << "Buy ticket successfully." << endl;
+	}
+	else {
+		cout << "Fail to buy ticket." << endl;
+	}
+	Sleep(1000);
 }
 
 bool Passenger::changeName(const string& name)
