@@ -96,10 +96,11 @@ bool MenuView::driverMenuView() {
     cout << "*  1. Search bus no.                                   *\n";
     cout << "*  2. Search departure and destination.                *\n";
     cout << "*  3. Change your information.                         *\n";
-    cout << "*  4. Change password.                                 *\n";
-    cout << "*  5. View your information.                           *\n";
-    cout << "*  6. Log out.                                         *\n";
-    cout << "*  7. Exit app.                                        *\n";
+    cout << "*  4. Day off.                                         *\n";
+    cout << "*  5. Change password.                                 *\n";
+    cout << "*  6. View your information.                           *\n";
+    cout << "*  7. Log out.                                         *\n";
+    cout << "*  8. Exit app.                                        *\n";
     cout << "*                                                      *\n";
     cout << "********************************************************\n";
     return true;

@@ -282,7 +282,7 @@ OPTION:
     cout << "Enter you option: ";
     getline(cin, option, '\n');
     //Check valid option
-    if (!ValidateInputWorkflow::validateMenuOption(1, 7, option)) {
+    if (!ValidateInputWorkflow::validateMenuOption(1, 8, option)) {
         goto OPTION;
     }
 
@@ -318,8 +318,10 @@ OPTION:
 
         break;
     }
-
-    case 4:
+    case 4: 
+        driver.Dayoff();
+        break;
+    case 5:
     {
         string newPassword = "";
         cout << "Enter password, your password must not have any space or '/' : ";
@@ -350,7 +352,7 @@ OPTION:
         }
         break;
     }
-    case 5:
+    case 6:
 
         cout << "********Your information********" << endl;
         cout << driver;
@@ -362,10 +364,10 @@ OPTION:
         }
 
         break;
-    case 6:
+    case 7:
         LogoutWorkflow::logout();
         return;
-    case 7:
+    case 8:
         exit(0);
     }
 
