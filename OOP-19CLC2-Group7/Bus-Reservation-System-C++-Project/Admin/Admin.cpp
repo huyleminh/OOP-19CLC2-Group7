@@ -154,7 +154,74 @@ bool Admin::changeBirthday(const string& dob)
 		return false;
 	return true;
 }
+void Admin::promoteDriver()
+{
+	List<Driver> d;
 
+	d.loadListDataFromFile("../Data\\Driver.txt");
+	cout << "!!!!Driver List!!!!" << endl;
+	for (int i = 0; i < d.size(); i++)
+	{
+		cout << "Driver " << i + 1 << endl;
+		cout << d[i] << endl;
+	}
+
+	Driver u;
+	cout << "Who do you want to promote? " << endl;
+	cout << "Input username: " << endl;
+	getline(cin, u._username);
+	
+	//Check xem co nguoi do co trong list hay khong
+	if (d.includes(u) == false)
+	{
+		cout << "Error: That username is not exist in data" << endl;
+		system("pause");
+		return;
+	}
+
+	//Add vao admin file
+	List<Admin> a;
+	a.loadListDataFromFile("../Data\\Admin.txt");
+	
+	Admin tmp;
+	for (int i = 0; i < d.size(); i++)
+	{
+		if (d[i]._username == u._username)
+		{
+			tmp._username = d[i]._username;
+			tmp._birthday = d[i]._birthday;
+			tmp._sex = d[i]._sex;
+			tmp._name = d[i]._name;
+		}
+	}
+	a.push_back(tmp);
+	a.saveListDataToFile("../Data\\Admin.txt");
+
+
+	//Edit user file
+	List<User> user;
+	user.loadListDataFromFile("../Data\\Users.txt");
+
+	for (int i = 0; i < user.size(); i++)
+	{
+		if (user[i]._username == u._username)
+		{
+			user.getItemInData(i)._role = "Admin";
+		}
+	}
+	user.saveListDataToFile("../Data\\Users.txt");
+
+	//Delete in Driver file
+	for (int i = 0; i < d.size(); i++)
+	{
+		if (d[i]._username == u._username)
+		{
+			d.erase(i);
+		}
+	}
+	d.saveListDataToFile("../Data\\Driver.txt");
+
+}
 void Admin::addDriver()
 {
 	List<Driver> d;

@@ -30,6 +30,7 @@ public:
 	void addDriver();
 	void deleteDriver();
 	void editDriver();
+	void promoteDriver();
 
 	void addBus();
 	void deleteBus();

@@ -278,7 +278,7 @@ ostream& operator<<(ostream& os, const Bus& bus)
 istream& operator>>(istream& is, Bus& bus)
 {
 	cout << "Input ID: " << endl;
-	while (getchar() != '\n');
+	//while (getchar() != '\n');
 	getline(is, bus._ID, '\n');
 
 	cout << "Start position: " << endl;
@@ -287,11 +287,44 @@ istream& operator>>(istream& is, Bus& bus)
 	cout << "End position: " << endl;
 	getline(is, bus._end, '\n');
 
-	cout << "Start ROUTE(Ex:X-Y-Z): " << endl;
-	getline(is, bus._routeStart, '\n');
+	vector<string> route;
 
-	cout << "End ROUTE: " << endl;
-	getline(is, bus._routeEnd, '\n');
+	int n;
+	cout << "How many position your route have?" << endl;
+	cin >> n;
+
+	cout << "!!!Start route!!!" << endl;
+	cout << "Position ";
+	while (getchar() != '\n');
+	//cho nguoi ta nhap tung position de tranh bi sai, roi noi chuoi lai bang ham join
+	for (int i = 0; i < n; i++)
+	{
+		string position;
+		cout << i + 1 << ": ";
+
+		getline(cin, position);
+
+		route.push_back(position);
+	}
+	string routeJoin1 = Tokenizer::join(route, " - ");
+	bus._routeStart = routeJoin1;
+	
+	route.clear();
+
+	cout << "!!!End route!!!" << endl;
+	cout << "Position ";
+	//cho nguoi ta nhap tung position de tranh bi sai, roi noi chuoi lai bang ham join
+	for (int i = 0; i < n; i++)
+	{
+		string position;
+		cout << i + 1 << ": ";
+
+		getline(cin, position);
+
+		route.push_back(position);
+	}
+	string routeJoin = Tokenizer::join(route, " - ");
+	bus._routeEnd = routeJoin;
 
 	cout << "Spacing time(Ex:7-10 phut): " << endl;
 	getline(is, bus._spacing, '\n');

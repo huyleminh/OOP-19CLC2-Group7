@@ -146,7 +146,8 @@ OPTION_BUS:
         cout << "*  1. Add new driver.                          *\n";
         cout << "*  2. Delete driver.                           *\n";
         cout << "*  3. Edit driver.                             *\n";
-        cout << "*  4. Back to menu.                            *\n";
+        cout << "*  4. Promote driver.                          *\n";
+        cout << "*  5. Back to menu.                            *\n";
         cout << "*                                              *\n";
         cout << "************************************************\n";
 
@@ -155,18 +156,18 @@ OPTION_DRIVER:
         cout << "Enter you option: ";
         getline(cin, option_driver, '\n');
         //Check valid option
-        if (!ValidateInputWorkflow::validateMenuOption(1, 5, option)) {
+        if (!ValidateInputWorkflow::validateMenuOption(1, 6, option)) {
             goto OPTION_DRIVER;
         }
 
         switch (stoi(option_driver))
         {
         case 1:
-        {  
+        {
             system("cls");
             admin.addDriver();
             break;
-        }  
+        }
         case 2:
         {
             system("cls");
@@ -180,6 +181,12 @@ OPTION_DRIVER:
             break;
         }
         case 4:
+        {
+            system("cls");
+            admin.promoteDriver();
+            break;
+        }
+        case 5:
             goto MENU;
         }
         break;
