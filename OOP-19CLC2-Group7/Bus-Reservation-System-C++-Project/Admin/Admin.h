@@ -6,6 +6,7 @@
 #include "../List.h"
 #include "../Driver/Driver.h"
 #include "../Bus/Bus.h"
+#include "../Announcement.h"
 class Admin : public Information
 {
 private:
@@ -33,6 +34,10 @@ public:
 	void addBus();
 	void deleteBus();
 	void editBus();
+
+	void editAnnounce(Announcement& a);
+	void addAnnounce(Announcement& a);
+	void deleteAnnounce(Announcement& a);
 private:
 	bool changeName(const string& name);
 	void changeSex(const string& sex);

@@ -139,6 +139,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Admin\Admin.cpp" />
+    <ClCompile Include="Announcement.cpp" />
     <ClCompile Include="Bus\Bus.cpp" />
     <ClCompile Include="Driver\Driver.cpp" />
     <ClCompile Include="Information\Information.cpp" />
@@ -159,6 +160,7 @@
     <ClInclude Include="..\Library\StdFormat.h" />
     <ClInclude Include="..\Library\Tokenizer.h" />
     <ClInclude Include="Admin\Admin.h" />
+    <ClInclude Include="Announcement.h" />
     <ClInclude Include="Bus\Bus.h" />
     <ClInclude Include="Driver\Driver.h" />
     <ClInclude Include="Header.h" />

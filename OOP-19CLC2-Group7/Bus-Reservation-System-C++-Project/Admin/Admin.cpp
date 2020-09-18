@@ -393,3 +393,106 @@ void Admin::editBus()
 
 
 }
+
+void Admin::editAnnounce(Announcement &a)
+{
+	int index;
+	cout << "Input the order of announcement you want to edit" << endl;
+	cin >> index;
+	if (index - 1 > a.title.size() || index - 1 < 0)
+	{
+		cout << "There is no announcement like your index" << endl;
+		return;
+	}
+	for (int i = 0; i < a.title.size(); i++)
+	{
+		if (index - 1 == i)
+		{
+		MENU:
+			string choice;
+			cout << "What do you want to edit?" << endl;
+			cout << "1:Title" << endl;
+			cout << "2:Content" << endl;
+			cin >> choice;
+
+			if (!ValidateInputWorkflow::validateMenuOption(1, 2, choice))
+				goto MENU;
+
+			if (choice == "1")
+			{
+				string ti;
+				cout << "Old title: " << a.title[i] << endl;
+				cout << "Your new title: ";
+				while (getchar() != '\n');
+				getline(cin, ti,'\n');
+				a.title[i] = "\t" + ti;
+
+				string t = " .Chinh sua vao luc  ";
+				time_t info = std::time(NULL);
+				tm* now = localtime(&info);
+				t = t + to_string(now->tm_hour) + ":" + to_string(now->tm_min) + ":" + to_string(now->tm_sec) + " ngay " + to_string(now->tm_mday) + "/" + to_string(now->tm_mon + 1) + "/" + to_string(now->tm_year + 1900);
+				a.time[i] = a.time[i] + t;
+			}
+
+			else
+			{
+				string c;
+				cout << "Old Content: " << a.content[i] << endl;
+				cout << "Your new content: ";
+				while (getchar() != '\n');
+				getline(cin, c,'\n');
+				a.content[i] = c;
+
+				string t = " .Chinh sua vao luc  ";
+				time_t info = std::time(NULL);
+				tm* now = localtime(&info);
+				t = t + to_string(now->tm_hour) + ":" + to_string(now->tm_min) + ":" + to_string(now->tm_sec) + " ngay " + to_string(now->tm_mday) + "/" + to_string(now->tm_mon + 1) + "/" + to_string(now->tm_year + 1900);
+				a.time[i] = a.time[i] + t;
+			}
+		}
+	}
+	cout << "Edit successfully!!!" << endl;
+}
+
+void Admin::addAnnounce(Announcement& a)
+{
+	string t1 = "\t";
+	string tmp;
+	cout << "Your Title: ";
+	getline(cin, tmp);
+	t1 = t1 + tmp;
+	a.title.push_back(t1);
+
+	cout << "Content: " << endl;
+	getline(cin, tmp);
+	a.content.push_back(tmp);
+
+	string t = "Duoc dang vao ";
+	time_t info = std::time(NULL);
+	tm* now = localtime(&info);
+	t = t + to_string(now->tm_hour) + ":" + to_string(now->tm_min) + ":" + to_string(now->tm_sec) + " ngay " + to_string(now->tm_mday) + "/" + to_string(now->tm_mon + 1) + "/" + to_string(now->tm_year + 1900);
+	a.time.push_back(t);
+
+}
+
+void Admin::deleteAnnounce(Announcement &a)
+{
+	int index;
+	cout << "Input the order of announcement you want to delete" << endl;
+	cin >> index;
+	if (index - 1 > a.title.size() || index - 1 < 0)
+	{
+		cout << "There is no announcement like your index" << endl;
+		return;
+	}
+	for (int i = 0; i < a.title.size(); i++)
+	{
+		if (i == index - 1)
+		{
+			a.title.erase(a.title.begin() + i);
+			a.content.erase(a.content.begin() + i);
+			a.time.erase(a.time.begin() + i);
+		}
+	}
+	cout << "Delete successfully!!!" << endl;
+}

@@ -14,11 +14,12 @@
 #include <Windows.h>
 #include <algorithm>
 #include <iomanip>
+#include <ctime> // get time now
 #include "../Library/LocalStorage.h"
 #include "../Library/Tokenizer.h"
 #include "../Library/StdFormat.h"
 using namespace std;
-
+#pragma warning(disable : 4996)
 #define FORBIDDEN 403
 #define NULL_USER 404
 #define ADMIN_USER 405
