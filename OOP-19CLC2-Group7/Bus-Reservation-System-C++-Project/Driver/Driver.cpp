@@ -144,6 +144,23 @@ GENDER:
 	}
 }
 
+void Driver::Dayoff()
+{
+	ofstream f("C:\\Users\Bot\Documents\GitHub\OOP-19CLC2-Group7\OOP-19CLC2-Group7\Data\Day-off.txt", ios::app);
+
+	string day_off, Reason;
+	cout << "Number of days off remaining: " << this->day_off;
+
+	cout << "Enter the date you want to take leave (dd/mm/yyyy): \n";
+	getline(cin, day_off, '\n');
+
+	cout << "The reason for your leave: ";
+	getline(cin, Reason, '\n');
+
+	f << this->_name << " " << day_off << " " << Reason << endl;
+
+}
+
 bool Driver::changeName(const string& name)
 {
 	if (Information::changeName(name) == 1)
