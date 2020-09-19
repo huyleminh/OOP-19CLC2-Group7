@@ -326,19 +326,27 @@ istream& operator>>(istream& is, Bus& bus)
 	string routeJoin = Tokenizer::join(route, " - ");
 	bus._routeEnd = routeJoin;
 
-	cout << "Spacing time(Ex:7-10 phut): " << endl;
-	getline(is, bus._spacing, '\n');
+	string timet = "", timet1 = "";
+	cout << "~~~Spacing time~~~" << endl;
+	cout << "Minimum time: " << endl;
+	getline(cin, timet);
+	cout << "Maximum time: " << endl;
+	getline(cin, timet1);
 
-	cout << "Normal price(Ex:5 000):" << endl;
+	bus._spacing = timet + "-" + timet1 + " phut";
+	
+	cout << "~~~Price(Ex:5000)~~~" << endl;
+	cout << "Normal:" << endl;
 	getline(is, bus._normalPrice, '\n');
 
-	cout << "Student price(Ex:3 000):" << endl;
+	cout << "Student:" << endl;
 	getline(is, bus._studentPrice, '\n');
 
-	cout << "Rows of seats :" << endl;
+	cout << "~~~SEAT~~~" << endl;
+	cout << "Rows:" << endl;
 	is >> bus._rows;
 
-	cout << "Colums of seats" << endl;
+	cout << "Colums " << endl;
 	is >> bus._cols;
 
 	bus._seat.resize(bus._rows);
@@ -352,8 +360,8 @@ istream& operator>>(istream& is, Bus& bus)
 	}
 
 	while (getchar() != '\n');
-	cout << "Worktime" << endl;
-	cout << "Start time(Ex: 13:00): " << endl;
+	cout << "~~~Worktime(Ex:13:30)~~~" << endl;
+	cout << "Start time: " << endl;
 	getline(is, bus._Starttime, '\n');
 
 	cout << "End time: " << endl;

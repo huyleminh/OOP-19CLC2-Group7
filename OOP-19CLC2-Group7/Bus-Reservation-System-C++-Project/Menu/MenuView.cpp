@@ -70,7 +70,7 @@ bool MenuView::adminMenuView() {
         this->forbiddenView();
         return false;
     }
-
+    Graphic::changeColour("",PINK);
     cout << "*******************************************************\n";
     cout << "*                    WELCOME ADMIN                    *\n";
     cout << "*  1. Bus Management.                                 *\n";
@@ -91,7 +91,7 @@ bool MenuView::driverMenuView() {
         this->forbiddenView();
         return false;
     }
-
+    Graphic::changeColour("", LIGHT_AQUA);
     cout << "********************************************************\n";
     cout << "*                    WELCOME DRIVER                    *\n";
     cout << "*  1. Search bus no.                                   *\n";
@@ -112,7 +112,7 @@ bool MenuView::passengerMenuView() {
         this->forbiddenView();
         return false;
     }
-
+    Graphic::changeColour("", LIGHT_GREEN);
     cout << "********************************************************\n";
     cout << "*                    WELCOME PASSENGER                 *\n";
     cout << "*  1. Search bus no.                                   *\n";
