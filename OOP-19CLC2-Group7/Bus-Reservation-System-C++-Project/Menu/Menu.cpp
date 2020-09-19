@@ -77,8 +77,7 @@ OPTION:
         }
 
     switch (stoi(option)) {
-    case 1:
-    {
+    case 1: {
         system("cls");
 
         cout << "************************************************\n";
@@ -100,44 +99,32 @@ OPTION_BUS:
             goto OPTION_BUS;
         }
 
-        switch (stoi(option_bus))
-        {
+        switch (stoi(option_bus)) {
         case 1:
-        {
             this->searchAndViewBus();
             system("cls");
             break;
-        }
         case 2:
-        {
             system("cls");
             admin.addBus();
             break;
-        }
         case 3:
-        {
             system("cls");
             admin.deleteBus();
             break;
-        }
         case 4:
-        {
             system("cls");
             admin.editBus();
             break;
-        }
         case 5:
-        {
-            goto MENU;
-        }
+            break;
         }
         break;
     }
     case 2: 
         this->searchFromStation();
         break;
-    case 3:
-    {   
+    case 3: {   
         system("cls");
 
         cout << "************************************************\n";
@@ -159,34 +146,25 @@ OPTION_DRIVER:
             goto OPTION_DRIVER;
         }
 
-        switch (stoi(option_driver))
-        {
+        switch (stoi(option_driver)) {
         case 1:
-        {
             system("cls");
             admin.addDriver();
             break;
-        }
         case 2:
-        {
             system("cls");
             admin.deleteDriver();
             break;
-        }
         case 3:
-        {
             system("cls");
             admin.editDriver();
             break;
-        }
         case 4:
-        {
             system("cls");
             admin.promoteDriver();
             break;
-        }
         case 5:
-            goto MENU;
+            break;
         }
         break;
     }
@@ -210,8 +188,7 @@ OPTION_AN:
         }
 
         switch (stoi(option)) {
-        case 1:
-        {
+        case 1: {
             system("cls");
             cout << "************************************************\n";
             cout << "*             ANNOUNCEMENT DRIVER              *\n";
@@ -226,11 +203,10 @@ OPTION_AN:
             cout << "Enter you option: ";
             getline(cin, op, '\n');
 
-            if (!ValidateInputWorkflow::validateMenuOption(1, 4, op)) {
+            if (!ValidateInputWorkflow::validateMenuOption(1, 4, op)) 
                 goto OPTION_AN1;
-            }
 
-            ifstream f("../Data\\AnnounceDriver.txt");
+            ifstream f("../Data/AnnounceDriver.txt");
             if (!f.is_open())
                 return;
             Announcement an;
@@ -238,26 +214,22 @@ OPTION_AN:
 
             switch (stoi(op)) {
             case 1:
-            {
                 system("cls");
                 cout << "\t\tAnnouncement Driver" << endl;
                 cout << an;
                 system("pause");
                 f.close();
                 break;
-            }
-            case 2:
-            {
+            case 2: {
                 system("cls");
                 admin.addAnnounce(an);
                 cout << "Add successfully!!!" << endl;
-                ofstream f2("../Data\\AnnounceDriver.txt");
+                ofstream f2("../Data/AnnounceDriver.txt");
                 f2 << an;
                 system("pause");
                 break;
             }
-            case 3:
-            {
+            case 3: {
                 system("cls");
                 cout << "\t\tAnnouncement Passenger" << endl;
                 cout << an << endl;
@@ -266,18 +238,16 @@ OPTION_AN:
                 cout << "2.Delete" << endl;
                 string op1;
                 cin >> op1;
-                if (stoi(op1) == 1)
-                {
+                if (stoi(op1) == 1){
                     admin.editAnnounce(an);
-                    ofstream f2("../Data\\AnnounceDriver.txt");
+                    ofstream f2("../Data/AnnounceDriver.txt");
                     f2 << an;
                     f2.close();
                     system("pause");
                 }
-                else
-                {
+                else {
                     admin.deleteAnnounce(an);
-                    ofstream f2("../Data\\AnnounceDriver.txt");
+                    ofstream f2("../Data/AnnounceDriver.txt");
                     f2 << an;
                     f2.close();
                     system("pause");
@@ -285,14 +255,11 @@ OPTION_AN:
                 break;
             }
             case 4:
-            {
                 break;
-            }
             }
             break;
         }
-        case 2:
-        {
+        case 2: {
             system("cls");
             cout << "************************************************\n";
             cout << "*             ANNOUNCEMENT PASSENGER           *\n";
@@ -311,7 +278,7 @@ OPTION_AN:
                 goto OPTION_AN2;
             }
 
-            ifstream f("../Data\\AnnouncePassenger.txt");
+            ifstream f("../Data/AnnouncePassenger.txt");
             if (!f.is_open())
                 return;
             Announcement an;
@@ -367,21 +334,12 @@ OPTION_AN:
                 break;
             }
             case 4:
-            {
                 break;
             }
-            }
-            
             break;
         }
         case 3:
-        {
-            system("cls");
-            admin.editDriver();
             break;
-        }
-        case 4:
-            goto MENU;
         }
         break;
     }
@@ -412,8 +370,7 @@ OPTION_AN:
         //     cout << "2" << endl;
         break;
     }
-    case 6: 
-    {
+    case 6: {
         string newPassword = "";
         cout << "Enter password, your password must not have any space or '/' : ";
         getline(cin, newPassword, '\n');
@@ -897,7 +854,7 @@ OPTION:
 
     cout << "These are buses that go through " << stations[stoi(option) - 1] << " station." << endl;
     Sleep(1000);
-    cout << "Enter to go back to menu and choose option 1 to view details." << endl;
+    cout << "Enter to go back to menu." << endl;
     
     while (true) {
         if (cin.get() == '\n')
