@@ -51,7 +51,13 @@ void MenuView::forbiddenView() {
 
 void MenuView::mainMenuView() {
     system("cls"); 
-    Graphic::setHeight(7);
+    Graphic::setWidth(3); cout << "                          __"  << "\t\t                          __" << endl;
+    Graphic::setWidth(3); cout << " .-----------------------'  |" << "\t\t .-----------------------'  |" << endl;
+    Graphic::setWidth(3); cout << "/| _ .---. .---. .---. .---.|" << "\t\t/| _ .---. .---. .---. .---.|" << endl;
+    Graphic::setWidth(3); cout << "|j||||___| |___| |___| |___||" << "\t\t|j||||___| |___| |___| |___||" << endl;
+    Graphic::setWidth(3); cout << "|=|||=======================|" << "\t\t|=|||=======================|" << endl;
+    Graphic::setWidth(3); cout << "[_|j||(O)\\__________|(O)\\___]" << "\t\t[_|j||(O)\\__________|(O)\\___]" << endl;
+    Graphic::setHeight(1);
     Graphic::setWidth(4);
     Graphic::changeColour("*********************************************************\n",LIGHT_YELLOW);
     Graphic::setWidth(4); cout << "*\t\t\t"; Graphic::changeColour("M", PINK); Graphic::changeColour("E", LIGHT_PURPLE); Graphic::changeColour("N", LIGHT_AQUA); Graphic::changeColour("U", LIGHT_GREEN); Graphic::changeColour("", LIGHT_YELLOW); cout << "\t\t\t\t*\n";
