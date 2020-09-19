@@ -12,35 +12,8 @@ PlaysTicket::PlaysTicket(const string& type, const string& busID, const string& 
 	this->_username = username;
 
 	//Initialize time 
-	time_t current = time(NULL);
-
-	char tmp[26];
-	ctime_s(tmp, 26, &current);
-
-	string timer = "";
-	for (int i = 0; i < 24; i++)
-		timer += tmp[i];
-	vector<string> now = Tokenizer::split(timer, " ");
-
-	string purchaseDate = "";
-	purchaseDate += now[2] + "/";
-
-	if (now[1] == "Jan")	purchaseDate += "1";
-	else if (now[1] == "Feb")	purchaseDate += "2";
-	else if (now[1] == "Mar")	purchaseDate += "3";
-	else if (now[1] == "Apr")	purchaseDate += "4";
-	else if (now[1] == "May")	purchaseDate += "5";
-	else if (now[1] == "Jun")	purchaseDate += "6";
-	else if (now[1] == "Jul")	purchaseDate += "7";
-	else if (now[1] == "Aug")	purchaseDate += "8";
-	else if (now[1] == "Sep")	purchaseDate += "9";
-	else if (now[1] == "Oct")	purchaseDate += "10";
-	else if (now[1] == "Nov")	purchaseDate += "11";
-	else    
-		purchaseDate += "12";
-
-	purchaseDate += "/" + now[4];
-	this->_purchaseDate = purchaseDate;
+	Date purchaseDate;
+	this->_purchaseDate = purchaseDate.toString();
 }
 
 void PlaysTicket::render()
@@ -54,6 +27,16 @@ void PlaysTicket::render()
 	cout << "##############################################################################" << endl;
 }
 
+bool PlaysTicket::isOverdue()
+{
+	Date tmp(this->_purchaseDate);
+	Date current;
+	if ((tmp - current) > 1)
+		return true;
+	else 
+		return false;
+}
+
 MonthlyTicket::MonthlyTicket(const string& type, const string& busID, const string& username)
 {
 	if (type == "Student")
@@ -65,35 +48,8 @@ MonthlyTicket::MonthlyTicket(const string& type, const string& busID, const stri
 	this->_username = username;
 
 	//Initialize time 
-	time_t current = time(NULL);
-
-	char tmp[26];
-	ctime_s(tmp, 26, &current);
-
-	string timer = "";
-	for (int i = 0; i < 24; i++)
-		timer += tmp[i];
-	vector<string> now = Tokenizer::split(timer, " ");
-
-	string purchaseDate = "";
-	purchaseDate += now[2] + "/";
-
-	if (now[1] == "Jan")	purchaseDate += "1";
-	else if (now[1] == "Feb")	purchaseDate += "2";
-	else if (now[1] == "Mar")	purchaseDate += "3";
-	else if (now[1] == "Apr")	purchaseDate += "4";
-	else if (now[1] == "May")	purchaseDate += "5";
-	else if (now[1] == "Jun")	purchaseDate += "6";
-	else if (now[1] == "Jul")	purchaseDate += "7";
-	else if (now[1] == "Aug")	purchaseDate += "8";
-	else if (now[1] == "Sep")	purchaseDate += "9";
-	else if (now[1] == "Oct")	purchaseDate += "10";
-	else if (now[1] == "Nov")	purchaseDate += "11";
-	else    
-		purchaseDate += "12";
-
-	purchaseDate += "/" + now[4];
-	this->_purchaseDate = purchaseDate;
+	Date purchaseDate;
+	this->_purchaseDate = purchaseDate.toString();
 }
 
 void MonthlyTicket::render()
@@ -105,4 +61,14 @@ void MonthlyTicket::render()
 	cout << setw(25) << left << "# *Expriry date " << ": " << setw(50) << left << this->_purchaseDate << "#" << endl;
 	cout << "#                                                                            #" << endl;
 	cout << "##############################################################################" << endl;
+}
+
+bool MonthlyTicket::isOverdue()
+{
+	Date tmp(this->_purchaseDate);
+	Date current;
+	if ((tmp - current) > 30)
+		return true;
+	else 
+		return false;
 }

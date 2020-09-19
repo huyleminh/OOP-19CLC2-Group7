@@ -23,6 +23,26 @@ public:
 	void updatePurchaseDate(const string& purchase) {
 		this->_purchaseDate = purchase;
 	}
+	//Check overdue ticket
+	virtual bool isOverdue() = 0;
+
+	//Check match with an Passenger by username
+	bool matchUser(const string& username) {
+		return this->_username == username;
+	}
+
+	//operator ==
+	bool operator ==(Ticket* ticket) {
+		if (this->_busID != ticket->_busID)
+			return false;
+		if (this->_price != ticket->_price)
+			return false;
+		if (this->_purchaseDate != ticket->_purchaseDate)
+			return false;
+		if (this->_username != ticket->_username)
+			return false;
+		return true;
+	}
 };
 
 class PlaysTicket : public Ticket { 
@@ -42,6 +62,8 @@ public:
 		out << "Plays" << endl;
 		out.close();
 	}
+
+	bool isOverdue();
 };
 
 class MonthlyTicket : public Ticket {
@@ -61,6 +83,8 @@ public:
 		out << "Monthly" << endl;
 		out.close();
 	}
+
+	bool isOverdue();
 };
 
 #endif
