@@ -5,7 +5,7 @@
 
 int main() {
 
-	Graphic::font(20, 20);
+	Graphic::font(16, 16);
 	Menu menu;
 	menu.renderMainMenu();
 	return 0;
