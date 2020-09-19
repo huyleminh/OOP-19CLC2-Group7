@@ -73,3 +73,22 @@ bool StoreTicket::createNewTicket(const int& type, const string& passType, const
 	check->saveToFile();
 	return true;
 }
+
+void StoreTicket::viewTicket(const string& username) {
+	bool flag = 0;
+	for (int i = 0; i < this->_tickets.size(); i++) {
+		//match user first 
+		if (this->_tickets[i]->matchUser(username)) {
+			flag = 1;
+			this->_tickets[i]->render();
+			//Valid ticket second(not overdue)
+			if (this->_tickets[i]->isOverdue()) {
+				cout << "!!! Overdue, this ticket is not valid at the moment !!!" << endl;
+			}
+			cout << endl;
+		}
+	}
+
+	if (flag == 0)
+		cout << "Not found all of your ticket." << endl;
+}

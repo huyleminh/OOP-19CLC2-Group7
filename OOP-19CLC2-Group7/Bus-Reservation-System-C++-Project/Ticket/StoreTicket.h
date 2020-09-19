@@ -19,7 +19,10 @@ public:
 	
 	~StoreTicket();
 
+	//Create new ticket
 	bool createNewTicket(const int& type, const string& passType, const string& busID, const string& username);
+
+	void viewTicket(const string& username);
 };
 
 #endif

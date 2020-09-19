@@ -1,5 +1,6 @@
 ﻿#include "Passenger.h"
 #include "../Ticket/StoreTicket.h"
+#include "../Workflow/ValidateInput/ValidateInputWorkflow.h"
 
 
 //Constructor
@@ -154,32 +155,43 @@ GENDER:
 
 void Passenger::buyTicket()
 {
+	system("cls");
 	int busID = 0;
 	string busName = "";
-	int type = 0;
+	string type;
 
-	cout << "Enter bus id: ";
+	cout << "* Enter bus id: ";
 	cin >> busID;
 
-	cout << "Choose ticket type: " << endl;
-	cout << "1. Plays ticket (In one day)." << endl;
-	cout << "2. Monthly ticket." << endl;
+	cout << "* Choose ticket type: " << endl;
+	cout << "  1. Plays ticket (In one day)." << endl;
+	cout << "  2. Monthly ticket." << endl;
 
-	cin >> type;
-	if (type < 1 || type > 2 || cin.fail()) {
+	cin.ignore(1);
+	getline(cin, type, '\n');
+	if (!ValidateInputWorkflow::validateMenuOption(1, 2, type)) {
 		cout << "Fail to buy ticket." << endl;
 		Sleep(1000);
 		return;
 	}
 
 	StoreTicket store;
-	if(store.createNewTicket(type, this->_type, to_string(busID), this->_username)) {
+	if(store.createNewTicket(stoi(type), this->_type, to_string(busID), this->_username)) {
 		cout << "Buy ticket successfully." << endl;
 	}
 	else {
 		cout << "Fail to buy ticket." << endl;
 	}
 	Sleep(1000);
+}
+
+void Passenger::viewTicketResult()
+{
+	system("cls");
+	//Load ticket first
+	StoreTicket store;
+	store.viewTicket(this->_username);
+	system("pause");
 }
 
 bool Passenger::changeName(const string& name)
