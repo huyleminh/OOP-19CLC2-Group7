@@ -118,11 +118,12 @@ bool MenuView::passengerMenuView() {
     cout << "*  1. Search bus no.                                   *\n";
     cout << "*  2. Search station.                                  *\n";
     cout << "*  3. Buy ticket.                                      *\n";
-    cout << "*  4. Change your information.                         *\n";
-    cout << "*  5. Change password.                                 *\n";
-    cout << "*  6. View your information.                           *\n";
-    cout << "*  7. Log out.                                         *\n";
-    cout << "*  8. Exit app.                                        *\n";
+    cout << "*  4. View ticket.                                     *\n";
+    cout << "*  5. Change your information.                         *\n";
+    cout << "*  6. Change password.                                 *\n";
+    cout << "*  7. View your information.                           *\n";
+    cout << "*  8. Log out.                                         *\n";
+    cout << "*  9. Exit app.                                        *\n";
     cout << "*                                                      *\n";
     cout << "********************************************************\n";
     return true;

@@ -80,7 +80,6 @@ OPTION:
     case 1:
     {
         system("cls");
-        int choice;
 
         cout << "************************************************\n";
         cout << "*              BUS MANAGEMENT                  *\n";
@@ -391,7 +390,7 @@ OPTION:
     cout << "Enter your option: ";
     getline(cin, option, '\n');
 
-    if (!ValidateInputWorkflow::validateMenuOption(1, 8, option)) {
+    if (!ValidateInputWorkflow::validateMenuOption(1, 9, option)) {
         goto OPTION;
     }
 
@@ -414,7 +413,10 @@ OPTION:
     case 3:
         passenger.buyTicket();
         break;
-    case 4:{
+    case 4:
+        passenger.viewTicketResult();
+        break;
+    case 5:{
         passenger.changeInformation(user);
         
         for (int i = 0; i < passengers.size(); i++)
@@ -430,7 +432,7 @@ OPTION:
        
         break;
     }
-    case 5:
+    case 6:
     {
         string newPassword = "";
         cout << "Enter password, your password must not have any space or '/' : ";
@@ -461,7 +463,7 @@ OPTION:
         }
         break;
     }
-    case 6: 
+    case 7: 
 
         cout << "********Your information********" << endl;
         cout << passenger;
@@ -473,10 +475,10 @@ OPTION:
         }
 
         break;
-    case 7:
+    case 8:
         LogoutWorkflow::logout();
         return;
-    case 8:
+    case 9:
         exit(0);
     }
 
@@ -647,7 +649,7 @@ OPTION:
     cout << "Enter station you want to view: ";
     getline(cin, option, '\n');
 
-    if (!ValidateInputWorkflow::validateMenuOption(1, stations.size(), option)) {
+    if (!ValidateInputWorkflow::validateMenuOption(1, int(stations.size()), option)) {
         goto OPTION;
     }
 
