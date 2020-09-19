@@ -410,7 +410,7 @@ OPTION_AN:
 
             string newPassword = "";
             cout << "Enter new password, your password must not have any space or '/' : ";
-            newPassword = Graphic::transPassword();
+            getline(cin, newPassword, '\n');
 
             if (!ValidateInputWorkflow::validatePasswordForm(newPassword))
             {

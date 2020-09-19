@@ -51,6 +51,7 @@ void MenuView::forbiddenView() {
 
 void MenuView::mainMenuView() {
     system("cls"); 
+    Graphic::changeColour("", LIGHT_YELLOW);
     Graphic::setWidth(3); cout << "                          __"  << "\t\t                          __" << endl;
     Graphic::setWidth(3); cout << " .-----------------------'  |" << "\t\t .-----------------------'  |" << endl;
     Graphic::setWidth(3); cout << "/| _ .---. .---. .---. .---.|" << "\t\t/| _ .---. .---. .---. .---.|" << endl;
@@ -76,18 +77,18 @@ bool MenuView::adminMenuView() {
         this->forbiddenView();
         return false;
     }
-    Graphic::changeColour("",PINK);
-    cout << "*******************************************************\n";
-    cout << "*                    WELCOME ADMIN                    *\n";
-    cout << "*  1. Bus Management.                                 *\n";
-    cout << "*  2. Search stations.                                *\n";
-    cout << "*  3. Driver Management.                              *\n";
-    cout << "*  4. Announcement                                    *\n";
-    cout << "*  5. Account management.                             *\n";
-    cout << "*  6. Logout.                                         *\n";
-    cout << "*  7. Exit app.                                       *\n";
-    cout << "*                                                     *\n";
-    cout << "*******************************************************\n";
+    Graphic::changeColour("", LIGHT_BLUE);
+    Graphic::setWidth(4); cout << "*******************************************************\n";
+    Graphic::setWidth(4); cout << "*                    WELCOME ADMIN                    *\n";
+    Graphic::setWidth(4); cout << "*  1. Bus Management.                                 *\n";
+    Graphic::setWidth(4); cout << "*  2. Search stations.                                *\n";
+    Graphic::setWidth(4); cout << "*  3. Driver Management.                              *\n";
+    Graphic::setWidth(4); cout << "*  4. Announcement                                    *\n";
+    Graphic::setWidth(4); cout << "*  5. Account management.                             *\n";
+    Graphic::setWidth(4); cout << "*  6. Logout.                                         *\n";
+    Graphic::setWidth(4); cout << "*  7. Exit app.                                       *\n";
+    Graphic::setWidth(4); cout << "*                                                     *\n";
+    Graphic::setWidth(4); cout << "*******************************************************\n";
     return true;
 }
 
@@ -98,17 +99,17 @@ bool MenuView::driverMenuView() {
         return false;
     }
     Graphic::changeColour("", LIGHT_AQUA);
-    cout << "********************************************************\n";
-    cout << "*                    WELCOME DRIVER                    *\n";
-    cout << "*  1. Search bus no.                                   *\n";
-    cout << "*  2. Search departure and destination.                *\n";
-    cout << "*  3. Day off.                                         *\n";
-    cout << "*  4. Announcement                                     *\n";
-    cout << "*  5. Account management.                              *\n";
-    cout << "*  6. Log out.                                         *\n";
-    cout << "*  7. Exit app.                                        *\n";
-    cout << "*                                                      *\n";
-    cout << "********************************************************\n";
+    Graphic::setWidth(4); cout << "********************************************************\n";
+    Graphic::setWidth(4); cout << "*                    WELCOME DRIVER                    *\n";
+    Graphic::setWidth(4); cout << "*  1. Search bus no.                                   *\n";
+    Graphic::setWidth(4); cout << "*  2. Search departure and destination.                *\n";
+    Graphic::setWidth(4); cout << "*  3. Day off.                                         *\n";
+    Graphic::setWidth(4); cout << "*  4. Announcement                                     *\n";
+    Graphic::setWidth(4); cout << "*  5. Account management.                              *\n";
+    Graphic::setWidth(4); cout << "*  6. Log out.                                         *\n";
+    Graphic::setWidth(4); cout << "*  7. Exit app.                                        *\n";
+    Graphic::setWidth(4); cout << "*                                                      *\n";
+    Graphic::setWidth(4); cout << "********************************************************\n";
     return true;
 }
 
@@ -119,17 +120,17 @@ bool MenuView::passengerMenuView() {
         return false;
     }
     Graphic::changeColour("", LIGHT_GREEN);
-    cout << "********************************************************\n";
-    cout << "*                    WELCOME PASSENGER                 *\n";
-    cout << "*  1. Search bus no.                                   *\n";
-    cout << "*  2. Search station.                                  *\n";
-    cout << "*  3. Buy ticket.                                      *\n";
-    cout << "*  4. View ticket.                                     *\n";
-    cout << "*  5. Announcement.                                    *\n";
-    cout << "*  6. Account management.                              *\n";
-    cout << "*  7. Log out.                                         *\n";
-    cout << "*  8. Exit app.                                       *\n";
-    cout << "*                                                      *\n";
-    cout << "********************************************************\n";
+    Graphic::setWidth(4); cout << "********************************************************\n";
+    Graphic::setWidth(4); cout << "*                    WELCOME PASSENGER                 *\n";
+    Graphic::setWidth(4); cout << "*  1. Search bus no.                                   *\n";
+    Graphic::setWidth(4); cout << "*  2. Search station.                                  *\n";
+    Graphic::setWidth(4); cout << "*  3. Buy ticket.                                      *\n";
+    Graphic::setWidth(4); cout << "*  4. View ticket.                                     *\n";
+    Graphic::setWidth(4); cout << "*  5. Announcement.                                    *\n";
+    Graphic::setWidth(4); cout << "*  6. Account management.                              *\n";
+    Graphic::setWidth(4); cout << "*  7. Log out.                                         *\n";
+    Graphic::setWidth(4); cout << "*  8. Exit app.                                       *\n";
+    Graphic::setWidth(4); cout << "*                                                      *\n";
+    Graphic::setWidth(4); cout << "********************************************************\n";
     return true;
 }
