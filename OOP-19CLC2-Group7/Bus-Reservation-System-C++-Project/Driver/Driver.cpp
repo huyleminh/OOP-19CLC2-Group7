@@ -148,17 +148,74 @@ void Driver::Dayoff()
 {
 	ofstream f("../Data/DayOff.txt", ios::app);
 
-	string day_off, Reason;
-	cout << "Number of days off remaining: " << this->day_off;
+	if (!f.is_open())
+	{
+		cout<<"Cannot create file";
+		return;
+	}
+	else
+	{
+		string day_off, Reason;
 
-	cout << "Enter the date you want to take leave (dd/mm/yyyy): \n";
-	getline(cin, day_off, '\n');
+		cout << "Enter the date you want to take leave (dd/mm/yyyy): \n";
+		getline(cin, day_off, '\n');
 
-	cout << "The reason for your leave: ";
-	getline(cin, Reason, '\n');
+		cout << "The reason for your leave: ";
+		getline(cin, Reason, '\n');
 
-	f << this->_name << " " << day_off << " " << Reason << endl;
+		f << this->_username << " " << day_off << ":" << Reason << endl;
 
+		f.close();
+	}
+}
+
+int Driver::numberofdaysoff()
+{
+	ifstream f("../Data/DayOff.txt");
+
+	if (!f.is_open())
+	{
+		cout << "Cannot open file";
+		return;
+	}
+	else
+	{
+		vector<string> temp;
+		int num = 0;
+
+		while (!f.eof())
+		{
+			string id;
+			getline(f, id, ' ');
+
+			string dayandreason;
+			getline(f, dayandreason, '\n');
+
+			temp.push_back(id);
+		}
+
+		for (int i = 0; i < temp.size(); i++)
+		{
+			if (temp[i] == this->_username)
+			{
+				num++;
+			}
+		}
+
+		f.close();
+		
+		return num;
+	}
+}
+
+long long Driver::salary()
+{
+	long long const_salary = 10000000;
+	int dayoff = this->numberofdaysoff();
+
+	const_salary = const_salary / 30 * (30 - dayoff);
+
+	return const_salary;
 }
 
 bool Driver::changeName(const string& name)

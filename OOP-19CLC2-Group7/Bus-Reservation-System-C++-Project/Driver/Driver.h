@@ -25,7 +25,10 @@ public:
 	//Methods change information
 	void changeInformation(User & user); //Render change information interface
 
+	//days off
 	void Dayoff();
+	int numberofdaysoff();
+	long long salary();
 
 	friend class Admin;//De admin co the truy xuat duoc tai khoan nay no
 private:
@@ -33,7 +36,6 @@ private:
 	void changeSex(const string& sex);
 	bool changeBirthday(const string& dob);
 
-	int day_off = 14;
 };
 
 #endif
