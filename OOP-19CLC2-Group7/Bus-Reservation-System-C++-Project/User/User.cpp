@@ -59,7 +59,7 @@ istream& operator >>(istream& is, User& user) {
         cout << "Wrong input password form." << endl;
         Sleep(1000);
         cout << "Enter password, your password must not have any space or '/' : ";
-        getline(is, tmpPassword, '\n');
+        tmpPassword = Graphic::transPassword();
     }
     user._password = tmpPassword;
     return is;

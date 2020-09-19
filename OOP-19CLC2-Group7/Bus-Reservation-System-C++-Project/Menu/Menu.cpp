@@ -311,7 +311,11 @@ OPTION_AN:
                 cout << "1.Edit" << endl;
                 cout << "2.Delete" << endl;
                 string op1;
-                cin >> op1;
+                do {
+                    cout << "Enter option: ";
+                    getline(cin, op1, '\n');
+                } while (!ValidateInputWorkflow::validateMenuOption(1, 2, op1));
+                
                 if (stoi(op1) == 1)
                 {
                     admin.editAnnounce(an);
@@ -355,12 +359,11 @@ OPTION_AN:
         cout << "Enter you option: ";
         getline(cin, optionA, '\n');
         //Check valid option
-        if (!ValidateInputWorkflow::validateMenuOption(1, 4, optionA)) {
+        if (!ValidateInputWorkflow::validateMenuOption(1, 4, optionA)) 
             goto OPTION_AC;
-        }
+        
         switch (stoi(optionA))
         {
-
         case 1:
         {   
             system("cls");
@@ -382,12 +385,6 @@ OPTION_AN:
             for (int i = 0; i < admins.size(); i++)
                out << admins[i];
             out.close();
-             // ofstream out;
-             // out.open("../Data/Admin.txt");
-            // if (out.is_open()) 
-            //     cout << "1" << endl;
-            // else 
-            //     cout << "2" << endl;
             break;
         }
         case 2:
@@ -395,7 +392,7 @@ OPTION_AN:
             system("cls");
             string old = "";
             cout << "Input your old password: " << endl;
-            getline(cin, old, '\n');
+            old = Graphic::transPassword();
             if (user.isPassword(old) == 0)
             {
                 cout << "Incorrect!!!" << endl;
@@ -406,11 +403,11 @@ OPTION_AN:
 
             string newPassword = "";
             cout << "Enter new password, your password must not have any space or '/' : ";
-            getline(cin, newPassword, '\n');
+            newPassword = Graphic::transPassword();
 
             string newPassword2 = "";
             cout << "Enter again new password: " << endl;
-            getline(cin, newPassword2, '\n');
+            newPassword2 = Graphic::transPassword(); 
             if (newPassword != newPassword2)
             {
                 cout << "Two new password is not the same, fail to change password!!" << endl;
@@ -714,7 +711,6 @@ OPTION:
         }
         switch (stoi(optionA))
         {
-
         case 1:
         {   
             system("cls");

@@ -220,7 +220,8 @@ void Admin::promoteDriver()
 		}
 	}
 	d.saveListDataToFile("../Data\\Driver.txt");
-
+	cout << "Promote successfully." << endl;
+	system("pause");
 }
 void Admin::addDriver()
 {
@@ -266,6 +267,8 @@ void Admin::addDriver()
 	u.push_back(driver);
 
 	u.saveListDataToFile("../Data\\Users.txt");
+	cout << "Add new driver successfully." << endl;
+	system("pause");
 }
 
 void Admin::deleteDriver()
@@ -283,7 +286,6 @@ void Admin::deleteDriver()
 
 	Driver tmp;
 	cout << "Input username of driver you want to delete: " << endl;
-	while (getchar() != '\n');
 	getline(cin, tmp._username, '\n');
 
 	//Check xem co nguoi do co trong list hay khong
@@ -318,7 +320,7 @@ void Admin::deleteDriver()
 	}
 
 	u.saveListDataToFile("../Data\\Users.txt");
-	cout << "Delete success fully!!!" << endl;
+	cout << "Delete successfully!!!" << endl;
 	system("pause");
 }
 
@@ -338,7 +340,6 @@ void Admin::editDriver()
 
 	Driver tmp;
 	cout << "Input username of driver you want to edit: " << endl;
-	while (getchar() != '\n');
 	getline(cin, tmp._username, '\n');
 
 	//Check xem co nguoi do co trong list hay khong
@@ -457,8 +458,6 @@ void Admin::editBus()
 			b.getItemInData(i).change(n._ID);
 		}
 	}
-
-
 }
 
 void Admin::editAnnounce(Announcement &a)

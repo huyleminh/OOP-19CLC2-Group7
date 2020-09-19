@@ -147,23 +147,21 @@ void Bus::show(string id)
 	if (this->_ID == id)
 	{
 		system("cls");
-		int i;
 		cout << "What information you want to see?" << endl;
 		cout << "1. Name and worktime" << endl;
 		cout << "2. Route" << endl;
 		cout << "3. Price" << endl;
 		cout << "4. Seat" << endl;
 		cout << "5. Back to menu" << endl;
+		string i = "";
 OPTION:
 		cout << "Choose your option: ";
-		cin >> i;
+		getline(cin, i, '\n');
 
-		if (cin.fail()) {
-			cout << "Wrong option, please try again." << endl;
+		if (!ValidateInputWorkflow::validateMenuOption(1, 5, i))
 			goto OPTION;
-		}
 
-		switch (i)
+		switch (stoi(i))
 		{
 		case 1:
 		{
