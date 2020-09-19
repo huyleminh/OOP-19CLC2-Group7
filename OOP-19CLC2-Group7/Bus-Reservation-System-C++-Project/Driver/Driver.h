@@ -5,7 +5,7 @@
 #include "../Information/Information.h"
 #include "../User/User.h"
 
-#define BASE_SALARY 1000000
+#define BASE_SALARY 10000000
 
 class Driver : public Information
 {
@@ -31,6 +31,7 @@ public:
 	void Dayoff();
 	int countDayOffHistory();
 	int salary();
+	void viewDayoff();
 
 	friend class Admin;//De admin co the truy xuat duoc tai khoan nay no
 private:

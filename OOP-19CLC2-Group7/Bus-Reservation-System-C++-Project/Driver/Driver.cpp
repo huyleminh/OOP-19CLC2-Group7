@@ -209,6 +209,42 @@ int Driver::salary()
 	return salary;
 }
 
+void Driver::viewDayoff()
+{
+	ifstream f("../Data/DayOff.txt");
+
+	if (!f.is_open())
+	{
+		cout << "Cannot open DayOff.txt" << endl;
+		return;
+	}
+
+	vector<string> t_id;
+	vector<string> t_dayandreason;
+
+	while (!f.eof())
+	{
+		string id;
+		getline(f, id, ' ');
+
+		string dayandreason;
+		getline(f, dayandreason, '\n');
+
+		t_id.push_back(id);
+		t_dayandreason.push_back(dayandreason);
+	}
+
+	for(int i = 0; i < t_id.size(); i++)
+	{
+		if(t_id[i] == this->_username)
+		{
+			cout << this->_username << t_dayandreason[i];
+		}
+	}
+
+	f.close();
+}
+
 bool Driver::changeName(const string& name)
 {
 	if (Information::changeName(name) == 1)
