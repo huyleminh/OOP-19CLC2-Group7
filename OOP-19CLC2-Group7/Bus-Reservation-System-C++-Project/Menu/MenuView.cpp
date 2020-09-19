@@ -51,7 +51,13 @@ void MenuView::forbiddenView() {
 
 void MenuView::mainMenuView() {
     system("cls"); 
-    Graphic::setHeight(7);
+    Graphic::setWidth(3); cout << "                          __"  << "\t\t                          __" << endl;
+    Graphic::setWidth(3); cout << " .-----------------------'  |" << "\t\t .-----------------------'  |" << endl;
+    Graphic::setWidth(3); cout << "/| _ .---. .---. .---. .---.|" << "\t\t/| _ .---. .---. .---. .---.|" << endl;
+    Graphic::setWidth(3); cout << "|j||||___| |___| |___| |___||" << "\t\t|j||||___| |___| |___| |___||" << endl;
+    Graphic::setWidth(3); cout << "|=|||=======================|" << "\t\t|=|||=======================|" << endl;
+    Graphic::setWidth(3); cout << "[_|j||(O)\\__________|(O)\\___]" << "\t\t[_|j||(O)\\__________|(O)\\___]" << endl;
+    Graphic::setHeight(1);
     Graphic::setWidth(4);
     Graphic::changeColour("*********************************************************\n",LIGHT_YELLOW);
     Graphic::setWidth(4); cout << "*\t\t\t"; Graphic::changeColour("M", PINK); Graphic::changeColour("E", LIGHT_PURPLE); Graphic::changeColour("N", LIGHT_AQUA); Graphic::changeColour("U", LIGHT_GREEN); Graphic::changeColour("", LIGHT_YELLOW); cout << "\t\t\t\t*\n";
@@ -70,7 +76,7 @@ bool MenuView::adminMenuView() {
         this->forbiddenView();
         return false;
     }
-
+    Graphic::changeColour("",PINK);
     cout << "*******************************************************\n";
     cout << "*                    WELCOME ADMIN                    *\n";
     cout << "*  1. Bus Management.                                 *\n";
@@ -91,7 +97,7 @@ bool MenuView::driverMenuView() {
         this->forbiddenView();
         return false;
     }
-
+    Graphic::changeColour("", LIGHT_AQUA);
     cout << "********************************************************\n";
     cout << "*                    WELCOME DRIVER                    *\n";
     cout << "*  1. Search bus no.                                   *\n";
@@ -112,7 +118,7 @@ bool MenuView::passengerMenuView() {
         this->forbiddenView();
         return false;
     }
-
+    Graphic::changeColour("", LIGHT_GREEN);
     cout << "********************************************************\n";
     cout << "*                    WELCOME PASSENGER                 *\n";
     cout << "*  1. Search bus no.                                   *\n";

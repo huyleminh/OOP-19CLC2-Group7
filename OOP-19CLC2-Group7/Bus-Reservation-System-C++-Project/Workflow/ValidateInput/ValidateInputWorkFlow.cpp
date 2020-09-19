@@ -11,6 +11,8 @@ bool ValidateInputWorkflow::validateNameForm(const string& name) {
 
 bool ValidateInputWorkflow::validatePasswordForm(const string& password) {
     const string regEx = " /";
+    if (password == "")
+        return false;
     for (int i = 0; i < password.length(); i++) {
         if (regEx.rfind(password[i]) != string::npos)
             return false;

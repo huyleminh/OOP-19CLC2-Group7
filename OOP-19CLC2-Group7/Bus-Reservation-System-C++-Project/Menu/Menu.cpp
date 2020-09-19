@@ -392,7 +392,14 @@ OPTION_AN:
             system("cls");
             string old = "";
             cout << "Input your old password: " << endl;
-            old = Graphic::transPassword();
+            getline(cin, old, '\n');
+            if (!ValidateInputWorkflow::validatePasswordForm(old))
+            {
+                cout << "Your password form is incorrect" << endl;
+                system("pause");
+                Menu::renderAdminMenu(user);
+                return;
+            }
             if (user.isPassword(old) == 0)
             {
                 cout << "Incorrect!!!" << endl;
@@ -405,9 +412,25 @@ OPTION_AN:
             cout << "Enter new password, your password must not have any space or '/' : ";
             newPassword = Graphic::transPassword();
 
+            if (!ValidateInputWorkflow::validatePasswordForm(newPassword))
+            {
+                cout << "Your password form is incorrect" << endl;
+                system("pause");
+                Menu::renderAdminMenu(user);
+                return;
+            }
+
             string newPassword2 = "";
             cout << "Enter again new password: " << endl;
-            newPassword2 = Graphic::transPassword(); 
+            getline(cin, newPassword2, '\n');
+
+            if (!ValidateInputWorkflow::validatePasswordForm(newPassword2))
+            {
+                cout << "Your password form is incorrect" << endl;
+                system("pause");
+                Menu::renderAdminMenu(user);
+                return;
+            }
             if (newPassword != newPassword2)
             {
                 cout << "Two new password is not the same, fail to change password!!" << endl;
@@ -564,6 +587,13 @@ OPTION:
             string old = "";
             cout << "Input your old password: " << endl;
             getline(cin, old, '\n');
+            if (!ValidateInputWorkflow::validatePasswordForm(old))
+            {
+                cout << "Your password form is incorrect" << endl;
+                system("pause");
+                Menu::renderDriverMenu(user);
+                return;
+            }
             if (user.isPassword(old) == 0)
             {
                 cout << "Incorrect!!!" << endl;
@@ -576,9 +606,26 @@ OPTION:
             cout << "Enter new password, your password must not have any space or '/' : ";
             getline(cin, newPassword, '\n');
 
+            if (!ValidateInputWorkflow::validatePasswordForm(newPassword))
+            {
+                cout << "Your password form is incorrect" << endl;
+                system("pause");
+                Menu::renderDriverMenu(user);
+                return;
+            }
+
             string newPassword2 = "";
             cout << "Enter again new password: " << endl;
             getline(cin, newPassword2, '\n');
+
+            if (!ValidateInputWorkflow::validatePasswordForm(newPassword2))
+            {
+                cout << "Your password form is incorrect" << endl;
+                system("pause");
+                Menu::renderDriverMenu(user);
+                return;
+            }
+
             if (newPassword != newPassword2)
             {
                 cout << "Two new password is not the same!!" << endl;
@@ -734,6 +781,13 @@ OPTION:
         string old = "";
         cout << "Input your old password: " << endl;
         getline(cin, old, '\n');
+        if (!ValidateInputWorkflow::validatePasswordForm(old))
+        {
+            cout << "Your password form is incorrect" << endl;
+            system("pause");
+            Menu::renderPassengerMenu(user);
+            return;
+        }
         if (user.isPassword(old) == 0)
         {
             cout << "Incorrect!!!" << endl;
@@ -746,9 +800,24 @@ OPTION:
         cout << "Enter new password, your password must not have any space or '/' : ";
         getline(cin, newPassword, '\n');
 
+        if (!ValidateInputWorkflow::validatePasswordForm(newPassword))
+        {
+            cout << "Your password form is incorrect" << endl;
+            system("pause");
+            Menu::renderPassengerMenu(user);
+            return;
+        }
+
         string newPassword2 = "";
         cout << "Enter again new password: " << endl;
         getline(cin, newPassword2, '\n');
+        if (!ValidateInputWorkflow::validatePasswordForm(newPassword2))
+        {
+            cout << "Your password form is incorrect" << endl;
+            system("pause");
+            Menu::renderPassengerMenu(user);
+            return;
+        }
         if (newPassword != newPassword2)
         {
             cout << "Two new password is not the same!!" << endl;
