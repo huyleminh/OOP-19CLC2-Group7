@@ -15,6 +15,8 @@
 #include <algorithm>
 #include <iomanip>
 #include <ctime> // get time now
+#include <conio.h>
+#include "Graphic.h"
 #include "../Library/LocalStorage.h"
 #include "../Library/Tokenizer.h"
 #include "../Library/StdFormat.h"

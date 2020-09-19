@@ -142,6 +142,7 @@
     <ClCompile Include="Announcement.cpp" />
     <ClCompile Include="Bus\Bus.cpp" />
     <ClCompile Include="Driver\Driver.cpp" />
+    <ClCompile Include="Graphic.cpp" />
     <ClCompile Include="Information\Information.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu\Menu.cpp" />
@@ -164,6 +165,7 @@
     <ClInclude Include="Announcement.h" />
     <ClInclude Include="Bus\Bus.h" />
     <ClInclude Include="Driver\Driver.h" />
+    <ClInclude Include="Graphic.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Information\Information.h" />
     <ClInclude Include="List.h" />
