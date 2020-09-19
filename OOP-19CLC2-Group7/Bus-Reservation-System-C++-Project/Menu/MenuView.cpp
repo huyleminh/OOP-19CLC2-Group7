@@ -50,16 +50,18 @@ void MenuView::forbiddenView() {
 }
 
 void MenuView::mainMenuView() {
-    system("cls");
-    cout << "**********************************************************\n";
-    cout << "*                          MENU                          *\n";
-    cout << "*  1. Search bus no.                                     *\n";
-    cout << "*  2. Search station.                                    *\n";
-    cout << "*  3. Log in.                                            *\n";
-    cout << "*  4. Register.                                          *\n";
-    cout << "*  5. Exit app.                                          *\n";
-    cout << "*                                                        *\n";
-    cout << "**********************************************************\n";
+    system("cls"); 
+    Graphic::setHeight(7);
+    Graphic::setWidth(4);
+    Graphic::changeColour("*********************************************************\n",LIGHT_YELLOW);
+    Graphic::setWidth(4); cout << "*\t\t\t"; Graphic::changeColour("M", PINK); Graphic::changeColour("E", LIGHT_PURPLE); Graphic::changeColour("N", LIGHT_AQUA); Graphic::changeColour("U", LIGHT_GREEN); Graphic::changeColour("", LIGHT_YELLOW); cout << "\t\t\t\t*\n";
+    Graphic::setWidth(4); cout << "*\t1. Search bus no.\t\t\t\t*\n";
+    Graphic::setWidth(4); cout << "*\t2. Search station.\t\t\t\t*\n";
+    Graphic::setWidth(4); cout << "*\t3. Log in.\t\t\t\t\t*\n";
+    Graphic::setWidth(4); cout << "*\t4. Register.\t\t\t\t\t*\n";
+    Graphic::setWidth(4); cout << "*\t5. Exit app.\t\t\t\t\t*\n";
+    Graphic::setWidth(4); cout << "*\t\t\t\t\t\t\t*\n";
+    Graphic::setWidth(4); cout << "*********************************************************\n";
 }
 
 bool MenuView::adminMenuView() {
@@ -75,11 +77,9 @@ bool MenuView::adminMenuView() {
     cout << "*  2. Search stations.                                *\n";
     cout << "*  3. Driver Management.                              *\n";
     cout << "*  4. Announcement                                    *\n";
-    cout << "*  5. Change your information.                        *\n";
-    cout << "*  6. Change password.                                *\n";
-    cout << "*  7. View your information.                          *\n";
-    cout << "*  8. Logout.                                         *\n";
-    cout << "*  9. Exit app.                                       *\n";
+    cout << "*  5. Account management.                             *\n";
+    cout << "*  6. Logout.                                         *\n";
+    cout << "*  7. Exit app.                                       *\n";
     cout << "*                                                     *\n";
     cout << "*******************************************************\n";
     return true;
@@ -96,13 +96,11 @@ bool MenuView::driverMenuView() {
     cout << "*                    WELCOME DRIVER                    *\n";
     cout << "*  1. Search bus no.                                   *\n";
     cout << "*  2. Search departure and destination.                *\n";
-    cout << "*  3. Change your information.                         *\n";
-    cout << "*  4. Day off.                                         *\n";
-    cout << "*  5. Announcement                                     *\n";
-    cout << "*  6. Change password.                                 *\n";
-    cout << "*  7. View your information.                           *\n";
-    cout << "*  8. Log out.                                         *\n";
-    cout << "*  9. Exit app.                                        *\n";
+    cout << "*  3. Day off.                                         *\n";
+    cout << "*  4. Announcement                                     *\n";
+    cout << "*  5. Account management.                              *\n";
+    cout << "*  6. Log out.                                         *\n";
+    cout << "*  7. Exit app.                                        *\n";
     cout << "*                                                      *\n";
     cout << "********************************************************\n";
     return true;
@@ -122,11 +120,9 @@ bool MenuView::passengerMenuView() {
     cout << "*  3. Buy ticket.                                      *\n";
     cout << "*  4. View ticket.                                     *\n";
     cout << "*  5. Announcement.                                    *\n";
-    cout << "*  6. Change your information.                         *\n";
-    cout << "*  7. Change password.                                 *\n";
-    cout << "*  8. View your information.                           *\n";
-    cout << "*  9. Log out.                                         *\n";
-    cout << "*  10. Exit app.                                       *\n";
+    cout << "*  6. Account management.                              *\n";
+    cout << "*  7. Log out.                                         *\n";
+    cout << "*  8. Exit app.                                       *\n";
     cout << "*                                                      *\n";
     cout << "********************************************************\n";
     return true;

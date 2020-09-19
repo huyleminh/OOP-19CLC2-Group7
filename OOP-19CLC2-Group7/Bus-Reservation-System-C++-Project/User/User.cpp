@@ -4,6 +4,8 @@
 #include "../Information/Information.h"
 #include "../Workflow/ValidateInput/ValidateInputWorkflow.h"
 
+
+
 //Constructor
 User::User() {
     this->_username = "";
@@ -50,9 +52,8 @@ istream& operator >>(istream& is, User& user) {
     getline(is, user._username, '\n');
 
     string tmpPassword = "";
-    cout << "Enter password, your password must not have any space or '/' : ";
-    
-    getline(is, tmpPassword, '\n');
+    cout << "Enter password, your password must not have any space or '/' : " << endl;
+    tmpPassword = Graphic::transPassword();
 
     while (!ValidateInputWorkflow::validatePasswordForm(tmpPassword)) {
         cout << "Wrong input password form." << endl;
@@ -106,7 +107,10 @@ void User::changeUserRole(const string& role) {
 bool User::isUnValidUsername(const User& user) {
     return this->_username == user._username;
 }
-
+bool User::isPassword(string pass)
+{
+    return this->_password == pass ? 1 : 0;
+}
 //Return string to storage
 string User::storageString() {
     return this->_username + " " + this->_role;

@@ -63,7 +63,7 @@ OPTION:
     cout << "Enter you option: ";
     getline(cin, option, '\n');
     //Check valid option
-    if (!ValidateInputWorkflow::validateMenuOption(1, 9, option)) {
+    if (!ValidateInputWorkflow::validateMenuOption(1, 7, option)) {
         goto OPTION;
     }
 
@@ -142,7 +142,7 @@ OPTION_DRIVER:
         cout << "Enter you option: ";
         getline(cin, option_driver, '\n');
         //Check valid option
-        if (!ValidateInputWorkflow::validateMenuOption(1, 6, option)) {
+        if (!ValidateInputWorkflow::validateMenuOption(1, 5, option)) {
             goto OPTION_DRIVER;
         }
 
@@ -344,78 +344,124 @@ OPTION_AN:
         break;
     }
     case 5: {
-        admin.changeInformation(user);
-
-        for (int i = 0; i < admins.size(); i++)
-            if (admins[i].includeUsername(user)) {
-                admins[i] = admin;
-                break;
-            }
-
-        ofstream out;
-        out.open("../Data/Admin.txt");
-        if (!out.is_open())
+        system("cls");
+        cout << "************************************************\n";
+        cout << "*              ACCOUNT MANAGEMENT              *\n";
+        cout << "*  1. Change your information.                 *\n";
+        cout << "*  2. Change password.                         *\n";
+        cout << "*  3. View your information.                   *\n";
+        cout << "*  4. Back to menu                             *\n";
+        cout << "*                                              *\n";
+        cout << "************************************************\n";
+        string optionA = "";
+    OPTION_AC:
+        cout << "Enter you option: ";
+        getline(cin, optionA, '\n');
+        //Check valid option
+        if (!ValidateInputWorkflow::validateMenuOption(1, 4, optionA)) {
+            goto OPTION_AC;
+        }
+        switch (stoi(optionA))
         {
-            cout << "Error" << endl;
-            system("pause");
+
+        case 1:
+        {   
+            system("cls");
+            admin.changeInformation(user);
+
+            for (int i = 0; i < admins.size(); i++)
+               if (admins[i].includeUsername(user)) {
+                  admins[i] = admin;
+                  break;
+              }
+
+            ofstream out;
+            out.open("../Data/Admin.txt");
+            if (!out.is_open())
+            {
+               cout << "Error" << endl;
+               system("pause");
+            }
+            for (int i = 0; i < admins.size(); i++)
+               out << admins[i];
+            out.close();
+             // ofstream out;
+             // out.open("../Data/Admin.txt");
+            // if (out.is_open()) 
+            //     cout << "1" << endl;
+            // else 
+            //     cout << "2" << endl;
+            break;
         }
-        for (int i = 0; i < admins.size(); i++)
-            out << admins[i];
-        out.close();
-        // ofstream out;
-        // out.open("../Data/Admin.txt");
-        // if (out.is_open()) 
-        //     cout << "1" << endl;
-        // else 
-        //     cout << "2" << endl;
-        break;
-    }
-    case 6: {
-        string newPassword = "";
-        cout << "Enter password, your password must not have any space or '/' : ";
-        getline(cin, newPassword, '\n');
-        
-        User tmp = user;
-
-        if (user.changePassword(newPassword) == true) {
-            List<User> users;
-            users.loadListDataFromFile("../Data/Users.txt");
-
-            for (int i = 0; i < users.size(); i++) {
-                if (users[i] == tmp)
-                    users[i] = user;
+        case 2:
+        {
+            system("cls");
+            string old = "";
+            cout << "Input your old password: " << endl;
+            getline(cin, old, '\n');
+            if (user.isPassword(old) == 0)
+            {
+                cout << "Incorrect!!!" << endl;
+                system("pause");
+                Menu::renderAdminMenu(user);
+                return;
             }
 
-            users.saveListDataToFile("../Data/Users.txt");
+            string newPassword = "";
+            cout << "Enter new password, your password must not have any space or '/' : ";
+            getline(cin, newPassword, '\n');
 
-            cout << "Change password successfully.\n";
-        } 
-        else
-            cout << "Unvalid input password, please try again.\n";
+            string newPassword2 = "";
+            cout << "Enter again new password: " << endl;
+            getline(cin, newPassword2, '\n');
+            if (newPassword != newPassword2)
+            {
+                cout << "Two new password is not the same!!" << endl;
+                system("pause");
+                Menu::renderAdminMenu(user);
+                return;
+            }
+            User tmp = user;
 
-        cout << "Press enter to back to menu.\n";
-        while (true) {
-            if (cin.get() == '\n')
-                break;
+            if (user.changePassword(newPassword) == true) {
+                List<User> users;
+                users.loadListDataFromFile("../Data/Users.txt");
+
+                for (int i = 0; i < users.size(); i++) {
+                    if (users[i] == tmp)
+                        users[i] = user;
+                }
+
+                users.saveListDataToFile("../Data/Users.txt");
+
+                cout << "Change password successfully.\n";
+            }
+            else
+                cout << "Unvalid input password, please try again.\n";
+
+            system("pause");
+            break;
+        }
+        case 3:
+        {
+            system("cls");
+            cout << "********Your information********" << endl;
+            cout << admin;
+            system("pause");
+
+            break;
+        }
+        case 4:
+        {
+            Menu::renderAdminMenu(user);
+        }
         }
         break;
     }
-    case 7:
-
-        cout << "********Your information********" << endl;
-        cout << admin;
-
-        cout << "Press enter button to continue." << endl;
-        while (true) {
-            if (cin.get() == '\n')
-                break;
-        }
-
-        break;
-    case 8:
+    case 6:
         LogoutWorkflow::logout();
         return;
-    case 9:
+    case 7:
         exit(0);
     }
 
@@ -440,7 +486,7 @@ OPTION:
     cout << "Enter you option: ";
     getline(cin, option, '\n');
     //Check valid option
-    if (!ValidateInputWorkflow::validateMenuOption(1, 8, option)) {
+    if (!ValidateInputWorkflow::validateMenuOption(1, 7, option)) {
         goto OPTION;
     }
 
@@ -462,7 +508,48 @@ OPTION:
         this->searchFromStation();
         break;
     case 3: {
-        driver.changeInformation(user);
+        driver.Dayoff();
+        break;
+    }
+    case 4: 
+    {
+        ifstream f("../Data/AnnounceDriver.txt");
+        if (!f.is_open())
+            return;
+        Announcement an;
+        f >> an;
+        system("cls");
+        cout << "\t\tAnnouncement Driver" << endl;
+        cout << an << endl;
+        system("pause");
+        break;
+    }
+    case 5:
+    {
+        system("cls");
+        cout << "************************************************\n";
+        cout << "*              ACCOUNT MANAGEMENT              *\n";
+        cout << "*  1. Change your information.                 *\n";
+        cout << "*  2. Change password.                         *\n";
+        cout << "*  3. View your information.                   *\n";
+        cout << "*  4. Back to menu                             *\n";
+        cout << "*                                              *\n";
+        cout << "************************************************\n";
+        string optionA = "";
+    OPTION_AC:
+        cout << "Enter you option: ";
+        getline(cin, optionA, '\n');
+        //Check valid option
+        if (!ValidateInputWorkflow::validateMenuOption(1, 4, optionA)) {
+            goto OPTION_AC;
+        }
+        switch (stoi(optionA))
+        {
+
+        case 1:
+        {   
+            system("cls");
+            driver.changeInformation(user);
 
         for (int i = 0; i < drivers.size(); i++)
             if (drivers[i].includeUsername(user)) {
@@ -476,69 +563,79 @@ OPTION:
         out.close();
 
         break;
-    }
-    case 4: 
-        driver.Dayoff();
-        break;
-    case 5:
-    {
-        ifstream f("../Data/AnnounceDriver.txt");
-        if (!f.is_open())
-            return;
-        Announcement an;
-        f >> an;
-        system("cls");
-        cout << "\t\tAnnouncement Driver" << endl;
-        cout << an << endl;
-        system("pause");
-        break;
-    }
-    case 6: {
-        string newPassword = "";
-        cout << "Enter password, your password must not have any space or '/' : ";
-        getline(cin, newPassword, '\n');
-
-        User tmp = user;
-
-        if (user.changePassword(newPassword) == true) {
-            List<User> users;
-            users.loadListDataFromFile("../Data/Users.txt");
-
-            for (int i = 0; i < users.size(); i++) {
-                if (users[i] == tmp)
-                    users[i] = user;
+        }
+        case 2:
+        {
+            system("cls");
+            string old = "";
+            cout << "Input your old password: " << endl;
+            getline(cin, old, '\n');
+            if (user.isPassword(old) == 0)
+            {
+                cout << "Incorrect!!!" << endl;
+                system("pause");
+                Menu::renderDriverMenu(user);
+                return;
             }
 
-            users.saveListDataToFile("../Data/Users.txt");
+            string newPassword = "";
+            cout << "Enter new password, your password must not have any space or '/' : ";
+            getline(cin, newPassword, '\n');
 
-            cout << "Change password successfully.\n";
+            string newPassword2 = "";
+            cout << "Enter again new password: " << endl;
+            getline(cin, newPassword2, '\n');
+            if (newPassword != newPassword2)
+            {
+                cout << "Two new password is not the same!!" << endl;
+                system("pause");
+                Menu::renderDriverMenu(user);
+                return;
+            }
+            User tmp = user;
+
+            if (user.changePassword(newPassword) == true) {
+                List<User> users;
+                users.loadListDataFromFile("../Data/Users.txt");
+
+                for (int i = 0; i < users.size(); i++) {
+                    if (users[i] == tmp)
+                        users[i] = user;
+                }
+
+                users.saveListDataToFile("../Data/Users.txt");
+
+                cout << "Change password successfully.\n";
+            }
+            else
+                cout << "Unvalid input password, please try again.\n";
+
+            system("pause");
+            break;
         }
-        else
-            cout << "Unvalid input password, please try again.\n";
+        case 3:
+        {
+            system("cls");
+            cout << "********Your information********" << endl;
+            cout << driver;
 
-        cout << "Press enter to back to menu.\n";
-        while (true) {
-            if (cin.get() == '\n')
-                break;
+            system("pause");
+
+            break;
+        }
+        case 4:
+        {
+            Menu::renderDriverMenu(user);
+        }
         }
         break;
+        
     }
-    case 7: {
-        cout << "********Your information********" << endl;
-        cout << driver;
-
-        cout << "Press enter button to continue." << endl;
-        while (true) {
-            if (cin.get() == '\n')
-                break;
-        }
-
-        break;
-    }
-    case 8:
+   
+    case 6:
         LogoutWorkflow::logout();
         return;
-    case 9:
+    case 7:
         exit(0);
     }
 
@@ -562,7 +659,7 @@ OPTION:
     cout << "Enter your option: ";
     getline(cin, option, '\n');
 
-    if (!ValidateInputWorkflow::validateMenuOption(1, 9, option)) {
+    if (!ValidateInputWorkflow::validateMenuOption(1, 8, option)) {
         goto OPTION;
     }
 
@@ -589,6 +686,7 @@ OPTION:
         passenger.viewTicketResult();
         break;
     case 5: {
+
         ifstream f("../Data\\AnnouncePassenger.txt");
         if (!f.is_open())
             return;
@@ -601,7 +699,30 @@ OPTION:
         break;
     }
     case 6: {
-        passenger.changeInformation(user);
+        system("cls");
+        cout << "************************************************\n";
+        cout << "*              ACCOUNT MANAGEMENT              *\n";
+        cout << "*  1. Change your information.                 *\n";
+        cout << "*  2. Change password.                         *\n";
+        cout << "*  3. View your information.                   *\n";
+        cout << "*  4. Back to menu                             *\n";
+        cout << "*                                              *\n";
+        cout << "************************************************\n";
+        string optionA = "";
+    OPTION_AC:
+        cout << "Enter you option: ";
+        getline(cin, optionA, '\n');
+        //Check valid option
+        if (!ValidateInputWorkflow::validateMenuOption(1, 4, optionA)) {
+            goto OPTION_AC;
+        }
+        switch (stoi(optionA))
+        {
+
+        case 1:
+        {   
+            system("cls");
+            passenger.changeInformation(user);
 
         for (int i = 0; i < passengers.size(); i++)
             if (passengers[i].includeUsername(user)) {
@@ -615,55 +736,77 @@ OPTION:
         out.close();
 
         break;
-    }
-    case 7:
-    {
+        }
+        case 2:
+        {system("cls");
+        string old = "";
+        cout << "Input your old password: " << endl;
+        getline(cin, old, '\n');
+        if (user.isPassword(old) == 0)
+        {
+            cout << "Incorrect!!!" << endl;
+            system("pause");
+            Menu::renderPassengerMenu(user);
+            return;
+        }
+
         string newPassword = "";
-        cout << "Enter password, your password must not have any space or '/' : ";
+        cout << "Enter new password, your password must not have any space or '/' : ";
         getline(cin, newPassword, '\n');
 
+        string newPassword2 = "";
+        cout << "Enter again new password: " << endl;
+        getline(cin, newPassword2, '\n');
+        if (newPassword != newPassword2)
+        {
+            cout << "Two new password is not the same!!" << endl;
+            system("pause");
+            Menu::renderPassengerMenu(user);
+            return;
+        }
         User tmp = user;
+            if (user.changePassword(newPassword) == true) {
+                List<User> users;
+                users.loadListDataFromFile("../Data/Users.txt");
 
-        if (user.changePassword(newPassword) == true) {
-            List<User> users;
-            users.loadListDataFromFile("../Data/Users.txt");
+                for (int i = 0; i < users.size(); i++) {
+                    if (users[i] == tmp)
+                        users[i] = user;
+                }
 
-            for (int i = 0; i < users.size(); i++) {
-                if (users[i] == tmp)
-                    users[i] = user;
+                users.saveListDataToFile("../Data/Users.txt");
+
+                cout << "Change password successfully.\n";
             }
+            else
+                cout << "Unvalid input password, please try again.\n";
 
-            users.saveListDataToFile("../Data/Users.txt");
-
-            cout << "Change password successfully.\n";
+            system("pause");
+            break;
         }
-        else
-            cout << "Unvalid input password, please try again.\n";
+        case 3:
+        {
+            system("cls");
+            cout << "********Your information********" << endl;
+            cout << passenger;
 
-        cout << "Press enter to back to menu.\n";
-        while (true) {
-            if (cin.get() == '\n')
-                break;
+            system("pause");
+
+            break;
+        }
+        case 4:
+        {
+            Menu::renderPassengerMenu(user);
+        }
         }
         break;
-    }
-    case 8:
-    {
-        cout << "********Your information********" << endl;
-        cout << passenger;
 
-        cout << "Press enter button to continue." << endl;
-        while (true) {
-            if (cin.get() == '\n')
-                break;
-        }
-
-        break;
+       
     }
-    case 9:
+    case 7:
         LogoutWorkflow::logout();
         return;
-    case 10:
+    case 8:
         exit(0);
     }
 
