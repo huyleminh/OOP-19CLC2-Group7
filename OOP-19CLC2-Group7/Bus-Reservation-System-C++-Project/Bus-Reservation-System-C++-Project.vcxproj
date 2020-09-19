@@ -155,6 +155,7 @@
     <ClCompile Include="Workflow\ValidateInput\ValidateInputWorkFlow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Library\Date.h" />
     <ClInclude Include="..\Library\LocalStorage.h" />
     <ClInclude Include="..\Library\StdFormat.h" />
     <ClInclude Include="..\Library\Tokenizer.h" />
