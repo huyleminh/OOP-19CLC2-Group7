@@ -63,7 +63,7 @@ OPTION:
     cout << "Enter you option: ";
     getline(cin, option, '\n');
     //Check valid option
-    if (!ValidateInputWorkflow::validateMenuOption(1, 8, option)) {
+    if (!ValidateInputWorkflow::validateMenuOption(1, 9, option)) {
         goto OPTION;
     }
 
@@ -145,7 +145,8 @@ OPTION_BUS:
         cout << "*  1. Add new driver.                          *\n";
         cout << "*  2. Delete driver.                           *\n";
         cout << "*  3. Edit driver.                             *\n";
-        cout << "*  4. Back to menu.                            *\n";
+        cout << "*  4. Promote driver.                          *\n";
+        cout << "*  5. Back to menu.                            *\n";
         cout << "*                                              *\n";
         cout << "************************************************\n";
 
@@ -154,18 +155,18 @@ OPTION_DRIVER:
         cout << "Enter you option: ";
         getline(cin, option_driver, '\n');
         //Check valid option
-        if (!ValidateInputWorkflow::validateMenuOption(1, 5, option)) {
+        if (!ValidateInputWorkflow::validateMenuOption(1, 6, option)) {
             goto OPTION_DRIVER;
         }
 
         switch (stoi(option_driver))
         {
         case 1:
-        {  
+        {
             system("cls");
             admin.addDriver();
             break;
-        }  
+        }
         case 2:
         {
             system("cls");
@@ -179,11 +180,212 @@ OPTION_DRIVER:
             break;
         }
         case 4:
+        {
+            system("cls");
+            admin.promoteDriver();
+            break;
+        }
+        case 5:
             goto MENU;
         }
         break;
     }
     case 4: {
+        system("cls");
+
+        cout << "************************************************\n";
+        cout << "*               ANNOUNCEMENT                   *\n";
+        cout << "*  1. Driver.                                  *\n";
+        cout << "*  2. Passenger.                               *\n";
+        cout << "*  3. Back to menu                             *\n";
+        cout << "*                                              *\n";
+        cout << "************************************************\n";
+        string option;
+OPTION_AN:
+        cout << "Enter you option: ";
+        getline(cin, option, '\n');
+    
+        if (!ValidateInputWorkflow::validateMenuOption(1, 3, option)) {
+            goto OPTION_AN;
+        }
+
+        switch (stoi(option)) {
+        case 1:
+        {
+            system("cls");
+            cout << "************************************************\n";
+            cout << "*             ANNOUNCEMENT DRIVER              *\n";
+            cout << "*  1. See announcement.                        *\n";
+            cout << "*  2. Add announcement.                        *\n";
+            cout << "*  3. Edit/Delete announcement.                *\n";
+            cout << "*  4. Back to menu.                            *\n";
+            cout << "*                                              *\n";
+            cout << "************************************************\n";
+            string op;
+        OPTION_AN1:
+            cout << "Enter you option: ";
+            getline(cin, op, '\n');
+
+            if (!ValidateInputWorkflow::validateMenuOption(1, 4, op)) {
+                goto OPTION_AN1;
+            }
+
+            ifstream f("../Data\\AnnounceDriver.txt");
+            if (!f.is_open())
+                return;
+            Announcement an;
+            f >> an;
+
+            switch (stoi(op)) {
+            case 1:
+            {
+                system("cls");
+                cout << "\t\tAnnouncement Driver" << endl;
+                cout << an;
+                system("pause");
+                f.close();
+                break;
+            }
+            case 2:
+            {
+                system("cls");
+                admin.addAnnounce(an);
+                cout << "Add successfully!!!" << endl;
+                ofstream f2("../Data\\AnnounceDriver.txt");
+                f2 << an;
+                system("pause");
+                break;
+            }
+            case 3:
+            {
+                system("cls");
+                cout << "\t\tAnnouncement Passenger" << endl;
+                cout << an << endl;
+
+                cout << "1.Edit" << endl;
+                cout << "2.Delete" << endl;
+                string op1;
+                cin >> op1;
+                if (stoi(op1) == 1)
+                {
+                    admin.editAnnounce(an);
+                    ofstream f2("../Data\\AnnounceDriver.txt");
+                    f2 << an;
+                    f2.close();
+                    system("pause");
+                }
+                else
+                {
+                    admin.deleteAnnounce(an);
+                    ofstream f2("../Data\\AnnounceDriver.txt");
+                    f2 << an;
+                    f2.close();
+                    system("pause");
+                }
+                break;
+            }
+            case 4:
+            {
+                break;
+            }
+            }
+            break;
+        }
+        case 2:
+        {
+            system("cls");
+            cout << "************************************************\n";
+            cout << "*             ANNOUNCEMENT PASSENGER           *\n";
+            cout << "*  1. See announcement.                        *\n";
+            cout << "*  2. Add announcement.                        *\n";
+            cout << "*  3. Edit/Delete announcement.                *\n";
+            cout << "*  4. Back to menu.                            *\n";
+            cout << "*                                              *\n";
+            cout << "************************************************\n";
+            string op;
+        OPTION_AN2:
+            cout << "Enter you option: ";
+            getline(cin, op, '\n');
+
+            if (!ValidateInputWorkflow::validateMenuOption(1, 4, op)) {
+                goto OPTION_AN2;
+            }
+
+            ifstream f("../Data\\AnnouncePassenger.txt");
+            if (!f.is_open())
+                return;
+            Announcement an;
+            f >> an;
+            f.close();
+            switch (stoi(op)) {
+            case 1:
+            {
+                system("cls");
+                cout << "\t\tAnnouncement Passenger" << endl;
+                cout << an;
+                system("pause");
+                f.close();
+                break;
+            }
+            case 2:
+            {
+                system("cls");
+                admin.addAnnounce(an);
+                cout << "Add successfully!!!" << endl;
+                ofstream f2("../Data\\AnnouncePassenger.txt");
+                f2 << an;
+                f2.close();
+                system("pause");
+                break;
+            }
+            case 3:
+            {
+                system("cls");
+                cout << "\t\tAnnouncement Passenger" << endl;
+                cout << an << endl;
+
+                cout << "1.Edit" << endl;
+                cout << "2.Delete" << endl;
+                string op1;
+                cin >> op1;
+                if (stoi(op1) == 1)
+                {
+                    admin.editAnnounce(an);
+                    ofstream f2("../Data\\AnnouncePassenger.txt");
+                    f2 << an;
+                    f2.close();
+                    system("pause");
+                }
+                else
+                {
+                    admin.deleteAnnounce(an);
+                    ofstream f2("../Data\\AnnouncePassenger.txt");
+                    f2 << an;
+                    f2.close();
+                    system("pause");
+                }
+                break;
+            }
+            case 4:
+            {
+                break;
+            }
+            }
+            
+            break;
+        }
+        case 3:
+        {
+            system("cls");
+            admin.editDriver();
+            break;
+        }
+        case 4:
+            goto MENU;
+        }
+        break;
+    }
+    case 5: {
         admin.changeInformation(user);
 
         for (int i = 0; i < admins.size(); i++)
@@ -194,7 +396,7 @@ OPTION_DRIVER:
 
         ofstream out;
         out.open("../Data/Admin.txt");
-        if (!out.is_open()) 
+        if (!out.is_open())
         {
             cout << "Error" << endl;
             system("pause");
@@ -210,7 +412,7 @@ OPTION_DRIVER:
         //     cout << "2" << endl;
         break;
     }
-    case 5: 
+    case 6: 
     {
         string newPassword = "";
         cout << "Enter password, your password must not have any space or '/' : ";
@@ -241,7 +443,7 @@ OPTION_DRIVER:
         }
         break;
     }
-    case 6:
+    case 7:
 
         cout << "********Your information********" << endl;
         cout << admin;
@@ -253,10 +455,10 @@ OPTION_DRIVER:
         }
 
         break;
-    case 7:
+    case 8:
         LogoutWorkflow::logout();
         return;
-    case 8:
+    case 9:
         exit(0);
     }
 
@@ -322,6 +524,18 @@ OPTION:
         break;
     case 5:
     {
+        ifstream f("../Data\\AnnounceDriver.txt");
+        if (!f.is_open())
+            return;
+        Announcement an;
+        f >> an;
+        system("cls");
+        cout << "\t\tAnnouncement Driver" << endl;
+        cout << an << endl;
+        system("pause");
+        break;
+    }
+    case 6: {
         string newPassword = "";
         cout << "Enter password, your password must not have any space or '/' : ";
         getline(cin, newPassword, '\n');
@@ -351,8 +565,7 @@ OPTION:
         }
         break;
     }
-    case 6:
-
+    case 7: {
         cout << "********Your information********" << endl;
         cout << driver;
 
@@ -363,10 +576,11 @@ OPTION:
         }
 
         break;
-    case 7:
+    }
+    case 8:
         LogoutWorkflow::logout();
         return;
-    case 8:
+    case 9:
         exit(0);
     }
 
@@ -407,7 +621,7 @@ OPTION:
     case 1:
         this->searchAndViewBus();
         break;
-    case 2: 
+    case 2:
         this->searchFromStation();
         break;
     case 3:
@@ -416,9 +630,21 @@ OPTION:
     case 4:
         passenger.viewTicketResult();
         break;
-    case 5:{
+    case 5: {
+        ifstream f("../Data\\AnnouncePassenger.txt");
+        if (!f.is_open())
+            return;
+        Announcement an;
+        f >> an;
+        system("cls");
+        cout << "\t\tAnnouncement Passenger" << endl;
+        cout << an << endl;
+        system("pause");
+        break;
+    }
+    case 6: {
         passenger.changeInformation(user);
-        
+
         for (int i = 0; i < passengers.size(); i++)
             if (passengers[i].includeUsername(user)) {
                 passengers[i] = passenger;
@@ -429,15 +655,15 @@ OPTION:
         for (int i = 0; i < passengers.size(); i++)
             out << passengers[i];
         out.close();
-       
+
         break;
     }
-    case 6:
+    case 7:
     {
         string newPassword = "";
         cout << "Enter password, your password must not have any space or '/' : ";
         getline(cin, newPassword, '\n');
-        
+
         User tmp = user;
 
         if (user.changePassword(newPassword) == true) {
@@ -452,7 +678,7 @@ OPTION:
             users.saveListDataToFile("../Data/Users.txt");
 
             cout << "Change password successfully.\n";
-        } 
+        }
         else
             cout << "Unvalid input password, please try again.\n";
 
@@ -463,8 +689,8 @@ OPTION:
         }
         break;
     }
-    case 7: 
-
+    case 8:
+    {
         cout << "********Your information********" << endl;
         cout << passenger;
 
@@ -475,10 +701,11 @@ OPTION:
         }
 
         break;
-    case 8:
+    }
+    case 9:
         LogoutWorkflow::logout();
         return;
-    case 9:
+    case 10:
         exit(0);
     }
 

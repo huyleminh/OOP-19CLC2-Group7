@@ -154,7 +154,74 @@ bool Admin::changeBirthday(const string& dob)
 		return false;
 	return true;
 }
+void Admin::promoteDriver()
+{
+	List<Driver> d;
 
+	d.loadListDataFromFile("../Data\\Driver.txt");
+	cout << "!!!!Driver List!!!!" << endl;
+	for (int i = 0; i < d.size(); i++)
+	{
+		cout << "Driver " << i + 1 << endl;
+		cout << d[i] << endl;
+	}
+
+	Driver u;
+	cout << "Who do you want to promote? " << endl;
+	cout << "Input username: " << endl;
+	getline(cin, u._username);
+	
+	//Check xem co nguoi do co trong list hay khong
+	if (d.includes(u) == false)
+	{
+		cout << "Error: That username is not exist in data" << endl;
+		system("pause");
+		return;
+	}
+
+	//Add vao admin file
+	List<Admin> a;
+	a.loadListDataFromFile("../Data\\Admin.txt");
+	
+	Admin tmp;
+	for (int i = 0; i < d.size(); i++)
+	{
+		if (d[i]._username == u._username)
+		{
+			tmp._username = d[i]._username;
+			tmp._birthday = d[i]._birthday;
+			tmp._sex = d[i]._sex;
+			tmp._name = d[i]._name;
+		}
+	}
+	a.push_back(tmp);
+	a.saveListDataToFile("../Data\\Admin.txt");
+
+
+	//Edit user file
+	List<User> user;
+	user.loadListDataFromFile("../Data\\Users.txt");
+
+	for (int i = 0; i < user.size(); i++)
+	{
+		if (user[i]._username == u._username)
+		{
+			user.getItemInData(i)._role = "Admin";
+		}
+	}
+	user.saveListDataToFile("../Data\\Users.txt");
+
+	//Delete in Driver file
+	for (int i = 0; i < d.size(); i++)
+	{
+		if (d[i]._username == u._username)
+		{
+			d.erase(i);
+		}
+	}
+	d.saveListDataToFile("../Data\\Driver.txt");
+
+}
 void Admin::addDriver()
 {
 	List<Driver> d;
@@ -392,4 +459,107 @@ void Admin::editBus()
 	}
 
 
+}
+
+void Admin::editAnnounce(Announcement &a)
+{
+	int index;
+	cout << "Input the order of announcement you want to edit" << endl;
+	cin >> index;
+	if (index - 1 > a.title.size() || index - 1 < 0)
+	{
+		cout << "There is no announcement like your index" << endl;
+		return;
+	}
+	for (int i = 0; i < a.title.size(); i++)
+	{
+		if (index - 1 == i)
+		{
+		MENU:
+			string choice;
+			cout << "What do you want to edit?" << endl;
+			cout << "1:Title" << endl;
+			cout << "2:Content" << endl;
+			cin >> choice;
+
+			if (!ValidateInputWorkflow::validateMenuOption(1, 2, choice))
+				goto MENU;
+
+			if (choice == "1")
+			{
+				string ti;
+				cout << "Old title: " << a.title[i] << endl;
+				cout << "Your new title: ";
+				while (getchar() != '\n');
+				getline(cin, ti,'\n');
+				a.title[i] = "\t" + ti;
+
+				string t = " .Chinh sua vao luc  ";
+				time_t info = std::time(NULL);
+				tm* now = localtime(&info);
+				t = t + to_string(now->tm_hour) + ":" + to_string(now->tm_min) + ":" + to_string(now->tm_sec) + " ngay " + to_string(now->tm_mday) + "/" + to_string(now->tm_mon + 1) + "/" + to_string(now->tm_year + 1900);
+				a.time[i] = a.time[i] + t;
+			}
+
+			else
+			{
+				string c;
+				cout << "Old Content: " << a.content[i] << endl;
+				cout << "Your new content: ";
+				while (getchar() != '\n');
+				getline(cin, c,'\n');
+				a.content[i] = c;
+
+				string t = " .Chinh sua vao luc  ";
+				time_t info = std::time(NULL);
+				tm* now = localtime(&info);
+				t = t + to_string(now->tm_hour) + ":" + to_string(now->tm_min) + ":" + to_string(now->tm_sec) + " ngay " + to_string(now->tm_mday) + "/" + to_string(now->tm_mon + 1) + "/" + to_string(now->tm_year + 1900);
+				a.time[i] = a.time[i] + t;
+			}
+		}
+	}
+	cout << "Edit successfully!!!" << endl;
+}
+
+void Admin::addAnnounce(Announcement& a)
+{
+	string t1 = "\t";
+	string tmp;
+	cout << "Your Title: ";
+	getline(cin, tmp);
+	t1 = t1 + tmp;
+	a.title.push_back(t1);
+
+	cout << "Content: " << endl;
+	getline(cin, tmp);
+	a.content.push_back(tmp);
+
+	string t = "Duoc dang vao ";
+	time_t info = std::time(NULL);
+	tm* now = localtime(&info);
+	t = t + to_string(now->tm_hour) + ":" + to_string(now->tm_min) + ":" + to_string(now->tm_sec) + " ngay " + to_string(now->tm_mday) + "/" + to_string(now->tm_mon + 1) + "/" + to_string(now->tm_year + 1900);
+	a.time.push_back(t);
+
+}
+
+void Admin::deleteAnnounce(Announcement &a)
+{
+	int index;
+	cout << "Input the order of announcement you want to delete" << endl;
+	cin >> index;
+	if (index - 1 > a.title.size() || index - 1 < 0)
+	{
+		cout << "There is no announcement like your index" << endl;
+		return;
+	}
+	for (int i = 0; i < a.title.size(); i++)
+	{
+		if (i == index - 1)
+		{
+			a.title.erase(a.title.begin() + i);
+			a.content.erase(a.content.begin() + i);
+			a.time.erase(a.time.begin() + i);
+		}
+	}
+	cout << "Delete successfully!!!" << endl;
 }
