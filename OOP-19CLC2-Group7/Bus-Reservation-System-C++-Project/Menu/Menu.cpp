@@ -10,8 +10,7 @@
 //Render main menu after start app
 void Menu::renderMainMenu() {
     system("cls");
-
-    LogoutWorkflow::logout();
+    LogoutWorkflow::logout(); //Clear storerage 
 
     //This line call menu view that is global menu view
     MenuView::mainMenuView();
@@ -21,9 +20,8 @@ OPTION:
     cout << "Enter you option: ";
     getline(cin, option, '\n');
     //Check valid option
-    if (!ValidateInputWorkflow::validateMenuOption(1, 5, option)) {
+    if (!ValidateInputWorkflow::validateMenuOption(1, 5, option))
         goto OPTION;
-    }
 
     switch (stoi(option)) {
     case 1:
@@ -95,9 +93,8 @@ OPTION_BUS:
         cout << "Enter you option: ";
         getline(cin, option_bus, '\n');
         //Check valid option
-        if (!ValidateInputWorkflow::validateMenuOption(1, 5, option)) {
+        if (!ValidateInputWorkflow::validateMenuOption(1, 5, option))
             goto OPTION_BUS;
-        }
 
         switch (stoi(option_bus)) {
         case 1:
@@ -401,10 +398,8 @@ OPTION_AN:
         break;
     }
     case 7:
-
         cout << "********Your information********" << endl;
         cout << admin;
-
         cout << "Press enter button to continue." << endl;
         while (true) {
             if (cin.get() == '\n')
@@ -562,7 +557,7 @@ OPTION:
     cout << "Enter your option: ";
     getline(cin, option, '\n');
 
-    if (!ValidateInputWorkflow::validateMenuOption(1, 9, option)) {
+    if (!ValidateInputWorkflow::validateMenuOption(1, 10, option)) {
         goto OPTION;
     }
 
@@ -589,7 +584,7 @@ OPTION:
         passenger.viewTicketResult();
         break;
     case 5: {
-        ifstream f("../Data\\AnnouncePassenger.txt");
+        ifstream f("../Data/AnnouncePassenger.txt");
         if (!f.is_open())
             return;
         Announcement an;
@@ -675,9 +670,7 @@ OPTION:
 //Login feature
 void Menu::login() {
     system("cls");
-
     User loginUser;
-
     //Login interface
     cout << "***************************LOGIN***************************" << endl;
     cin >> loginUser;
@@ -693,8 +686,8 @@ void Menu::login() {
     }
 
     cout << "Login successfully." << endl;
-
-    //Decentralize user 
+    Sleep(2000);
+    //Decentralize user (find valid router)
     const string identify = DecentralizeWorkflow::onDecentralizeUser();
     if (identify == "Admin")
         Menu::renderAdminMenu(loginUser);
@@ -702,9 +695,6 @@ void Menu::login() {
         Menu::renderDriverMenu(loginUser);
     if (identify == "Passenger")
         Menu::renderPassengerMenu(loginUser);
-
-    Sleep(2000);
-    system("cls");
 }
 
 //Register feature
@@ -737,9 +727,8 @@ TYPE:
     cout << "Choose your type(student or Normal passenger): ";
     getline(cin, type, '\n');
 
-    if (!ValidateInputWorkflow::validateMenuOption(1, 2, type)) {
+    if (!ValidateInputWorkflow::validateMenuOption(1, 2, type))
         goto TYPE;
-    }
 
     Information info;
     cin >> info;
@@ -768,7 +757,6 @@ TYPE:
     cout << "Register successfully.\n";
     Sleep(1000);
     cout << "You will be redirect to main menu and login again to confirm.\n";
-
     Sleep(1000);
     system("cls");
 
@@ -783,9 +771,8 @@ void Menu::searchAndViewBus() {
     list.loadListDataFromFile("../Data/Buses.txt");
 
     cout << "********List of bus********" << endl;
-    for (int i = 0; i < list.size(); i++) {
+    for (int i = 0; i < list.size(); i++)
         cout << list[i] << endl;
-    }
 
     cout << "********Enter bus Id to view more information********" << endl;
 
@@ -794,9 +781,8 @@ OPTION:
     cout << "Enter your option: ";
     getline(cin, option, '\n');
 
-    if (!ValidateInputWorkflow::validateMenuOption(1, INT_MAX, option)) {
+    if (!ValidateInputWorkflow::validateMenuOption(1, INT_MAX, option))
         goto OPTION;
-    }
 
     Bus bus;
     for (int i = 0; i < list.size(); i++) {
@@ -810,10 +796,10 @@ bool sortStation(const string& left, const string& right) {
     return left < right;
 }
 void Menu::searchFromStation() {
-    vector<string> stations = this->createListStations();
+    vector<string> stations = this->createListStations(); //Take list of all station already have 
 
     //Sort station A - Z
-    sort(stations.begin(), stations.end(), sortStation);
+    std::sort(stations.begin(), stations.end(), sortStation);
     
     //Render stations
     system("cls");
@@ -824,19 +810,15 @@ void Menu::searchFromStation() {
             cout << endl;
     }
     cout << endl;
-
-    //Stop screen
     cout << "****************************" << endl;
-    Sleep(1000);
 
     string option = "";
 OPTION:
     cout << "Enter station you want to view: ";
     getline(cin, option, '\n');
 
-    if (!ValidateInputWorkflow::validateMenuOption(1, int(stations.size()), option)) {
+    if (!ValidateInputWorkflow::validateMenuOption(1, int(stations.size()), option))
         goto OPTION;
-    }
 
     List<Bus> list;
     list.loadListDataFromFile("../Data/Buses.txt");
@@ -851,24 +833,14 @@ OPTION:
         if (iter != tmpStation.end())
             cout << list[i];
     }
-    system("pause");
-
-    cout << "These are buses that go through " << stations[stoi(option) - 1] << " station." << endl;
     Sleep(1000);
-    cout << "Enter to go back to menu." << endl;
-    
-    while (true) {
-        if (cin.get() == '\n')
-            break;
-        else 
-            cout << "Please press enter." << endl;
-    }
+    cout << "These are buses that go through " << stations[stoi(option) - 1] << " station." << endl;
+    system("pause");
 }
 
 //Render list station
 vector<string> Menu::createListStations() {
    //Request to bus to render stations
-   //
    //Get list bus first
     List<Bus> list;
     list.loadListDataFromFile("../Data/Buses.txt");
@@ -879,14 +851,11 @@ vector<string> Menu::createListStations() {
 
     for (int i = 1; i < list.size(); i++) {
         vector<string> tmp = list[i].listOfStationGoThrough();
-
         for (int j = 0; j < tmp.size(); j++) {
             iter = std::find(stations.begin(), stations.end(), tmp[j]);
-
             if (iter == stations.end())
                 stations.push_back(tmp[j]);
         }
     }
-
     return stations;
 }

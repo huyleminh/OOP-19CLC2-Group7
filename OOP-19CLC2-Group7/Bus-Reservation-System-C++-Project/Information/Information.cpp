@@ -75,10 +75,6 @@ istream& operator>>(istream& is, Information& info)
 	else 
 		info._name = "Null";
 
-	while (getchar() != '\n');
-	getline(is, info._name, '\n');
-
-
 	cout << "1. Male.\n";
 	cout << "2. Female.\n";
 	cout << "3. Others.\n";
@@ -93,17 +89,14 @@ istream& operator>>(istream& is, Information& info)
 	info._sex = ((option == 1) ? "Male" : (option == 2) ? "Female" : "Others");
 
 	is.ignore(1);
+DATE:
 	cout << "Enter birthday follow this format dd/mm/yyyy: ";
 	
 	getline(is, tmp, '\n');
-	if (StdFormat::stdDate(tmp))
-		info._birthday = tmp;
-	else 
-		info._birthday = "dd/mm/yyyy";
-
-	cout << "If any informations above is wrong, it will be null and you can change it.\n";
+	if (!Date::isValidDate(tmp))
+		goto DATE;
+	info._birthday = tmp;
 	Sleep(1000);
-
 	return is;
 }
 

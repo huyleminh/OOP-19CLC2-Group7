@@ -358,7 +358,7 @@ void Admin::editDriver()
 			d.getItemInData(i).changeInformation(s);
 		}
 	}
-	d.saveListDataToFile("../Data\\Driver.txt");
+	d.saveListDataToFile("../Data/Driver.txt");
 
 	//Ko can edit trong user.txt
 }
@@ -366,7 +366,7 @@ void Admin::editDriver()
 void Admin::addBus()
 {
 	List<Bus> b;
-	b.loadListDataFromFile("../Data\\Buses.txt");
+	b.loadListDataFromFile("../Data/Buses.txt");
 	
 	cout << "~~~~~BUS LIST~~~~~" << endl;
 	for (int i = 0; i < b.size(); i++)

@@ -60,9 +60,7 @@ istream& operator >>(istream& is, User& user) {
         cout << "Enter password, your password must not have any space or '/' : ";
         getline(is, tmpPassword, '\n');
     }
-
     user._password = tmpPassword;
-    
     return is;
 }
 
