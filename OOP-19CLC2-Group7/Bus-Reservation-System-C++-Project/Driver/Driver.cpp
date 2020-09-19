@@ -150,7 +150,7 @@ void Driver::Dayoff()
 
 	if (!f.is_open())
 	{
-		cout<<"Cannot create file";
+		cout << "Cannot open DayOff.txt." << endl;
 		return;
 	}
 	else
@@ -169,53 +169,44 @@ void Driver::Dayoff()
 	}
 }
 
-int Driver::numberofdaysoff()
+int Driver::countDayOffHistory()
 {
 	ifstream f("../Data/DayOff.txt");
 
 	if (!f.is_open())
 	{
-		cout << "Cannot open file";
-		return;
+		cout << "Cannot open DayOff.txt" << endl;
+		return -1;
 	}
-	else
+	vector<string> temp;
+	int num = 0;
+
+	while (!f.eof())
 	{
-		vector<string> temp;
-		int num = 0;
+		string id;
+		getline(f, id, ' ');
 
-		while (!f.eof())
-		{
-			string id;
-			getline(f, id, ' ');
+		string dayandreason;
+		getline(f, dayandreason, '\n');
 
-			string dayandreason;
-			getline(f, dayandreason, '\n');
-
-			temp.push_back(id);
-		}
-
-		for (int i = 0; i < temp.size(); i++)
-		{
-			if (temp[i] == this->_username)
-			{
-				num++;
-			}
-		}
-
-		f.close();
-		
-		return num;
+		temp.push_back(id);
 	}
+
+	for (int i = 0; i < temp.size(); i++)
+		if (temp[i] == this->_username)
+			num++;
+
+	f.close();
+	return num;
 }
 
-long long Driver::salary()
+int Driver::salary()
 {
-	long long const_salary = 10000000;
-	int dayoff = this->numberofdaysoff();
+	int salary = 0;
+	int dayoff = this->countDayOffHistory();
 
-	const_salary = const_salary / 30 * (30 - dayoff);
-
-	return const_salary;
+	salary = BASE_SALARY / 30 * (30 - dayoff);
+	return salary;
 }
 
 bool Driver::changeName(const string& name)

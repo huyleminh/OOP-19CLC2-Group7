@@ -5,6 +5,8 @@
 #include "../Information/Information.h"
 #include "../User/User.h"
 
+#define BASE_SALARY 1000000
+
 class Driver : public Information
 {
 public:
@@ -27,11 +29,12 @@ public:
 
 	//days off
 	void Dayoff();
-	int numberofdaysoff();
-	long long salary();
+	int countDayOffHistory();
+	int salary();
 
 	friend class Admin;//De admin co the truy xuat duoc tai khoan nay no
 private:
+	//Change information private
 	bool changeName(const string& name);
 	void changeSex(const string& sex);
 	bool changeBirthday(const string& dob);

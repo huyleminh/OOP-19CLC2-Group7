@@ -455,10 +455,11 @@ OPTION:
 
     switch (stoi(option)) {
     case 1:
-        //Search bus no
+        this->searchAndViewBus();
+        break;
         break;
     case 2:
-        //Search departure and destination
+        this->searchFromStation();
         break;
     case 3: {
         driver.changeInformation(user);
@@ -481,7 +482,7 @@ OPTION:
         break;
     case 5:
     {
-        ifstream f("../Data\\AnnounceDriver.txt");
+        ifstream f("../Data/AnnounceDriver.txt");
         if (!f.is_open())
             return;
         Announcement an;
