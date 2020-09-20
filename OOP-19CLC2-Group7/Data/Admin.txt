@@ -18,3 +18,8 @@ Nguyen Quang Thuan
 Male
 01/01/2001
 NguyenQuangThuan
+
+Bach Minh Khoi
+Male
+20/02/2002
+BachMinhKhoi

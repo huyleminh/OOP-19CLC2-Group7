@@ -52,14 +52,14 @@ void MenuView::forbiddenView() {
 void MenuView::mainMenuView() {
     system("cls"); 
     Graphic::changeColour("", WHITE);
-    Graphic::setWidth(1); cout << "                / \\"                                 << endl;
-    Graphic::setWidth(1); cout << "     __________/ o \\/\\_________      _________"    << "\t\t\t                          __" << endl;
-    Graphic::setWidth(1); cout << " ___|               | | # # #  |____|o o o o  | /\\" << "\t\t .-----------------------'  |" << endl;
-    Graphic::setWidth(1); cout << "|. .|               |o| # # #  |. . |o o o o  |//\\\\"<< "\t\t/| _ .---. .---. .---. .---.|" << endl;
-    Graphic::setWidth(1); cout << "|. .| []  []  []  []|o| # # #  |. . |o o o o  |((|))" << "\t\t|j||||___| |___| |___| |___||" << endl;
-    Graphic::setWidth(1); cout << "|. .| []  []  []    |o| # # #  |. . |o o o o  |((|))" << "\t\t|=|||=======================|" << endl;
-    Graphic::setWidth(1); cout << "|__<|____________;;_|_|___/\\___|_.|_|____[]___|  |" << "\t\t[_|j||(O)\\__________|(O)\\___]" << endl;
-    Graphic::setHeight(1);
+    Graphic::setWidth(2); cout << "                / \\"                                 << endl;
+    Graphic::setWidth(2); cout << "     __________/ o \\/\\_________      _________"    << "\t\t\t                          __" << endl;
+    Graphic::setWidth(2); cout << " ___|               | | # # #  |____|o o o o  | /|\\" << "\t\t .-----------------------'  |" << endl;
+    Graphic::setWidth(2); cout << "|. .|               |o| # # #  |. . |o o o o  |//|\\\\"<< "\t\t/| _ .---. .---. .---. .---.|" << endl;
+    Graphic::setWidth(2); cout << "|. .| []  []  []  []|o| # # #  |. . |o o o o  |((|))" << "\t\t|j||||___| |___| |___| |___||" << endl;
+    Graphic::setWidth(2); cout << "|. .| []  []  []    |o| # # #  |. . |o o o o  |((|))" << "\t\t|=|||=======================|" << endl;
+    Graphic::setWidth(2); cout << "|__<|____________;;_|_|___/\\___|_.|_|____[]___|  |" << "\t\t[_|j||(O)\\__________|(O)\\___]" << endl;
+    Graphic::setHeight(2);
     Graphic::setWidth(6); Graphic::changeColour("    BUS FOR ALL HOMES", LIGHT_GREEN);
     Graphic::setHeight(2);
     Graphic::setWidth(4);
@@ -80,7 +80,7 @@ bool MenuView::adminMenuView() {
         this->forbiddenView();
         return false;
     }
-    Graphic::changeColour("", LIGHT_BLUE);
+    Graphic::changeColour("", YELLOW);
     Graphic::setWidth(4); cout << "*******************************************************\n";
     Graphic::setWidth(4); cout << "*                    WELCOME ADMIN                    *\n";
     Graphic::setWidth(4); cout << "*  1. Bus Management.                                 *\n";

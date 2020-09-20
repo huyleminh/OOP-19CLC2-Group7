@@ -1000,7 +1000,7 @@ void Menu::searchAndViewBus() {
     cout << "********List of bus********" << endl;
     for (int i = 0; i < list.size(); i++)
         cout << list[i] << endl;
-
+    
     cout << "********Enter bus Id to view more information********" << endl;
 
     string option = "";
@@ -1030,14 +1030,14 @@ void Menu::searchFromStation() {
     
     //Render stations
     system("cls");
-    cout << "\n********STATIONS********" << endl;
+
     for (int i = 0; i < stations.size(); i++) {
         cout << setw(2) << left << i + 1 << ". " << setw(50) << left << stations[i];
         if (i % 3 == 2)
             cout << endl;
     }
     cout << endl;
-    cout << "****************************" << endl;
+    cout << "*******************************************************************************************************************************************" << endl;
 
     string option = "";
 OPTION:
