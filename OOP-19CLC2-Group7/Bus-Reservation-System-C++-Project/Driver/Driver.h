@@ -5,7 +5,7 @@
 #include "../Information/Information.h"
 #include "../User/User.h"
 
-#define BASE_SALARY 1000000
+#define BASE_SALARY 10000000
 
 class Driver : public Information
 {

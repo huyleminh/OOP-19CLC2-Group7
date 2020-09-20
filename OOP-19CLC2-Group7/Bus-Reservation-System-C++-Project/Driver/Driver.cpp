@@ -242,7 +242,9 @@ void Driver::viewDayoff()
 		return;
 	}
 
-	vector<string> temp;
+	vector<string> t_id;
+	vector<string> t_dayandreason;
+
 	while (!f.eof())
 	{
 		string id;
@@ -251,15 +253,19 @@ void Driver::viewDayoff()
 		string dayandreason;
 		getline(f, dayandreason, '\n');
 
-		if (id == this->_username)
-			temp.push_back(dayandreason);
+		t_id.push_back(id);
+		t_dayandreason.push_back(dayandreason);
 	}
 
-	for (int i = 0; i < temp.size(); i++)
-		cout << temp[i] << endl;
+	for(int i = 0; i < t_id.size(); i++)
+	{
+		if(t_id[i] == this->_username)
+		{
+			cout << this->_username << t_dayandreason[i];
+		}
+	}
 
 	f.close();
-	system("pause");
 }
 
 bool Driver::changeName(const string& name)
