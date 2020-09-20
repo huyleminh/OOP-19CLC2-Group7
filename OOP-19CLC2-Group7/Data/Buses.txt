@@ -8,20 +8,20 @@ Ben xe buyt A Khu DH Quoc Gia TPHCM - Nga ba duong vao Truong DH Khoa hoc Tu nhi
 5 000
 3 000
 14 4
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
 04:40 - 20:30
 1
 
@@ -34,71 +34,19 @@ Ga Cho Lon A - Le Quang Sung - Pham Dinh Ho - Thap Muoi - Hai Thuong Lan Ong - C
 5 000
 3 000
 14 4
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
+Empty Empty Empty Empty            
 05:00 - 20:30
-1
-
-25
-Dai Hoc Ton Duc Thang
-Dai Hoc Van Lang
-Truong Dai hoc Ton Duc Thang - Nguyen Huu Tho - Nguyen Thi Thap - Nguyen Van Linh - Huynh Tan Phat - Cau Tan Thuan 1 - Nguyen Tat Thanh - Hoang Dieu - Nguyen Thai Hoc - Tran Hung Dao - Ham Nghi - Pasteur - Nguyen Thi Minh Khai - Hai Ba Trung - Tran Quang Khai - Dinh Tien Hoang - Phan Dang Luu - No Trang Long - Binh Loi - Hem 352 Binh Loi - Dang Thuy Tram - Cong vien Dang Thuy Tram
-Cong vien Dang Thuy Tram - Hem 352 Binh Loi - Binh Loi - No Trang Long - Phan Dang Luu - Dinh Tien Hoang - Tran Quang Khai - Nguyen Huu Cau - Hai Ba Trung - Nguyen Dinh Chieu - Nam Ky Khoi Nghia - Ham Nghi - Le Lai - Pham Hong Thai - Nguyen Thi Nghia - Nguyen Thai Hoc - Hoang Dieu - Nguyen Tat Thanh - Cau Tan Thuan 2 - Nguyen Van Linh - Nguyen Thi Thap - Nguyen Huu Tho - Duong D6 - Duong D6 - Truong Dai hoc Ton Duc Thang
-15-20 phut
-5 000
-3 000
-14 4
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-05:00 - 19:00
-1
-
-20
-Ben Xe Buyt Sai Gon
-Nha Be
-Bai xe buyt cong vien 23/9 - Pham Ngu Lao - Yersin - Tran Hung Dao - Ham Nghi - Ton Duc Thang - Cau Khanh Hoi - Nguyen Tat Thanh - Cau Tan Thuan 2 - Nguyen Van Linh - Huynh Tan Phat - Ben Mui Nha Be
-Ben Mui Nha Be - Huynh Tan Phat - Cau Tan Thuan 1 - Nguyen Tat Thanh - Hoang Dieu - Cau Calmete - Nhanh re Phai Len cau Camlmete - Pasteur - Ham Nghi - Cong Truong quach Thi Trang - Le Lai - Bai xe buyt cong vien 23/9
-3-20 phut
-5 000
-3 000
-14 4
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-Empty Empty Empty Empty          
-04:20 - 21:00
 1

@@ -261,11 +261,11 @@ void Driver::viewDayoff()
 	{
 		if(t_id[i] == this->_username)
 		{
-			cout << this->_username << t_dayandreason[i];
+			cout << t_dayandreason[i] << endl;
 		}
 	}
-
 	f.close();
+	system("pause");
 }
 
 bool Driver::changeName(const string& name)

@@ -134,7 +134,7 @@ bool MenuView::passengerMenuView() {
     Graphic::setWidth(4); cout << "*  5. Announcement.                                    *\n";
     Graphic::setWidth(4); cout << "*  6. Account management.                              *\n";
     Graphic::setWidth(4); cout << "*  7. Log out.                                         *\n";
-    Graphic::setWidth(4); cout << "*  8. Exit app.                                       *\n";
+    Graphic::setWidth(4); cout << "*  8. Exit app.                                        *\n";
     Graphic::setWidth(4); cout << "*                                                      *\n";
     Graphic::setWidth(4); cout << "********************************************************\n";
     return true;
