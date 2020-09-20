@@ -136,6 +136,8 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\Library\My-Library.lib" />
+    <Library Include="..\Library\My-Library.lib">
+      <Filter>Source Files</Filter>
+    </Library>
   </ItemGroup>
 </Project>
