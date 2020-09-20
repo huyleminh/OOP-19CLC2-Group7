@@ -141,6 +141,7 @@
     <ClCompile Include="Admin\Admin.cpp" />
     <ClCompile Include="Bus\Bus.cpp" />
     <ClCompile Include="Driver\Driver.cpp" />
+    <ClCompile Include="Feedback\Feedback.cpp" />
     <ClCompile Include="Information\Information.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu\Menu.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="Admin\Admin.h" />
     <ClInclude Include="Bus\Bus.h" />
     <ClInclude Include="Driver\Driver.h" />
+    <ClInclude Include="Feedback\Feedback.h" />
     <ClInclude Include="Header.h" />
     <ClInclude Include="Information\Information.h" />
     <ClInclude Include="List.h" />

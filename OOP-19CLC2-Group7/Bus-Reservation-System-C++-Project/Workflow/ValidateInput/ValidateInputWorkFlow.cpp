@@ -9,7 +9,8 @@ bool ValidateInputWorkflow::validateNameForm(const string& name) {
 	return true;
 }
 
-bool ValidateInputWorkflow::validateDateFrom() {
+bool ValidateInputWorkflow::validateDateFrom() 
+{
     return true;
 }
 
