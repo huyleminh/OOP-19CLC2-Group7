@@ -184,22 +184,39 @@ int Driver::countDayOffHistory()
 		return -1;
 	}
 	vector<string> temp;
+	vector<string> v_date;
 	int num = 0;
+
+	Date date;
+	Tokenizer a;
+	vector<string> m_date = a.split(date.toString(), "/");
 
 	while (!f.eof())
 	{
 		string id;
 		getline(f, id, ' ');
 
-		string dayandreason;
-		getline(f, dayandreason, '\n');
+		string day;
+		getline(f, day, ':');
+
+		string reason;
+		getline(f, reason, '\n');
 
 		temp.push_back(id);
+		v_date.push_back(day);
 	}
 
 	for (int i = 0; i < temp.size(); i++)
 		if (temp[i] == this->_username)
-			num++;
+		{
+			Tokenizer b;
+			vector<string> temp_date = b.split(v_date[i], "/");
+
+			if (stoi(m_date[1]) == stoi(temp_date[1]) && stoi(m_date[2]) == stoi(v_date[2]))
+			{
+				num++;
+			}
+		}
 
 	f.close();
 	return num;
