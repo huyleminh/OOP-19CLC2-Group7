@@ -1,4 +1,5 @@
 #include "Driver.h"
+#include "../Workflow/ValidateInput/ValidateInputWorkflow.h"
 
 //Constructor 
 Driver::Driver() :Information() {}
@@ -138,7 +139,6 @@ GENDER:
 		Sleep(1000);
 		break;
 	}
-	
 	case 4:
 		break;
 	}
@@ -146,27 +146,32 @@ GENDER:
 
 void Driver::Dayoff()
 {
-	ofstream f("../Data/DayOff.txt", ios::app);
+	string day_off, Reason;
+DATE_INPUT:
+	cout << "Enter the date you want to take leave (dd/mm/yyyy): \n";
+	getline(cin, day_off, '\n');
 
-	if (!f.is_open())
-	{
-		cout << "Cannot open DayOff.txt." << endl;
+	if (!Date::isValidDate(day_off))
+		goto DATE_INPUT;
+
+	Date current;
+	Date check(day_off);
+	if (Date::calcDays(check) < Date::calcDays(current))
+		goto DATE_INPUT;
+
+	cout << "The reason for your leave: ";
+	getline(cin, Reason, '\n');
+
+	ofstream f("../Data/DayOff.txt", ios::app);
+	if (!f.is_open()) {
+		cout << "Can not open DayOff.txt" << endl;
 		return;
 	}
-	else
-	{
-		string day_off, Reason;
+	f << this->_username << " " << day_off << ":" << Reason << endl;
+	f.close();
 
-		cout << "Enter the date you want to take leave (dd/mm/yyyy): \n";
-		getline(cin, day_off, '\n');
-
-		cout << "The reason for your leave: ";
-		getline(cin, Reason, '\n');
-
-		f << this->_username << " " << day_off << ":" << Reason << endl;
-
-		f.close();
-	}
+	cout << "Request for day-off successfully." << endl;
+	system("pause");
 }
 
 int Driver::countDayOffHistory()
@@ -204,9 +209,40 @@ int Driver::salary()
 {
 	int salary = 0;
 	int dayoff = this->countDayOffHistory();
-
+	if (dayoff == -1)
+		return -1;
 	salary = BASE_SALARY / 30 * (30 - dayoff);
 	return salary;
+}
+
+void Driver::viewDayoff()
+{
+	ifstream f("../Data/DayOff.txt");
+
+	if (!f.is_open())
+	{
+		cout << "Cannot open DayOff.txt" << endl;
+		return;
+	}
+
+	vector<string> temp;
+	while (!f.eof())
+	{
+		string id;
+		getline(f, id, ' ');
+
+		string dayandreason;
+		getline(f, dayandreason, '\n');
+
+		if (id == this->_username)
+			temp.push_back(dayandreason);
+	}
+
+	for (int i = 0; i < temp.size(); i++)
+		cout << temp[i] << endl;
+
+	f.close();
+	system("pause");
 }
 
 bool Driver::changeName(const string& name)

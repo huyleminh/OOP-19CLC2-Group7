@@ -103,11 +103,13 @@ bool MenuView::driverMenuView() {
     Graphic::setWidth(4); cout << "*                    WELCOME DRIVER                    *\n";
     Graphic::setWidth(4); cout << "*  1. Search bus no.                                   *\n";
     Graphic::setWidth(4); cout << "*  2. Search departure and destination.                *\n";
-    Graphic::setWidth(4); cout << "*  3. Day off.                                         *\n";
-    Graphic::setWidth(4); cout << "*  4. Announcement                                     *\n";
-    Graphic::setWidth(4); cout << "*  5. Account management.                              *\n";
-    Graphic::setWidth(4); cout << "*  6. Log out.                                         *\n";
-    Graphic::setWidth(4); cout << "*  7. Exit app.                                        *\n";
+    Graphic::setWidth(4); cout << "*  3. Day off request.                                 *\n";
+    Graphic::setWidth(4); cout << "*  4. Day off histoyry.                                *\n";
+    Graphic::setWidth(4); cout << "*  5. Salary.                                          *\n";
+    Graphic::setWidth(4); cout << "*  6. Announcement                                     *\n";
+    Graphic::setWidth(4); cout << "*  7. Account management.                              *\n";
+    Graphic::setWidth(4); cout << "*  8. Log out.                                         *\n";
+    Graphic::setWidth(4); cout << "*  9. Exit app.                                        *\n";
     Graphic::setWidth(4); cout << "*                                                      *\n";
     Graphic::setWidth(4); cout << "********************************************************\n";
     return true;

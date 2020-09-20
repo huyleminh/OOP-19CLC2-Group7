@@ -45,7 +45,6 @@ OPTION:
 
 //If login successfully with Admin, render this menu
 void Menu::renderAdminMenu(User& user) {
-MENU:
     MenuView* view = MenuView::getMenuView(user);
     if (view == NULL) {
         LogoutWorkflow::logout();
@@ -391,7 +390,7 @@ OPTION_AN:
         {
             system("cls");
             string old = "";
-            cout << "Input your old password: " << endl;
+            cout << "Input your old password: "; 
             getline(cin, old, '\n');
             if (!ValidateInputWorkflow::validatePasswordForm(old))
             {
@@ -421,7 +420,7 @@ OPTION_AN:
             }
 
             string newPassword2 = "";
-            cout << "Enter again new password: " << endl;
+            cout << "Enter again new password: ";
             getline(cin, newPassword2, '\n');
 
             if (!ValidateInputWorkflow::validatePasswordForm(newPassword2))
@@ -503,7 +502,7 @@ OPTION:
     cout << "Enter you option: ";
     getline(cin, option, '\n');
     //Check valid option
-    if (!ValidateInputWorkflow::validateMenuOption(1, 7, option)) {
+    if (!ValidateInputWorkflow::validateMenuOption(1, 9, option)) {
         goto OPTION;
     }
 
@@ -524,11 +523,22 @@ OPTION:
     case 2:
         this->searchFromStation();
         break;
-    case 3: {
+    case 3: 
         driver.Dayoff();
         break;
-    }
     case 4: 
+        driver.viewDayoff();
+        break;
+    case 5: {
+        int salary = driver.salary();
+        if (salary == -1)
+            cout << "Can not calculate your salary" << endl;
+        else 
+            cout << "You salary = " << salary << endl;
+        system("pause");
+        break;
+    }
+    case 6: 
     {
         ifstream f("../Data/AnnounceDriver.txt");
         if (!f.is_open())
@@ -541,7 +551,7 @@ OPTION:
         system("pause");
         break;
     }
-    case 5:
+    case 7:
     {
         system("cls");
         cout << "************************************************\n";
@@ -585,7 +595,7 @@ OPTION:
         {
             system("cls");
             string old = "";
-            cout << "Input your old password: " << endl;
+            cout << "Input your old password: "; 
             getline(cin, old, '\n');
             if (!ValidateInputWorkflow::validatePasswordForm(old))
             {
@@ -615,7 +625,7 @@ OPTION:
             }
 
             string newPassword2 = "";
-            cout << "Enter again new password: " << endl;
+            cout << "Enter again new password: ";
             getline(cin, newPassword2, '\n');
 
             if (!ValidateInputWorkflow::validatePasswordForm(newPassword2))
@@ -673,10 +683,10 @@ OPTION:
         
     }
    
-    case 6:
+    case 8:
         LogoutWorkflow::logout();
         return;
-    case 7:
+    case 9:
         exit(0);
     }
 
@@ -779,7 +789,7 @@ OPTION:
         case 2:
         {system("cls");
         string old = "";
-        cout << "Input your old password: " << endl;
+        cout << "Input your old password: "; 
         getline(cin, old, '\n');
         if (!ValidateInputWorkflow::validatePasswordForm(old))
         {
@@ -809,7 +819,7 @@ OPTION:
         }
 
         string newPassword2 = "";
-        cout << "Enter again new password: " << endl;
+        cout << "Enter again new password: ";
         getline(cin, newPassword2, '\n');
         if (!ValidateInputWorkflow::validatePasswordForm(newPassword2))
         {

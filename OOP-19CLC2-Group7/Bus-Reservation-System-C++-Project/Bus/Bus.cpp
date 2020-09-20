@@ -327,8 +327,8 @@ istream& operator>>(istream& is, Bus& bus)
 	cout << "Spacing time(Ex:7-10 phut): " << endl;
 	getline(is, bus._spacing, '\n');
 
-	bus._normalPrice = 5000;
-	bus._studentPrice = 3000;
+	bus._normalPrice = "5000";
+	bus._studentPrice = "3000";
 
 	string timet = "", timet1 = "";
 	cout << "~~~Spacing time~~~" << endl;
