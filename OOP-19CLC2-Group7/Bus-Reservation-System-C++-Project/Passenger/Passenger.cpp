@@ -155,6 +155,7 @@ GENDER:
 
 void Passenger::buyTicket()
 {
+
 	system("cls");
 	int busID = 0;
 	string busName = "";

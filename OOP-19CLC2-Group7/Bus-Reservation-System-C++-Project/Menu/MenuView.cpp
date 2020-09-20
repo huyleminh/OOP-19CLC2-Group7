@@ -51,16 +51,20 @@ void MenuView::forbiddenView() {
 
 void MenuView::mainMenuView() {
     system("cls"); 
-    Graphic::setWidth(3); cout << "                          __"  << "\t\t                          __" << endl;
-    Graphic::setWidth(3); cout << " .-----------------------'  |" << "\t\t .-----------------------'  |" << endl;
-    Graphic::setWidth(3); cout << "/| _ .---. .---. .---. .---.|" << "\t\t/| _ .---. .---. .---. .---.|" << endl;
-    Graphic::setWidth(3); cout << "|j||||___| |___| |___| |___||" << "\t\t|j||||___| |___| |___| |___||" << endl;
-    Graphic::setWidth(3); cout << "|=|||=======================|" << "\t\t|=|||=======================|" << endl;
-    Graphic::setWidth(3); cout << "[_|j||(O)\\__________|(O)\\___]" << "\t\t[_|j||(O)\\__________|(O)\\___]" << endl;
+    Graphic::changeColour("", WHITE);
+    Graphic::setWidth(1); cout << "                / \\"                                 << endl;
+    Graphic::setWidth(1); cout << "     __________/ o \\/\\_________      _________"    << "\t\t\t                          __" << endl;
+    Graphic::setWidth(1); cout << " ___|               | | # # #  |____|o o o o  | /\\" << "\t\t .-----------------------'  |" << endl;
+    Graphic::setWidth(1); cout << "|. .|               |o| # # #  |. . |o o o o  |//\\\\"<< "\t\t/| _ .---. .---. .---. .---.|" << endl;
+    Graphic::setWidth(1); cout << "|. .| []  []  []  []|o| # # #  |. . |o o o o  |((|))" << "\t\t|j||||___| |___| |___| |___||" << endl;
+    Graphic::setWidth(1); cout << "|. .| []  []  []    |o| # # #  |. . |o o o o  |((|))" << "\t\t|=|||=======================|" << endl;
+    Graphic::setWidth(1); cout << "|__<|____________;;_|_|___/\\___|_.|_|____[]___|  |" << "\t\t[_|j||(O)\\__________|(O)\\___]" << endl;
     Graphic::setHeight(1);
+    Graphic::setWidth(6); Graphic::changeColour("    BUS FOR ALL HOMES", LIGHT_GREEN);
+    Graphic::setHeight(2);
     Graphic::setWidth(4);
     Graphic::changeColour("*********************************************************\n",LIGHT_YELLOW);
-    Graphic::setWidth(4); cout << "*\t\t\t"; Graphic::changeColour("M", PINK); Graphic::changeColour("E", LIGHT_PURPLE); Graphic::changeColour("N", LIGHT_AQUA); Graphic::changeColour("U", LIGHT_GREEN); Graphic::changeColour("", LIGHT_YELLOW); cout << "\t\t\t\t*\n";
+    Graphic::setWidth(4); cout << "*\t\t\t  "; Graphic::changeColour("M", PINK); Graphic::changeColour("E", LIGHT_PURPLE); Graphic::changeColour("N", LIGHT_AQUA); Graphic::changeColour("U", LIGHT_GREEN); Graphic::changeColour("", LIGHT_YELLOW); cout << "\t\t\t\t*\n";
     Graphic::setWidth(4); cout << "*\t1. Search bus no.\t\t\t\t*\n";
     Graphic::setWidth(4); cout << "*\t2. Search station.\t\t\t\t*\n";
     Graphic::setWidth(4); cout << "*\t3. Log in.\t\t\t\t\t*\n";

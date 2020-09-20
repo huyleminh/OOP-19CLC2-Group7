@@ -68,7 +68,6 @@ istream& operator>>(istream& is, Information& info)
 {
 	string tmp = "";
 	cout << "Enter name: ";
-
 	getline(is, tmp, '\n');
 	if (StdFormat::stdName(tmp))
 		info._name = tmp;

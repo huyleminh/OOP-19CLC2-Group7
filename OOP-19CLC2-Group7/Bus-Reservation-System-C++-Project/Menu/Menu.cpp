@@ -727,8 +727,16 @@ OPTION:
         this->searchFromStation();
         break;
     case 3:
+    {List<Bus> list;
+    list.loadListDataFromFile("../Data/Buses.txt");
+
+    cout << "********List of bus********" << endl;
+    for (int i = 0; i < list.size(); i++) {
+        cout << list[i] << endl;
+    }
         passenger.buyTicket();
-        break;
+    break;
+    }
     case 4:
         passenger.viewTicketResult();
         break;
@@ -1063,7 +1071,6 @@ OPTION:
         if (iter != tmpStation.end())
             cout << list[i];
     }
-    system("pause");
 
     cout << "These are buses that go through " << stations[stoi(option) - 1] << " station." << endl;
     Sleep(1000);

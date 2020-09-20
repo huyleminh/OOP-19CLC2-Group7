@@ -220,7 +220,8 @@ void Admin::promoteDriver()
 		}
 	}
 	d.saveListDataToFile("../Data\\Driver.txt");
-
+	cout << "Promote successfully!!!" << endl;
+	system("pause");
 }
 void Admin::addDriver()
 {
