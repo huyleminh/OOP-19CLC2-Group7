@@ -35,6 +35,7 @@ public:
 
     //Check
     bool isUnValidUsername(const User& user);
+    bool isPassword(string pass);
 
     //Return string to storage
     string storageString();

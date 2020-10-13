@@ -58,6 +58,13 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Feedback\Feedback.cpp">
+    <ClCompile Include="Menu\MenuView.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Announcement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphic.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -117,10 +124,22 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Feedback\Feedback.h">
+    <ClInclude Include="Menu\MenuView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Library\Date.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Announcement.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\Library\My-Library.lib" />
+    <Library Include="..\Library\My-Library.lib">
+      <Filter>Source Files</Filter>
+    </Library>
   </ItemGroup>
 </Project>

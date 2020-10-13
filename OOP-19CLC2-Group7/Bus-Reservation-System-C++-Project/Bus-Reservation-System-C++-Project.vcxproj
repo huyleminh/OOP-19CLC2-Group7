@@ -139,12 +139,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Admin\Admin.cpp" />
+    <ClCompile Include="Announcement.cpp" />
     <ClCompile Include="Bus\Bus.cpp" />
     <ClCompile Include="Driver\Driver.cpp" />
+<<<<<<< HEAD
     <ClCompile Include="Feedback\Feedback.cpp" />
+=======
+    <ClCompile Include="Graphic.cpp" />
+>>>>>>> test
     <ClCompile Include="Information\Information.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu\Menu.cpp" />
+    <ClCompile Include="Menu\MenuView.cpp" />
     <ClCompile Include="Passenger\Passenger.cpp" />
     <ClCompile Include="Ticket\StoreTicket.cpp" />
     <ClCompile Include="Ticket\Ticket.cpp" />
@@ -155,17 +161,24 @@
     <ClCompile Include="Workflow\ValidateInput\ValidateInputWorkFlow.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Library\Date.h" />
     <ClInclude Include="..\Library\LocalStorage.h" />
     <ClInclude Include="..\Library\StdFormat.h" />
     <ClInclude Include="..\Library\Tokenizer.h" />
     <ClInclude Include="Admin\Admin.h" />
+    <ClInclude Include="Announcement.h" />
     <ClInclude Include="Bus\Bus.h" />
     <ClInclude Include="Driver\Driver.h" />
+<<<<<<< HEAD
     <ClInclude Include="Feedback\Feedback.h" />
+=======
+    <ClInclude Include="Graphic.h" />
+>>>>>>> test
     <ClInclude Include="Header.h" />
     <ClInclude Include="Information\Information.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="Menu\Menu.h" />
+    <ClInclude Include="Menu\MenuView.h" />
     <ClInclude Include="Passenger\Passenger.h" />
     <ClInclude Include="Ticket\StoreTicket.h" />
     <ClInclude Include="Ticket\Ticket.h" />

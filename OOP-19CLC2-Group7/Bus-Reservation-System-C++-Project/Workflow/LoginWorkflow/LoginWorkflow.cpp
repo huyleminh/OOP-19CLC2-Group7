@@ -5,13 +5,26 @@ bool LoginWorkflow::validateLogin(User& user) {
     List<User> list;
     list.loadListDataFromFile("../Data/Users.txt");
 
-    if (list.includes(user)) {
-        //Set store identify string to local storage
-        LocalStorage local;
-        local.setItem("../Data/LocalStorage.txt", user.storageString());
+    LocalStorage local;
+    vector<string> tmp = local.getItem("../Data/LocalStorage.txt");
+    string check = "";
+    check = Tokenizer::join(tmp, " ");
 
-        return true;
+    if (check == "") {
+        if (list.includes(user)) {
+            local.setItem("../Data/LocalStorage.txt", user.storageString());
+            return true;
+        }
     }
-    user.release();
+    else {
+        string validate = user.storageString();
+
+        if (check == validate) {
+            if (list.includes(user)) {
+                local.setItem("../Data/LocalStorage.txt", user.storageString());
+                return true;
+            }
+        }
+    }
     return false;
 }

@@ -1,4 +1,5 @@
 #include "Driver.h"
+#include "../Workflow/ValidateInput/ValidateInputWorkflow.h"
 
 //Constructor 
 Driver::Driver() :Information() {}
@@ -138,10 +139,133 @@ GENDER:
 		Sleep(1000);
 		break;
 	}
-	
 	case 4:
 		break;
 	}
+}
+
+void Driver::Dayoff()
+{
+	string day_off, Reason;
+DATE_INPUT:
+	cout << "Enter the date you want to take leave (dd/mm/yyyy): \n";
+	getline(cin, day_off, '\n');
+
+	if (!Date::isValidDate(day_off))
+		goto DATE_INPUT;
+
+	Date current;
+	Date check(day_off);
+	if (Date::calcDays(check) < Date::calcDays(current))
+		goto DATE_INPUT;
+
+	cout << "The reason for your leave: ";
+	getline(cin, Reason, '\n');
+
+	ofstream f("../Data/DayOff.txt", ios::app);
+	if (!f.is_open()) {
+		cout << "Can not open DayOff.txt" << endl;
+		return;
+	}
+	f << this->_username << " " << day_off << ":" << Reason << endl;
+	f.close();
+
+	cout << "Request for day-off successfully." << endl;
+	system("pause");
+}
+
+int Driver::countDayOffHistory()
+{
+	ifstream f("../Data/DayOff.txt");
+
+	if (!f.is_open())
+	{
+		cout << "Cannot open DayOff.txt" << endl;
+		return -1;
+	}
+	vector<string> temp;
+	vector<string> v_date;
+	int num = 0;
+
+	Date date;
+	Tokenizer a;
+	vector<string> m_date = a.split(date.toString(), "/");
+
+	while (!f.eof())
+	{
+		string id;
+		getline(f, id, ' ');
+
+		string day;
+		getline(f, day, ':');
+
+		string reason;
+		getline(f, reason, '\n');
+
+		temp.push_back(id);
+		v_date.push_back(day);
+	}
+
+	for (int i = 0; i < temp.size(); i++)
+		if (temp[i] == this->_username)
+		{
+			Tokenizer b;
+			vector<string> temp_date = b.split(v_date[i], "/");
+
+			if (stoi(m_date[1]) == stoi(temp_date[1]) && stoi(m_date[2]) == stoi(v_date[2]))
+			{
+				num++;
+			}
+		}
+
+	f.close();
+	return num;
+}
+
+int Driver::salary()
+{
+	int salary = 0;
+	int dayoff = this->countDayOffHistory();
+	if (dayoff == -1)
+		return -1;
+	salary = BASE_SALARY / 30 * (30 - dayoff);
+	return salary;
+}
+
+void Driver::viewDayoff()
+{
+	ifstream f("../Data/DayOff.txt");
+
+	if (!f.is_open())
+	{
+		cout << "Cannot open DayOff.txt" << endl;
+		return;
+	}
+
+	vector<string> t_id;
+	vector<string> t_dayandreason;
+
+	while (!f.eof())
+	{
+		string id;
+		getline(f, id, ' ');
+
+		string dayandreason;
+		getline(f, dayandreason, '\n');
+
+		t_id.push_back(id);
+		t_dayandreason.push_back(dayandreason);
+	}
+
+	for(int i = 0; i < t_id.size(); i++)
+	{
+		if(t_id[i] == this->_username)
+		{
+			cout << t_dayandreason[i] << endl;
+		}
+	}
+	f.close();
+	system("pause");
 }
 
 bool Driver::changeName(const string& name)

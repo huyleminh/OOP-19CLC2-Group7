@@ -1,5 +1,6 @@
 #include "Bus.h"
 #include"../../Library/Tokenizer.h"
+#include "../Workflow/ValidateInput/ValidateInputWorkflow.h"
 
 //construct for stations
 void Bus::createStations() {
@@ -146,23 +147,21 @@ void Bus::show(string id)
 	if (this->_ID == id)
 	{
 		system("cls");
-		int i;
 		cout << "What information you want to see?" << endl;
 		cout << "1. Name and worktime" << endl;
 		cout << "2. Route" << endl;
 		cout << "3. Price" << endl;
 		cout << "4. Seat" << endl;
 		cout << "5. Back to menu" << endl;
+		string i = "";
 OPTION:
 		cout << "Choose your option: ";
-		cin >> i;
+		getline(cin, i, '\n');
 
-		if (cin.fail()) {
-			cout << "Wrong option, please try again." << endl;
+		if (!ValidateInputWorkflow::validateMenuOption(1, 5, i))
 			goto OPTION;
-		}
 
-		switch (i)
+		switch (stoi(i))
 		{
 		case 1:
 		{
@@ -278,7 +277,6 @@ ostream& operator<<(ostream& os, const Bus& bus)
 istream& operator>>(istream& is, Bus& bus)
 {
 	cout << "Input ID: " << endl;
-	while (getchar() != '\n');
 	getline(is, bus._ID, '\n');
 
 	cout << "Start position: " << endl;
@@ -287,40 +285,76 @@ istream& operator>>(istream& is, Bus& bus)
 	cout << "End position: " << endl;
 	getline(is, bus._end, '\n');
 
-	cout << "Start ROUTE(Ex:X-Y-Z): " << endl;
-	getline(is, bus._routeStart, '\n');
+	vector<string> route;
 
-	cout << "End ROUTE: " << endl;
-	getline(is, bus._routeEnd, '\n');
+	int n;
+	cout << "How many position your route have?" << endl;
+	cin >> n;
+
+	cout << "!!!Start route!!!" << endl;
+	cout << "Position: " << endl;
+	while (getchar() != '\n');
+	//cho nguoi ta nhap tung position de tranh bi sai, roi noi chuoi lai bang ham join
+	for (int i = 0; i < n; i++)
+	{
+		string position;
+		cout << i + 1 << ": ";
+
+		getline(cin, position);
+
+		route.push_back(position);
+	}
+	string routeJoin1 = Tokenizer::join(route, " - ");
+	bus._routeStart = routeJoin1;
+	
+	route.clear();
+
+	cout << "!!!End route!!!" << endl;
+	cout << "Position: " << endl;
+	//cho nguoi ta nhap tung position de tranh bi sai, roi noi chuoi lai bang ham join
+	for (int i = 0; i < n; i++)
+	{
+		string position;
+		cout << i + 1 << ": ";
+
+		getline(cin, position);
+
+		route.push_back(position);
+	}
+	string routeJoin = Tokenizer::join(route, " - ");
+	bus._routeEnd = routeJoin;
 
 	cout << "Spacing time(Ex:7-10 phut): " << endl;
 	getline(is, bus._spacing, '\n');
 
-	cout << "Normal price(Ex:5 000):" << endl;
-	getline(is, bus._normalPrice, '\n');
+	bus._normalPrice = "5000";
+	bus._studentPrice = "3000";
 
-	cout << "Student price(Ex:3 000):" << endl;
-	getline(is, bus._studentPrice, '\n');
+	string timet = "", timet1 = "";
+	cout << "~~~Spacing time~~~" << endl;
+	cout << "Minimum time: " << endl;
+	getline(cin, timet);
+	cout << "Maximum time: " << endl;
+	getline(cin, timet1);
+	bus._spacing = timet + "-" + timet1 + " phut";
 
-	cout << "Rows of seats :" << endl;
+	cout << "~~~SEAT~~~" << endl;
+	cout << "Rows:" << endl;
 	is >> bus._rows;
 
-	cout << "Colums of seats" << endl;
+	cout << "Colums " << endl;
 	is >> bus._cols;
 
 	bus._seat.resize(bus._rows);
-	for (int i = 0; i < bus._rows; i++)
-	{
+	for (int i = 0; i < bus._rows; i++) {
 		bus._seat[i].resize(bus._cols);
 		for (int j = 0; j < bus._cols; j++)
-		{
 			bus._seat[i][j] = "Empty";
-		}
 	}
 
 	while (getchar() != '\n');
-	cout << "Worktime" << endl;
-	cout << "Start time(Ex: 13:00): " << endl;
+	cout << "~~~Worktime(Ex:13:30)~~~" << endl;
+	cout << "Start time: " << endl;
 	getline(is, bus._Starttime, '\n');
 
 	cout << "End time: " << endl;
@@ -331,19 +365,21 @@ istream& operator>>(istream& is, Bus& bus)
 
 	//Create list stations
 	bus.createStations();
-	
 	return is;
 }
 bool Bus::changeID()
 {
-	int choice;
 	cout << "Bus ID " << this->_ID << endl;
-	cout << "Do you want to change it ?" << endl;
+	cout << "* Do you want to change it ?" << endl;
 	cout << "1: Yes" << endl;
 	cout << "2: No" << endl;
-	cin >> choice;
+	string choice = "";
+	do {
+		cout << "Enter option: ";
+		getline(cin, choice, '\n');
+	} while(!ValidateInputWorkflow::validateMenuOption(1, 2, choice));
 
-	if (choice == 2)
+	if (stoi(choice) == 2)
 		return 0;
 
 	string id;
@@ -352,16 +388,14 @@ bool Bus::changeID()
 
 	//doc lai file de ghi lai
 	vector<Bus> a;
-	ifstream f1("../Data\\Buses.txt");
-	if (!f1.is_open())
-	{
+	ifstream f1("../Data/Buses.txt");
+	if (!f1.is_open()) {
 		cout << "Can not open buses.txt" << endl;
 		return 0;
 	}
 	else
 	{
-		while (!f1.eof())
-		{
+		while (!f1.eof()) {
 			Bus tmp;
 			f1 >> tmp;
 
@@ -370,15 +404,13 @@ bool Bus::changeID()
 
 			a.push_back(tmp);
 		}
-		for (int i = 0; i < a.size(); i++)
-		{
+		for (int i = 0; i < a.size(); i++) {
 			//sua id va ghi lai
 			if (this->_ID == a[i]._ID)
 			{
-
 				a[i]._ID = id;
 
-				ofstream out("../Data\\Buses.txt");
+				ofstream out("../Data/Buses.txt");
 				if (!out.is_open())
 				{
 					cout << "Can not open Buses.txt" << endl;
@@ -397,11 +429,9 @@ bool Bus::changeID()
 			}
 		}
 	}
-
 }
 bool Bus::changePosition()// tuong tu ham changeID
 {
-
 	int choice;
 	cout << "Bus ID " << this->_ID << endl;
 	cout << "Start position: " << this->_start << endl;
@@ -420,10 +450,10 @@ bool Bus::changePosition()// tuong tu ham changeID
 	getline(cin, position);
 
 	vector<Bus> a;
-	ifstream f1("../Data\\Buses.txt");
+	ifstream f1("../Data/Buses.txt");
 	if (!f1.is_open())
 	{
-		cout << "Can not open buses.txt" << endl;
+		cout << "Can not open Buses.txt" << endl;
 		return 0;
 	}
 	else
@@ -445,7 +475,7 @@ bool Bus::changePosition()// tuong tu ham changeID
 				else
 					a[i]._end = position;
 
-				ofstream out("../Data\\Buses.txt");
+				ofstream out("../Data/Buses.txt");
 				if (!out.is_open())
 				{
 					cout << "Can not open Buses.txt" << endl;
@@ -472,7 +502,6 @@ bool Bus::changePosition()// tuong tu ham changeID
 }
 bool Bus::changeRoute()
 {
-
 	int choice;
 	cout << "Bus ID " << this->_ID << endl;
 	cout << "Start route: " << this->_routeStart << endl;
@@ -509,7 +538,7 @@ bool Bus::changeRoute()
 	}
 	string routeJoin = Tokenizer::join(route, " - ");
 	vector<Bus> a;
-	ifstream f1("../Data\\Buses.txt");
+	ifstream f1("../Data/Buses.txt");
 	if (!f1.is_open())
 	{
 		cout << "Can not open buses.txt" << endl;
@@ -534,7 +563,7 @@ bool Bus::changeRoute()
 				else
 					a[i]._routeEnd = routeJoin;
 
-				ofstream out("../Data\\Buses.txt");
+				ofstream out("../Data/Buses.txt");
 				if (!out.is_open())
 				{
 					cout << "Can not open Buses.txt" << endl;
@@ -579,7 +608,7 @@ bool Bus::changeSpacing()
 	getline(cin, spacing);
 
 	vector<Bus> a;
-	ifstream f1("../Data\\Buses.txt");
+	ifstream f1("../Data/Buses.txt");
 	if (!f1.is_open())
 	{
 		cout << "Can not open buses.txt" << endl;
@@ -601,7 +630,7 @@ bool Bus::changeSpacing()
 			{
 				a[i]._spacing = spacing;
 
-				ofstream out("../Data\\Buses.txt");
+				ofstream out("../Data/Buses.txt");
 				if (!out.is_open())
 				{
 					cout << "Can not open Buses.txt" << endl;
@@ -644,7 +673,7 @@ bool Bus::changePrice()
 	getline(cin, price);
 
 	vector<Bus> a;
-	ifstream f1("../Data\\Buses.txt");
+	ifstream f1("../Data/Buses.txt");
 	if (!f1.is_open())
 	{
 		cout << "Can not open buses.txt" << endl;
@@ -669,7 +698,7 @@ bool Bus::changePrice()
 				else
 					a[i]._normalPrice = price;
 
-				ofstream out("../Data\\Buses.txt");
+				ofstream out("../Data/Buses.txt");
 				if (!out.is_open())
 				{
 					cout << "Can not open Buses.txt" << endl;
@@ -731,7 +760,7 @@ bool Bus::changeSeat()
 	cin >> m;
 
 	vector<Bus> a;
-	ifstream f1("../Data\\Buses.txt");
+	ifstream f1("../Data/Buses.txt");
 	if (!f1.is_open())
 	{
 		cout << "Can not open buses.txt" << endl;
@@ -763,7 +792,7 @@ bool Bus::changeSeat()
 						a[i]._seat[j][z] = "Empty";
 					}
 				}
-				ofstream out("../Data\\Buses.txt");
+				ofstream out("../Data/Buses.txt");
 				if (!out.is_open())
 				{
 					cout << "Can not open Buses.txt" << endl;
@@ -809,7 +838,7 @@ bool Bus::changeTime()
 	getline(cin, time);
 
 	vector<Bus> a;
-	ifstream f1("../Data\\Buses.txt");
+	ifstream f1("../Data/Buses.txt");
 	if (!f1.is_open())
 	{
 		cout << "Can not open buses.txt" << endl;
@@ -834,7 +863,7 @@ bool Bus::changeTime()
 				else
 					a[i]._Endtime = time;
 
-				ofstream out("../Data\\Buses.txt");
+				ofstream out("../Data/Buses.txt");
 				if (!out.is_open())
 				{
 					cout << "Can not open Buses.txt" << endl;
@@ -883,7 +912,7 @@ bool Bus::changeActive()
 	system("cls");
 
 	vector<Bus> a;
-	ifstream f1("../Data\\Buses.txt");
+	ifstream f1("../Data/Buses.txt");
 	if (!f1.is_open())
 	{
 		cout << "Can not open buses.txt" << endl;
@@ -906,7 +935,7 @@ bool Bus::changeActive()
 					a[i]._IsActive = false;
 				else
 					a[i]._IsActive = true;
-				ofstream out("../Data\\Buses.txt");
+				ofstream out("../Data/Buses.txt");
 				if (!out.is_open())
 				{
 					cout << "Can not open Buses.txt" << endl;

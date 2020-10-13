@@ -6,8 +6,8 @@
 class ValidateInputWorkflow {
 public:
     static bool validateNameForm(const string& name);
-    static bool validateDateFrom();
     static bool validatePasswordForm(const string& password);
+    static bool validateMenuOption(const int& min, const int& max, const string& option);
 };
 
 #endif

@@ -26,6 +26,12 @@ public:
 	//Methods change information
 	void changeInformation(User& user); //Render change information interface
 
+	//Buy ticket
+	void buyTicket();
+
+	//View own ticket
+	void viewTicketResult();
+
 private:
 	bool changeName(const string& name);
 	void changeSex(const string& sex);

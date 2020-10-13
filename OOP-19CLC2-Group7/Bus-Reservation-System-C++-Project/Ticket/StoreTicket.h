@@ -7,9 +7,10 @@ class StoreTicket
 {
 private:
 	vector<Ticket*> _tickets;
-private:
-	StoreTicket();
+	
 public:
+	StoreTicket();
+
 	//Type: 
 	enum {
 		PLAYS = 1,
@@ -18,7 +19,10 @@ public:
 	
 	~StoreTicket();
 
-	void createNewTicket(const int& type, const string& passType, const string& busID, const string& busName, const string& username);
+	//Create new ticket
+	bool createNewTicket(const int& type, const string& passType, const string& busID, const string& username);
+
+	void viewTicket(const string& username);
 };
 
 #endif

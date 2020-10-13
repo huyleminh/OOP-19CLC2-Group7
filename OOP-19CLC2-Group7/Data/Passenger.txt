@@ -3,7 +3,7 @@ Le Thanh Dat
 Male
 19/05/1969
 LeThanhDat
-Normal
+Student
 
 Cao Huu Minh
 Male
@@ -21,4 +21,10 @@ Nguyen Huu Thong
 Male
 03/11/2001
 NguyenHuuThong
+Student
+
+Phan Minh Hieu
+Male
+01/01/2000
+demo
 Student

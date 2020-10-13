@@ -7,6 +7,7 @@
 #include "../Information/Information.h"
 #include "../Driver/Driver.h"
 #include "../Admin/Admin.h"
+#include "../Announcement.h"
 
 class Menu {
 public:
